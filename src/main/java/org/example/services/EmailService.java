@@ -1,0 +1,64 @@
+package org.example.services;
+import org.example.model.EmailCredentials;
+import org.example.utils.PropertiesLoader;
+
+import javax.mail.*;
+import javax.mail.internet.*;
+import java.io.File;
+import java.io.IOException;
+import java.util.List;
+import java.util.Properties;
+
+import static java.util.Objects.nonNull;
+
+public class EmailService {
+    public void sendMessage(String to, EmailCredentials credentials,
+                            String message, List<File> attachments) {
+
+        Properties properties = PropertiesLoader.getProperties();
+
+        // Устанавливаем авторизацию
+        Session session = Session.getDefaultInstance(properties, new javax.mail.Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(credentials.getEmail(), credentials.getPassword());// логин и пароль
+            }
+        });
+
+        try {
+            // Создаем сообщение
+            MimeMessage mimeMessage = new MimeMessage(session);
+            // Устанавливаем адресатов
+            mimeMessage.setFrom(new InternetAddress(credentials.getEmail()));
+            mimeMessage.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
+            // Устанавливаем тему сообщения
+            mimeMessage.setSubject("Alert");
+            // Устанавливаем текст сообщения
+            BodyPart messageBodyPart = new MimeBodyPart();
+            messageBodyPart.setText(message);
+
+            MimeBodyPart attachmentPart = null;
+            if (nonNull(attachments) && !attachments.isEmpty()) {
+                attachmentPart = new MimeBodyPart();
+                for (File attachment : attachments) {
+                    attachmentPart.attachFile(attachment);
+                }
+            }
+
+            Multipart multipart = new MimeMultipart();
+            multipart.addBodyPart(messageBodyPart);
+            multipart.addBodyPart(attachmentPart);
+
+            mimeMessage.setContent(multipart);
+
+            // Отправляем сообщение
+            Transport.send(mimeMessage);
+
+            System.out.println("Message sent successfully");
+
+        } catch (MessagingException mex) {
+            mex.printStackTrace();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+}
