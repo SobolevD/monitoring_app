@@ -35,17 +35,16 @@ public class EmailService {
             BodyPart messageBodyPart = new MimeBodyPart();
             messageBodyPart.setText(message);
 
-            MimeBodyPart attachmentPart = null;
-            if (nonNull(attachments) && !attachments.isEmpty()) {
-                attachmentPart = new MimeBodyPart();
-                for (File attachment : attachments) {
-                    attachmentPart.attachFile(attachment);
-                }
-            }
-
             Multipart multipart = new MimeMultipart();
             multipart.addBodyPart(messageBodyPart);
-            multipart.addBodyPart(attachmentPart);
+
+            if (nonNull(attachments) && !attachments.isEmpty()) {
+                for (File attachment : attachments) {
+                    MimeBodyPart attachmentPart = new MimeBodyPart();
+                    attachmentPart.attachFile(attachment);
+                    multipart.addBodyPart(attachmentPart);
+                }
+            }
 
             mimeMessage.setContent(multipart);
 

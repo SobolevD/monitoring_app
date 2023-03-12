@@ -1,0 +1,31 @@
+{
+  "processNames": [
+    "svchost",
+    "chrome",
+    "firefox",
+    "idea64",
+    "RuntimeBroker",
+    "SecurityHealthSystray",
+    "SentinelBrowserNativeHost",
+    "SentinelUI",
+    "taskhostw",
+    "Zoom",
+    "dbeaver",
+    "winlogon"
+  ],
+  "pathPrefixes": [
+    "C:\\WINDOWS\\system32",
+    "C:\\Program Files\\Google\\Chrome",
+    "C:\\Program Files\\SentinelOne",
+    "c:\\users\\dmso0321\\appdata",
+    "C:\\Program Files\\McAfee"
+  ],
+  "companies": [
+    "Google LLC",
+    "Microsoft Corporation",
+    "Cisco Systems, Inc",
+    "Discord Inc.",
+    "Oracle Corporation",
+    "Sentinel Labs, Inc."
+  ]
+}

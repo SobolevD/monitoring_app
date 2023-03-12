@@ -3,6 +3,7 @@ package org.example.services;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
 import org.example.model.ProcessResources;
+import org.example.model.TrustedProcesses;
 import org.example.utils.CommandExecutor;
 
 import java.io.File;
@@ -11,6 +12,7 @@ import java.io.IOException;
 import java.io.Reader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.example.model.ProcessResources.COLUMN_NAMES;
 
@@ -104,5 +106,14 @@ public class ProcessesInfoService {
                     .build());
         }
         return processResources;
+    }
+
+    public List<ProcessResources> getUntrustedProcesses(List<ProcessResources> processResourcesToFilter,
+                                                        TrustedProcesses trustedProcesses) {
+        return processResourcesToFilter.stream()
+                .filter(processResources -> !trustedProcesses.containsProcessName(processResources.getProcessName()))
+                .filter(processResources -> !trustedProcesses.containsPathPrefix(processResources.getPath()))
+                .filter(processResources -> !trustedProcesses.containsCompany(processResources.getCompany()))
+                .collect(Collectors.toList());
     }
 }

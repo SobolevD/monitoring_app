@@ -2,6 +2,7 @@ package org.example;
 
 import org.example.model.EmailCredentials;
 import org.example.model.ProcessResources;
+import org.example.model.TrustedProcesses;
 import org.example.services.EmailService;
 import org.example.services.ExcelService;
 import org.example.services.ProcessesInfoService;
@@ -12,8 +13,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-import static org.example.common.Constants.CURRENT_USERNAME;
-import static org.example.common.Constants.PROPERTIES_FILE_PATH;
+import static org.example.common.Constants.*;
 import static org.example.common.PropertiesNames.*;
 
 public class MonitoringApp {
@@ -30,9 +30,10 @@ public class MonitoringApp {
         List<ProcessResources> processResources = processesInfoService.getProcessResources();
 
         System.out.println("Creating report file...");
-        ExcelService excelService = new ExcelService();
 
-        File sheets = excelService.writeProcessesResources(processResources);
+        TrustedProcesses trustedProcesses = TrustedProcesses.fromFile(TRUSTED_PROCESSES_FILE_PATH);
+        List<ProcessResources> untrustedProcesses =
+                processesInfoService.getUntrustedProcesses(processResources, trustedProcesses);
 
         System.out.println("Sending message to email " +
                 properties.getProperty(EMAIL_RECIPIENT_ADDRESS_PROP) + "...");
@@ -44,8 +45,15 @@ public class MonitoringApp {
                 .build();
         String message = String.format("Please do not reply to this message. Report time: %s", getCurrentTime());
 
+        ExcelService excelService = new ExcelService();
+
+        File processResourcesFile = excelService.writeProcessesResources(processResources, "All processes info");
+
+        File untrustedProcessesFile = excelService.writeProcessesResources(untrustedProcesses, "Untrusted processes info");
+
         emailService.sendMessage(properties.getProperty(EMAIL_RECIPIENT_ADDRESS_PROP), credentials,
-                message, Collections.singletonList(sheets));
+                message, Arrays.asList(processResourcesFile, untrustedProcessesFile));
+
     }
 
     private static String getCurrentTime() {

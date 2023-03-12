@@ -18,7 +18,8 @@ import static org.example.model.ProcessResources.COLUMN_NAMES;
 
 public class ExcelService {
 
-    public File writeProcessesResources(List<ProcessResources> processResources) throws IOException {
+    public File writeProcessesResources(List<ProcessResources> processResources, String filename)
+            throws IOException {
         HSSFWorkbook workbook = new HSSFWorkbook();
         HSSFSheet sheet = workbook.createSheet(String.format("Process resources for user '%s'", CURRENT_USERNAME));
 
@@ -172,7 +173,7 @@ public class ExcelService {
             cell.setCellValue(processResource.getContainer());
         }
 
-        File file = File.createTempFile("processesResources", ".xls");
+        File file = File.createTempFile(filename, ".xls");
         FileOutputStream outFile = new FileOutputStream(file);
         workbook.write(outFile);
         workbook.close();
