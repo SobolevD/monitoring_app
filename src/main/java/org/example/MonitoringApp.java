@@ -1,64 +1,32 @@
 package org.example;
 
-import org.example.model.EmailCredentials;
-import org.example.model.ProcessResources;
-import org.example.model.TrustedProcesses;
-import org.example.services.EmailService;
-import org.example.services.ExcelService;
-import org.example.services.ProcessesInfoService;
+import org.example.tasks.CollectAndSendToEmailProcessesInfoTask;
 import org.example.utils.PropertiesLoader;
 
-import java.io.File;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.Properties;
+import java.util.Timer;
 
-import static org.example.common.Constants.*;
-import static org.example.common.PropertiesNames.*;
+import static org.example.common.Constants.PROPERTIES_FILE_PATH;
+import static org.example.common.PropertiesNames.TASK_COLLECT_PROCESSES_DELAY_SECONDS_PROP;
+import static org.example.common.PropertiesNames.TASK_COLLECT_PROCESSES_PERIOD_SECONDS_PROP;
 
 public class MonitoringApp {
 
-    private static final String DATE_FORMAT = "yyyy-MM-dd HH:mm:ss:SSS z";
-    public static void main(String[] args) throws IOException, InterruptedException {
 
+    public static void main(String[] args) {
         PropertiesLoader.loadProps(PROPERTIES_FILE_PATH);
+        scheduleTasks();
+    }
+
+    private static void scheduleTasks() {
         Properties properties = PropertiesLoader.getProperties();
+        String collectProcessTaskDelay = properties.getProperty(TASK_COLLECT_PROCESSES_DELAY_SECONDS_PROP);
+        String collectProcessTaskPeriod = properties.getProperty(TASK_COLLECT_PROCESSES_PERIOD_SECONDS_PROP);
 
-        System.out.println("Getting processes info for user " + CURRENT_USERNAME + "...");
-        ProcessesInfoService processesInfoService = new ProcessesInfoService();
-
-        List<ProcessResources> processResources = processesInfoService.getProcessResources();
-
-        System.out.println("Creating report file...");
-
-        TrustedProcesses trustedProcesses = TrustedProcesses.fromFile(TRUSTED_PROCESSES_FILE_PATH);
-        List<ProcessResources> untrustedProcesses =
-                processesInfoService.getUntrustedProcesses(processResources, trustedProcesses);
-
-        System.out.println("Sending message to email " +
-                properties.getProperty(EMAIL_RECIPIENT_ADDRESS_PROP) + "...");
-
-        EmailService emailService = new EmailService();
-        EmailCredentials credentials = EmailCredentials.builder()
-                .email(properties.getProperty(EMAIL_SENDER_ADDRESS_PROP))
-                .password(properties.getProperty(EMAIL_SENDER_EXTERNAL_PASSWORD_PROP))
-                .build();
-        String message = String.format("Please do not reply to this message. Report time: %s", getCurrentTime());
-
-        ExcelService excelService = new ExcelService();
-
-        File processResourcesFile = excelService.writeProcessesResources(processResources, "All processes info");
-
-        File untrustedProcessesFile = excelService.writeProcessesResources(untrustedProcesses, "Untrusted processes info");
-
-        emailService.sendMessage(properties.getProperty(EMAIL_RECIPIENT_ADDRESS_PROP), credentials,
-                message, Arrays.asList(processResourcesFile, untrustedProcessesFile));
-
+        new Timer().schedule(new CollectAndSendToEmailProcessesInfoTask(),
+                Long.parseLong(collectProcessTaskDelay),
+                Long.parseLong(collectProcessTaskPeriod));
     }
 
-    private static String getCurrentTime() {
-        SimpleDateFormat dateFormatGMT = new SimpleDateFormat(DATE_FORMAT);
-        dateFormatGMT.setTimeZone(TimeZone.getTimeZone("GMT+4"));
-        return dateFormatGMT.format(new Date());
-    }
+
 }

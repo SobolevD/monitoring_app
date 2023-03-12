@@ -1,4 +1,5 @@
 package org.example.services;
+import lombok.extern.slf4j.Slf4j;
 import org.example.model.EmailCredentials;
 import org.example.utils.PropertiesLoader;
 
@@ -11,6 +12,7 @@ import java.util.Properties;
 
 import static java.util.Objects.nonNull;
 
+@Slf4j
 public class EmailService {
     public void sendMessage(String to, EmailCredentials credentials,
                             String message, List<File> attachments) {
@@ -50,7 +52,7 @@ public class EmailService {
 
             Transport.send(mimeMessage);
 
-            System.out.println("Message sent successfully");
+            log.info("Message sent successfully");
 
         } catch (MessagingException mex) {
             mex.printStackTrace();
