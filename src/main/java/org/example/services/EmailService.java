@@ -17,22 +17,21 @@ public class EmailService {
 
         Properties properties = PropertiesLoader.getProperties();
 
-        // Устанавливаем авторизацию
         Session session = Session.getDefaultInstance(properties, new javax.mail.Authenticator() {
             protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(credentials.getEmail(), credentials.getPassword());// логин и пароль
+                return new PasswordAuthentication(credentials.getEmail(), credentials.getPassword());
             }
         });
 
         try {
-            // Создаем сообщение
+
             MimeMessage mimeMessage = new MimeMessage(session);
-            // Устанавливаем адресатов
+
             mimeMessage.setFrom(new InternetAddress(credentials.getEmail()));
             mimeMessage.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
-            // Устанавливаем тему сообщения
+
             mimeMessage.setSubject("Alert");
-            // Устанавливаем текст сообщения
+
             BodyPart messageBodyPart = new MimeBodyPart();
             messageBodyPart.setText(message);
 
@@ -50,7 +49,6 @@ public class EmailService {
 
             mimeMessage.setContent(multipart);
 
-            // Отправляем сообщение
             Transport.send(mimeMessage);
 
             System.out.println("Message sent successfully");
