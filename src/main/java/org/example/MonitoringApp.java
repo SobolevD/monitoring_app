@@ -1,6 +1,6 @@
 package org.example;
 
-import org.example.tasks.CollectAndSendToEmailProcessesInfoTask;
+import org.example.tasks.CollectAndSendReportToEmailTask;
 import org.example.utils.PropertiesLoader;
 
 import java.util.Properties;
@@ -23,7 +23,7 @@ public class MonitoringApp {
         String collectProcessTaskDelay = properties.getProperty(TASK_COLLECT_PROCESSES_DELAY_SECONDS_PROP);
         String collectProcessTaskPeriod = properties.getProperty(TASK_COLLECT_PROCESSES_PERIOD_SECONDS_PROP);
 
-        new Timer().schedule(new CollectAndSendToEmailProcessesInfoTask(),
+        new Timer().schedule(new CollectAndSendReportToEmailTask(),
                 Long.parseLong(collectProcessTaskDelay),
                 Long.parseLong(collectProcessTaskPeriod));
     }

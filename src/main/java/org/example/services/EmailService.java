@@ -1,13 +1,16 @@
 package org.example.services;
+
 import lombok.extern.slf4j.Slf4j;
 import org.example.model.EmailCredentials;
 import org.example.utils.PropertiesLoader;
 
 import javax.mail.*;
-import javax.mail.internet.*;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
+import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
 import java.util.Properties;
 
 import static java.util.Objects.nonNull;
@@ -15,7 +18,7 @@ import static java.util.Objects.nonNull;
 @Slf4j
 public class EmailService {
     public void sendMessage(String to, EmailCredentials credentials,
-                            String message, List<File> attachments) {
+                            String message, File attachment) {
 
         Properties properties = PropertiesLoader.getProperties();
 
@@ -40,12 +43,10 @@ public class EmailService {
             Multipart multipart = new MimeMultipart();
             multipart.addBodyPart(messageBodyPart);
 
-            if (nonNull(attachments) && !attachments.isEmpty()) {
-                for (File attachment : attachments) {
-                    MimeBodyPart attachmentPart = new MimeBodyPart();
-                    attachmentPart.attachFile(attachment);
-                    multipart.addBodyPart(attachmentPart);
-                }
+            if (nonNull(attachment)) {
+                MimeBodyPart attachmentPart = new MimeBodyPart();
+                attachmentPart.attachFile(attachment);
+                multipart.addBodyPart(attachmentPart);
             }
 
             mimeMessage.setContent(multipart);

@@ -4,24 +4,35 @@ import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
-import org.example.model.ProcessInfo;
-import org.example.model.ProcessResources;
+import org.example.model.entity.EventLogGeneralInfo;
+import org.example.model.entity.EventLogInfo;
+import org.example.model.entity.ProcessResourcesInfo;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
 
-import static org.example.common.Constants.CURRENT_USERNAME;
-import static org.example.model.ProcessResources.COLUMN_NAMES;
-
 public class ExcelService {
 
-    public File writeProcessesResources(List<ProcessResources> processResources, String filename)
+    public HSSFWorkbook createEmptyReport() {
+        return new HSSFWorkbook();
+    }
+
+    public File saveReport(HSSFWorkbook report, String filename) throws IOException {
+        File file = File.createTempFile(filename, ".xls");
+        FileOutputStream outFile = new FileOutputStream(file);
+        report.write(outFile);
+        report.close();
+        file.deleteOnExit();
+        return file;
+    }
+
+    public void writeProcessesResources(HSSFWorkbook workbook,
+                                        List<ProcessResourcesInfo> processResourceInfos,
+                                        String sheetName)
             throws IOException {
-        HSSFWorkbook workbook = new HSSFWorkbook();
-        HSSFSheet sheet = workbook.createSheet(String.format("Process resources for user '%s'", CURRENT_USERNAME));
+        HSSFSheet sheet = workbook.createSheet(sheetName);
 
         int rownum = 0;
         int cellNum = -1;
@@ -29,12 +40,12 @@ public class ExcelService {
 
         Cell cell;
 
-        for (String columnName : COLUMN_NAMES) {
+        for (String columnName : ProcessResourcesInfo.COLUMN_NAMES) {
             cell = row.createCell(++cellNum);
             cell.setCellValue(columnName);
         }
 
-        for (ProcessResources processResource : processResources) {
+        for (ProcessResourcesInfo processResource : processResourceInfos) {
             cellNum = 0;
             row = sheet.createRow(++rownum);
             cell = row.createCell(cellNum);
@@ -172,12 +183,104 @@ public class ExcelService {
             cell = row.createCell(++cellNum);
             cell.setCellValue(processResource.getContainer());
         }
+    }
 
-        File file = File.createTempFile(filename, ".xls");
-        FileOutputStream outFile = new FileOutputStream(file);
-        workbook.write(outFile);
-        workbook.close();
-        file.deleteOnExit();
-        return file;
+    public void writeEventLogGeneralInfo(HSSFWorkbook workbook,
+                                         List<EventLogGeneralInfo> eventLogGeneralInfos)
+            throws IOException {
+        HSSFSheet sheet = workbook.createSheet("Event log general info");
+
+        int rownum = 0;
+        int cellNum = -1;
+        Row row = sheet.createRow(rownum);
+
+        Cell cell;
+
+        for (String columnName : EventLogGeneralInfo.COLUMN_NAMES) {
+            cell = row.createCell(++cellNum);
+            cell.setCellValue(columnName);
+        }
+
+        for (EventLogGeneralInfo eventLogGeneralInfoRecord : eventLogGeneralInfos) {
+            cellNum = 0;
+            row = sheet.createRow(++rownum);
+            cell = row.createCell(cellNum);
+            cell.setCellValue(eventLogGeneralInfoRecord.getEntries());
+            cell = row.createCell(++cellNum);
+            cell.setCellValue(eventLogGeneralInfoRecord.getLogDisplayName());
+            cell = row.createCell(++cellNum);
+            cell.setCellValue(eventLogGeneralInfoRecord.getLog());
+            cell = row.createCell(++cellNum);
+            cell.setCellValue(eventLogGeneralInfoRecord.getMachineName());
+            cell = row.createCell(++cellNum);
+            cell.setCellValue(eventLogGeneralInfoRecord.getMaximumKilobytes());
+            cell = row.createCell(++cellNum);
+            cell.setCellValue(eventLogGeneralInfoRecord.getOverflowAction());
+            cell = row.createCell(++cellNum);
+            cell.setCellValue(eventLogGeneralInfoRecord.getMinimumRetentionDays());
+            cell = row.createCell(++cellNum);
+            cell.setCellValue(eventLogGeneralInfoRecord.getEnableRaisingEvents());
+            cell = row.createCell(++cellNum);
+            cell.setCellValue(eventLogGeneralInfoRecord.getSynchronizingObject());
+            cell = row.createCell(++cellNum);
+            cell.setCellValue(eventLogGeneralInfoRecord.getSource());
+            cell = row.createCell(++cellNum);
+            cell.setCellValue(eventLogGeneralInfoRecord.getSite());
+            cell = row.createCell(++cellNum);
+            cell.setCellValue(eventLogGeneralInfoRecord.getContainer());
+        }
+    }
+
+    public void writeEventLogInfo(HSSFWorkbook workbook,
+                                  List<EventLogInfo> eventLogInfos,
+                                  String eventLogName)
+            throws IOException {
+        HSSFSheet sheet = workbook.createSheet(String.format("Event log '%s' info", eventLogName));
+
+        int rownum = 0;
+        int cellNum = -1;
+        Row row = sheet.createRow(rownum);
+
+        Cell cell;
+
+        for (String columnName : EventLogInfo.COLUMN_NAMES) {
+            cell = row.createCell(++cellNum);
+            cell.setCellValue(columnName);
+        }
+
+        for (EventLogInfo eventLogInfoRecord : eventLogInfos) {
+            cellNum = 0;
+            row = sheet.createRow(++rownum);
+            cell = row.createCell(cellNum);
+            cell.setCellValue(eventLogInfoRecord.getEventId());
+            cell = row.createCell(++cellNum);
+            cell.setCellValue(eventLogInfoRecord.getMachineName());
+            cell = row.createCell(++cellNum);
+            cell.setCellValue(eventLogInfoRecord.getData());
+            cell = row.createCell(++cellNum);
+            cell.setCellValue(eventLogInfoRecord.getIndex());
+            cell = row.createCell(++cellNum);
+            cell.setCellValue(eventLogInfoRecord.getCategory());
+            cell = row.createCell(++cellNum);
+            cell.setCellValue(eventLogInfoRecord.getCategoryNumber());
+            cell = row.createCell(++cellNum);
+            cell.setCellValue(eventLogInfoRecord.getEntryType());
+            cell = row.createCell(++cellNum);
+            cell.setCellValue(eventLogInfoRecord.getMessage());
+            cell = row.createCell(++cellNum);
+            cell.setCellValue(eventLogInfoRecord.getSource());
+            cell = row.createCell(++cellNum);
+            cell.setCellValue(eventLogInfoRecord.getReplacementStrings());
+            cell = row.createCell(++cellNum);
+            cell.setCellValue(eventLogInfoRecord.getInstanceId());
+            cell = row.createCell(++cellNum);
+            cell.setCellValue(eventLogInfoRecord.getTimeGenerated());
+            cell = row.createCell(++cellNum);
+            cell.setCellValue(eventLogInfoRecord.getTimeWritten());
+            cell = row.createCell(++cellNum);
+            cell.setCellValue(eventLogInfoRecord.getSite());
+            cell = row.createCell(++cellNum);
+            cell.setCellValue(eventLogInfoRecord.getContainer());
+        }
     }
 }

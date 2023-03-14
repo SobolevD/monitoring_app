@@ -1,4 +1,4 @@
-package org.example.model;
+package org.example.model.entity;
 
 import lombok.Builder;
 import lombok.Data;
@@ -9,7 +9,7 @@ import lombok.ToString;
 @Builder
 @ToString
 @EqualsAndHashCode
-public class ProcessResources {
+public class ProcessResourcesInfo {
 
     public static final String[] COLUMN_NAMES = {"Name","SI","Handles","VM","WS","PM", "NPM","Path","Company", "CPU", "FileVersion",
             "ProductVersion", "Description", "Product", "__NounName", "BasePriority", "ExitCode",

@@ -2,8 +2,8 @@ package org.example.services;
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
-import org.example.model.ProcessResources;
 import org.example.model.TrustedProcesses;
+import org.example.model.entity.ProcessResourcesInfo;
 import org.example.utils.CommandExecutor;
 
 import java.io.File;
@@ -14,14 +14,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static org.example.model.ProcessResources.COLUMN_NAMES;
+import static org.example.model.entity.ProcessResourcesInfo.COLUMN_NAMES;
 
 public class ProcessesInfoService {
 
     private static final String GET_PROCESS_RESOURCES_COMMAND = "Get-Process | ? {$_.SI -eq (Get-Process -PID $PID).SessionId}";
 
-    public List<ProcessResources> getProcessResources() throws IOException, InterruptedException {
-        List<ProcessResources> processResources = new ArrayList<>();
+    public List<ProcessResourcesInfo> getProcessResources() throws IOException, InterruptedException {
+        List<ProcessResourcesInfo> processResourceInfos = new ArrayList<>();
         File processResourcesFile = CommandExecutor.executeWithPowershellAndGetOutputInCsvFormat(GET_PROCESS_RESOURCES_COMMAND);
 
         Reader in = new FileReader(processResourcesFile);
@@ -35,7 +35,7 @@ public class ProcessesInfoService {
 
         for (CSVRecord record : records) {
             columnNum = 0;
-            processResources.add(ProcessResources.builder()
+            processResourceInfos.add(ProcessResourcesInfo.builder()
                             .name(record.get(COLUMN_NAMES[columnNum]))
                             .systemIndex(record.get(COLUMN_NAMES[++columnNum]))
                             .handles(record.get(COLUMN_NAMES[++columnNum]))
@@ -105,15 +105,15 @@ public class ProcessesInfoService {
                             .container(record.get(COLUMN_NAMES[++columnNum]))
                     .build());
         }
-        return processResources;
+        return processResourceInfos;
     }
 
-    public List<ProcessResources> getUntrustedProcesses(List<ProcessResources> processResourcesToFilter,
-                                                        TrustedProcesses trustedProcesses) {
-        return processResourcesToFilter.stream()
-                .filter(processResources -> !trustedProcesses.containsProcessName(processResources.getProcessName()))
-                .filter(processResources -> !trustedProcesses.containsPathPrefix(processResources.getPath()))
-                .filter(processResources -> !trustedProcesses.containsCompany(processResources.getCompany()))
+    public List<ProcessResourcesInfo> getUntrustedProcesses(List<ProcessResourcesInfo> processResourcesInfoToFilter,
+                                                            TrustedProcesses trustedProcesses) {
+        return processResourcesInfoToFilter.stream()
+                .filter(processResourcesInfo -> !trustedProcesses.containsProcessName(processResourcesInfo.getProcessName()))
+                .filter(processResourcesInfo -> !trustedProcesses.containsPathPrefix(processResourcesInfo.getPath()))
+                .filter(processResourcesInfo -> !trustedProcesses.containsCompany(processResourcesInfo.getCompany()))
                 .collect(Collectors.toList());
     }
 }
