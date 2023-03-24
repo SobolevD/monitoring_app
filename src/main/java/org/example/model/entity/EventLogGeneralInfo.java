@@ -1,14 +1,13 @@
 package org.example.model.entity;
 
-import lombok.Builder;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
+import lombok.*;
 
 @Data
 @Builder
 @ToString
 @EqualsAndHashCode
+@NoArgsConstructor
+@AllArgsConstructor
 public class EventLogGeneralInfo {
 
     public static final String[] COLUMN_NAMES = {"Entries", "LogDisplayName", "Log", "MachineName",

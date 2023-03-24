@@ -15,7 +15,8 @@ import static org.example.common.Constants.TRUSTED_PROCESSES_FILE_PATH;
 
 @Slf4j
 public class ProcessesReportProvider {
-    public File getReportForUser(String username) {
+
+    public File getReportForUser(String username) throws IOException {
         log.info("Getting processes info for user '{}'...", username);
         ProcessesInfoService processesInfoService = new ProcessesInfoService();
 
@@ -44,17 +45,14 @@ public class ProcessesReportProvider {
 
         ExcelService excelService = new ExcelService();
 
-        HSSFWorkbook processesReport = excelService.createEmptyReport();
-
+        HSSFWorkbook workbook = excelService.createBlankReport();
         try {
-            excelService.writeProcessesResources(processesReport,
-                    processResourceInfos, "All Processes Info");
-            excelService.writeProcessesResources(processesReport,
-                    untrustedProcesses, "Untrusted Processes Info");
-            return excelService.saveReport(processesReport, "Processes info report");
+            excelService.addToXls(workbook, "All processes", ProcessResourcesInfo.COLUMN_NAMES, processResourceInfos);
+            excelService.addToXls(workbook, "Untrusted processes", ProcessResourcesInfo.COLUMN_NAMES, untrustedProcesses);
         } catch (IOException e) {
-            log.info("Unable to create excel report files because of error: ", e);
             throw new RuntimeException(e);
         }
+
+        return excelService.saveReport(workbook, "OS Processes");
     }
 }

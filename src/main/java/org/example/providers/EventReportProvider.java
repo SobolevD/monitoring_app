@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 @Slf4j
 public class EventReportProvider {
 
-    public File getReport() {
+    public File getReport() throws IOException {
         log.info("Getting events...");
         EventsInfoService eventsInfoService = new EventsInfoService();
 
@@ -36,15 +36,17 @@ public class EventReportProvider {
         log.info("Available event log names: '{}'", eventLogNames);
 
         Map<String, List<EventLogInfo>> nameAndEventLogInfoMapping = new HashMap<>();
-        for (String eventLogName : eventLogNames) {
+        for (EventLogGeneralInfo eventLogInfo : eventLogGeneralInfos) {
             List<EventLogInfo> eventLogInfos;
+
+            String eventLogName = eventLogInfo.getLog();
             try {
                 log.info("Collecting '{}' event log...", eventLogName);
+
                 eventLogInfos = eventsInfoService.getEventLogInfo(eventLogName);
                 nameAndEventLogInfoMapping.put(eventLogName, eventLogInfos);
             } catch (IOException | InterruptedException e) {
                 log.error("Unable to collect event log with name '{}' because of error", eventLogName, e);
-                throw new RuntimeException(e);
             }
         }
 
@@ -52,23 +54,19 @@ public class EventReportProvider {
 
         ExcelService excelService = new ExcelService();
 
-        HSSFWorkbook eventsLogReport = excelService.createEmptyReport();
+        HSSFWorkbook workbook = excelService.createBlankReport();
         try {
-            excelService.writeEventLogGeneralInfo(eventsLogReport,
-                    eventLogGeneralInfos);
-
-            for (Map.Entry<String, List<EventLogInfo>> eventsLog : nameAndEventLogInfoMapping.entrySet()) {
-
-                String eventLogName = eventsLog.getKey();
-
-                excelService.writeEventLogInfo(eventsLogReport,
-                        eventsLog.getValue(), eventLogName);
+            excelService.addToXls(workbook, "Event log general info", EventLogGeneralInfo.COLUMN_NAMES, eventLogGeneralInfos);
+            for (Map.Entry<String, List<EventLogInfo>> nameAndEventLog : nameAndEventLogInfoMapping.entrySet()) {
+                String sheetName = nameAndEventLog.getKey();
+                List<EventLogInfo> eventLogList = nameAndEventLog.getValue();
+                excelService.addToXls(workbook, sheetName, EventLogInfo.COLUMN_NAMES, eventLogList);
             }
-            return excelService.saveReport(eventsLogReport, "Event log report");
         } catch (IOException e) {
-            log.info("Unable to create excel report files because of error: ", e);
             throw new RuntimeException(e);
         }
+
+        return excelService.saveReport(workbook, "OS Events");
     }
 
 

@@ -11,6 +11,8 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
 
+import static java.util.Objects.isNull;
+
 @Data
 @ToString
 @EqualsAndHashCode
@@ -35,6 +37,11 @@ public class TrustedProcesses {
     }
 
     public boolean containsPathPrefix(String path) {
+
+        if (isNull(path)) {
+            return false;
+        }
+
         for (String pathPrefix : pathPrefixes) {
             if (path.toLowerCase().startsWith(pathPrefix.toLowerCase()))
                 return true;

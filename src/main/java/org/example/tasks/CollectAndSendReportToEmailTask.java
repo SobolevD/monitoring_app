@@ -4,11 +4,13 @@ import lombok.extern.slf4j.Slf4j;
 import org.example.model.EmailCredentials;
 import org.example.providers.EventReportProvider;
 import org.example.providers.ProcessesReportProvider;
+import org.example.providers.ServicesReportProvider;
 import org.example.services.EmailService;
 import org.example.utils.PropertiesLoader;
 import org.example.utils.ZipUtils;
 
 import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -23,23 +25,42 @@ public class CollectAndSendReportToEmailTask extends TimerTask {
 
     private final ProcessesReportProvider processesReportProvider;
     private final EventReportProvider eventReportProvider;
+    private final ServicesReportProvider servicesReportProvider;
 
     public CollectAndSendReportToEmailTask() {
         this.properties = PropertiesLoader.getProperties();
         this.processesReportProvider = new ProcessesReportProvider();
         this.eventReportProvider = new EventReportProvider();
+        this.servicesReportProvider = new ServicesReportProvider();
     }
 
     @Override
     public void run() {
 
-        File reportForProcesses = processesReportProvider.getReportForUser(CURRENT_USERNAME);
-        File reportForEventLog = eventReportProvider.getReport();
+        File reportForProcesses;
+        try {
+            reportForProcesses = processesReportProvider.getReportForUser(CURRENT_USERNAME);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
-        List<File> entireReport = collectReport(reportForProcesses,
-                reportForEventLog);
+        File reportForEventLog;
+        try {
+            reportForEventLog = eventReportProvider.getReport();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
-        File zipArchive = ZipUtils.createZip(entireReport, "temp.zip");
+        File reportForServices;
+        try {
+            reportForServices = servicesReportProvider.getReport();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        List<File> entireReport = collectReport(reportForProcesses, reportForEventLog, reportForServices);
+
+        File zipArchive = ZipUtils.createZip(entireReport, "OS User Report.zip");
 
         log.info("Sending message to email '{}'...", properties.getProperty(EMAIL_RECIPIENT_ADDRESS_PROP));
 

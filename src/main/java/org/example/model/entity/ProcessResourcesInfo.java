@@ -1,17 +1,20 @@
 package org.example.model.entity;
 
-import lombok.Builder;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.JsonNode;
+import lombok.*;
+
+import java.util.List;
 
 @Data
 @Builder
 @ToString
 @EqualsAndHashCode
+@NoArgsConstructor
+@AllArgsConstructor
 public class ProcessResourcesInfo {
 
-    public static final String[] COLUMN_NAMES = {"Name","SI","Handles","VM","WS","PM", "NPM","Path","Company", "CPU", "FileVersion",
+    public static final String[] COLUMN_NAMES = {"Name", "SI", "Handles", "VM", "WS", "PM", "NPM", "Path", "Company", "CPU", "FileVersion",
             "ProductVersion", "Description", "Product", "__NounName", "BasePriority", "ExitCode",
             "HasExited", "ExitTime", "Handle", "SafeHandle", "HandleCount", "Id", "MachineName",
             "MainWindowHandle", "MainWindowTitle", "MainModule", "MaxWorkingSet",
@@ -25,71 +28,138 @@ public class ProcessResourcesInfo {
             "EnableRaisingEvents", "StandardInput", "StandardOutput", "StandardError", "WorkingSet",
             "WorkingSet64", "Site", "Container"};
 
+    @JsonProperty("Name")
     private String name;
-    private String systemIndex;
-    private String handles;
-    private String virtualMemory;
-    private String ws;
-    private String physicalMemoryUsage;
-    private String numberOfProcessesInMemory;
+    @JsonProperty("SI")
+    private Short systemIndex;
+    @JsonProperty("Handles")
+    private Integer handles;
+    @JsonProperty("VM")
+    private Long virtualMemory;
+    @JsonProperty("WS")
+    private Long ws;
+    @JsonProperty("PM")
+    private Long physicalMemoryUsage;
+    @JsonProperty("NPM")
+    private Integer numberOfProcessesInMemory;
+    @JsonProperty("Path")
     private String path;
+    @JsonProperty("Company")
     private String company;
+    @JsonProperty("CPU")
     private String cpu;
+    @JsonProperty("FileVersion")
     private String fileVersion;
+    @JsonProperty("ProductVersion")
     private String productVersion;
+    @JsonProperty("Description")
     private String description;
+    @JsonProperty("Product")
     private String product;
+    @JsonProperty("__NounName")
     private String nounName;
-    private String basePriority;
-    private String exitCode;
-    private String hasExited;
+    @JsonProperty("BasePriority")
+    private Short basePriority;
+    @JsonProperty("ExitCode")
+    private Short exitCode;
+    @JsonProperty("HasExited")
+    private Boolean hasExited;
+    @JsonProperty("ExitTime")
     private String exitTime;
-    private String handle;
-    private String safeHandle;
-    private String handleCount;
-    private String pid;
+    @JsonProperty("Handle")
+    private Integer handle;
+    @JsonProperty("SafeHandle")
+    private JsonNode safeHandle;
+    @JsonProperty("HandleCount")
+    private Integer handleCount;
+    @JsonProperty("Id")
+    private Integer pid;
+    @JsonProperty("MachineName")
     private String machineName;
-    private String mainWindowHandle;
+    @JsonProperty("MainWindowHandle")
+    private Long mainWindowHandle;
+    @JsonProperty("MainWindowTitle")
     private String mainWindowTitle;
-    private String mainModule;
-    private String maxWorkingSet;
-    private String minWorkingSet;
-    private String modules;
-    private String nonpagedSystemMemorySize;
-    private String nonpagedSystemMemorySize64;
-    private String pagedMemorySize;
-    private String pagedMemorySize64;
-    private String pagedSystemMemorySize;
-    private String pagedSystemMemorySize64;
-    private String peakPagedMemorySize;
-    private String peakPagedMemorySize64;
-    private String peakWorkingSet;
-    private String peakWorkingSet64;
-    private String peakVirtualMemorySize;
-    private String peakVirtualMemorySize64;
-    private String priorityBoostEnabled;
-    private String priorityClass;
-    private String privateMemorySize;
-    private String privateMemorySize64;
-    private String privilegedProcessorTime;
+    @JsonProperty("MainModule")
+    private JsonNode mainModule;
+    @JsonProperty("MaxWorkingSet")
+    private Long maxWorkingSet;
+    @JsonProperty("MinWorkingSet")
+    private Long minWorkingSet;
+    @JsonProperty("Modules")
+    private List<String> modules;
+    @JsonProperty("NonpagedSystemMemorySize")
+    private Integer nonpagedSystemMemorySize;
+    @JsonProperty("NonpagedSystemMemorySize64")
+    private Long nonpagedSystemMemorySize64;
+    @JsonProperty("PagedMemorySize")
+    private Integer pagedMemorySize;
+    @JsonProperty("PagedMemorySize64")
+    private Long pagedMemorySize64;
+    @JsonProperty("PagedSystemMemorySize")
+    private Integer pagedSystemMemorySize;
+    @JsonProperty("PagedSystemMemorySize64")
+    private Long pagedSystemMemorySize64;
+    @JsonProperty("PeakPagedMemorySize")
+    private Integer peakPagedMemorySize;
+    @JsonProperty("PeakPagedMemorySize64")
+    private Long peakPagedMemorySize64;
+    @JsonProperty("PeakWorkingSet")
+    private Integer peakWorkingSet;
+    @JsonProperty("PeakWorkingSet64")
+    private Long peakWorkingSet64;
+    @JsonProperty("PeakVirtualMemorySize")
+    private Integer peakVirtualMemorySize;
+    @JsonProperty("PeakVirtualMemorySize64")
+    private Long peakVirtualMemorySize64;
+    @JsonProperty("PriorityBoostEnabled")
+    private Boolean priorityBoostEnabled;
+    @JsonProperty("PriorityClass")
+    private Integer priorityClass;
+    @JsonProperty("PrivateMemorySize")
+    private Integer privateMemorySize;
+    @JsonProperty("PrivateMemorySize64")
+    private Long privateMemorySize64;
+    @JsonProperty("PrivilegedProcessorTime")
+    private JsonNode privilegedProcessorTime;
+    @JsonProperty("ProcessName")
     private String processName;
-    private String processorAffinity;
-    private String responding;
-    private String sessionId;
-    private String startInfo;
+    @JsonProperty("ProcessorAffinity")
+    private Integer processorAffinity;
+    @JsonProperty("Responding")
+    private Boolean responding;
+    @JsonProperty("SessionId")
+    private Integer sessionId;
+    @JsonProperty("StartInfo")
+    private JsonNode startInfo;
+    @JsonProperty("StartTime")
     private String startTime;
+    @JsonProperty("SynchronizingObject")
     private String synchronizingObject;
-    private String threads;
-    private String totalProcessorTime;
-    private String userProcessorTime;
-    private String virtualMemorySize;
-    private String virtualMemorySize64;
-    private String enableRaisingEvents;
+    @JsonProperty("Threads")
+    private List<String> threads;
+    @JsonProperty("TotalProcessorTime")
+    private JsonNode totalProcessorTime;
+    @JsonProperty("UserProcessorTime")
+    private JsonNode userProcessorTime;
+    @JsonProperty("VirtualMemorySize")
+    private Integer virtualMemorySize;
+    @JsonProperty("VirtualMemorySize64")
+    private Long virtualMemorySize64;
+    @JsonProperty("EnableRaisingEvents")
+    private Boolean enableRaisingEvents;
+    @JsonProperty("StandardInput")
     private String standardInput;
+    @JsonProperty("StandardOutput")
     private String standardOutput;
+    @JsonProperty("StandardError")
     private String standardError;
-    private String workingSet;
-    private String workingSet64;
+    @JsonProperty("WorkingSet")
+    private Integer workingSet;
+    @JsonProperty("WorkingSet64")
+    private Long workingSet64;
+    @JsonProperty("Site")
     private String site;
+    @JsonProperty("Container")
     private String container;
 }

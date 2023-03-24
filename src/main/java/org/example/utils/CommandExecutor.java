@@ -12,6 +12,17 @@ public abstract class CommandExecutor {
         return new BufferedReader(new InputStreamReader(p.getInputStream()));
     }
 
+    public static File executeWithPowershellAndGetOutputInJsonFormat(String cmd)
+            throws IOException, InterruptedException {
+        String powershellCommand = String.format("powershell \"%s | ConvertTo-Json | Out-File temp_shell.json\"", cmd);
+        Process p = Runtime.getRuntime().exec(powershellCommand);
+        p.waitFor();
+
+        File file = new File("temp_shell.json");
+        file.deleteOnExit();
+        return file;
+    }
+
     public static File executeWithPowershellAndGetOutputInCsvFormat(String cmd)
             throws IOException, InterruptedException {
         String powershellCommand = String.format("powershell \"%s | Export-Csv -NoTypeInformation temp_shell.csv\"", cmd);
