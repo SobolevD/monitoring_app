@@ -22,7 +22,7 @@ public class NetworkConnectionProfilesProviderProvider {
         try {
             networkConnectionProfilesInfo = netConnectionInfoService.getNetConnectionProfiles();
         } catch (IOException | InterruptedException e) {
-            log.error("Unable to collect services info because of error", e);
+            log.error("Unable to collect network connection profiles info because of error", e);
             throw new RuntimeException(e);
         }
 

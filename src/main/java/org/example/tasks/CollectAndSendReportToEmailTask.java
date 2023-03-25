@@ -26,6 +26,7 @@ public class CollectAndSendReportToEmailTask extends TimerTask {
     private final ServicesReportProvider servicesReportProvider;
     private final WmiObjectsReportProvider wmiObjectsReportProvider;
     private final NetworkConnectionProfilesProviderProvider netConnectionProfileReportProvider;
+    private final ScheduledTasksReportProvider scheduledTasksReportProvider;
 
     public CollectAndSendReportToEmailTask() {
         this.properties = PropertiesLoader.getProperties();
@@ -34,6 +35,7 @@ public class CollectAndSendReportToEmailTask extends TimerTask {
         this.servicesReportProvider = new ServicesReportProvider();
         this.wmiObjectsReportProvider = new WmiObjectsReportProvider();
         this.netConnectionProfileReportProvider = new NetworkConnectionProfilesProviderProvider();
+        this.scheduledTasksReportProvider = new ScheduledTasksReportProvider();
     }
 
     @Override
@@ -74,11 +76,19 @@ public class CollectAndSendReportToEmailTask extends TimerTask {
             throw new RuntimeException(e);
         }
 
+        File reportForScheduledTasks;
+        try {
+            reportForScheduledTasks = scheduledTasksReportProvider.getReport();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
         List<File> entireReport = collectReport(reportForProcesses,
                 reportForEventLog,
                 reportForServices,
                 reportForWmiObjects,
-                reportForNetConnectionProfiles);
+                reportForNetConnectionProfiles,
+                reportForScheduledTasks);
 
         File zipArchive = ZipUtils.createZip(entireReport, "C:\\Users\\dmso0321\\Downloads\\OS User Report.zip");
 
