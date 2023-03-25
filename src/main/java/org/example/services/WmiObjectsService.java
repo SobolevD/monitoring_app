@@ -2,16 +2,12 @@ package org.example.services;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.apache.commons.csv.CSVFormat;
-import org.apache.commons.csv.CSVRecord;
 import org.example.model.entity.WMIObjectInfo;
 import org.example.model.entity.WMIObjectsListInfo;
 import org.example.utils.CommandExecutor;
 
 import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
-import java.io.Reader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;

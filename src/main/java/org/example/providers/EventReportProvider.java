@@ -2,6 +2,7 @@ package org.example.providers;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.example.model.Report;
 import org.example.model.entity.EventLogGeneralInfo;
 import org.example.model.entity.EventLogInfo;
 import org.example.services.EventsInfoService;
@@ -9,6 +10,7 @@ import org.example.services.ExcelService;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,7 +19,7 @@ import java.util.stream.Collectors;
 @Slf4j
 public class EventReportProvider {
 
-    public File getReport() throws IOException {
+    public Report getReport() throws IOException {
         log.info("Getting events report...");
         EventsInfoService eventsInfoService = new EventsInfoService();
 
@@ -52,6 +54,9 @@ public class EventReportProvider {
 
         log.info("Creating report file...");
 
+        List<List<?>> objectsForComplexReport = new ArrayList<>();
+        objectsForComplexReport.add(eventLogGeneralInfos);
+
         ExcelService excelService = new ExcelService();
 
         HSSFWorkbook workbook = excelService.createBlankReport();
@@ -61,12 +66,15 @@ public class EventReportProvider {
                 String sheetName = nameAndEventLog.getKey();
                 List<EventLogInfo> eventLogList = nameAndEventLog.getValue();
                 excelService.addToXls(workbook, sheetName, EventLogInfo.COLUMN_NAMES, eventLogList);
+
+                objectsForComplexReport.add(eventLogList);
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
 
-        return excelService.saveReport(workbook, "OS Events");
+        File excelReport = excelService.saveReportAndGetFile(workbook, "OS Events");
+        return new Report(objectsForComplexReport, excelReport);
     }
 
 

@@ -18,7 +18,7 @@ public class ExcelService {
         return new HSSFWorkbook();
     }
 
-    public File saveReport(HSSFWorkbook report, String filename) throws IOException {
+    public File saveReportAndGetFile(HSSFWorkbook report, String filename) throws IOException {
         File file = File.createTempFile(filename + "_", "_report.xls");
         FileOutputStream outFile = new FileOutputStream(file);
         report.write(outFile);

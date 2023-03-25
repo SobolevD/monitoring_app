@@ -3,8 +3,7 @@ package org.example.providers;
 import com.fasterxml.jackson.databind.JsonNode;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.example.model.entity.EventLogGeneralInfo;
-import org.example.model.entity.EventLogInfo;
+import org.example.model.Report;
 import org.example.model.entity.WMIObjectInfo;
 import org.example.model.entity.WMIObjectsListInfo;
 import org.example.services.ExcelService;
@@ -12,6 +11,7 @@ import org.example.services.WmiObjectsService;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,7 +22,7 @@ import static java.util.Objects.isNull;
 @Slf4j
 public class WmiObjectsReportProvider {
 
-    public File getReport() throws IOException {
+    public Report getReport() throws IOException {
         log.info("Getting WMI objects report...");
         WmiObjectsService wmiObjectsService = new WmiObjectsService();
 
@@ -55,6 +55,9 @@ public class WmiObjectsReportProvider {
 
         log.info("Creating report file...");
 
+        List<List<?>> objectsForComplexReport = new ArrayList<>();
+        objectsForComplexReport.add(wmiObjectsListInfo);
+
         ExcelService excelService = new ExcelService();
 
         HSSFWorkbook workbook = excelService.createBlankReport();
@@ -75,11 +78,13 @@ public class WmiObjectsReportProvider {
                         .collect(Collectors.toList());
 
                 excelService.addToXls(workbook, sheetName, wmiObjectsInfo.get(0).getFields(), wmiObjectJsonNodes);
+                objectsForComplexReport.add(wmiObjectJsonNodes);
             }
         } catch (IOException e) {
             log.error("Unable to save: ", e);
         }
 
-        return excelService.saveReport(workbook, "OS WMI Objects");
+        File excelReport = excelService.saveReportAndGetFile(workbook, "OS WMI Objects");
+        return new Report(objectsForComplexReport, excelReport);
     }
 }
