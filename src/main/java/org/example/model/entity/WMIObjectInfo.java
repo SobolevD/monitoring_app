@@ -1,57 +1,30 @@
 package org.example.model.entity;
 
-import lombok.Builder;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
+import com.fasterxml.jackson.databind.JsonNode;
+import lombok.*;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 @Data
 @Builder
 @ToString
 @EqualsAndHashCode
+@NoArgsConstructor
+@AllArgsConstructor
 public class WMIObjectInfo {
+    private JsonNode content;
 
-    public static final String[] COLUMN_NAMES = {"PSComputerName", "__GENUS",
-            "__CLASS", "__SUPERCLASS", "__DYNASTY", "__RELPATH", "__PROPERTY_COUNT",
-            "__DERIVATION", "__SERVER", "__NAMESPACE", "__PATH", "Availability",
-            "Caption", "ConfigManagerErrorCode", "ConfigManagerUserConfig", "CreationClassName",
-            "Description", "DeviceID", "ErrorCleared", "ErrorDescription", "InstallDate",
-            "IsLocked", "LastErrorCode", "Layout", "Name", "NumberOfFunctionKeys", "Password",
-            "PNPDeviceID", "PowerManagementCapabilities", "PowerManagementSupported", "Status",
-            "StatusInfo", "SystemCreationClassName", "SystemName"};
+    public String[] getFields() {
 
-    private String psComputerName;
-    private String genus;
-    private String clazz;
-    private String superClass;
-    private String dynasty;
-    private String relpath;
-    private String propertyCount;
-    private String derivation;
-    private String server;
-    private String namespace;
-    private String path;
-    private String availability;
-    private String caption;
-    private String configManagerErrorCode;
-    private String configManagerUserConfig;
-    private String creationClassName;
-    private String description;
-    private String deviceId;
-    private String errorCleared;
-    private String errorDescription;
-    private String installDate;
-    private String isLocked;
-    private String lastErrorCode;
-    private String layout;
-    private String name;
-    private String numberOfFunctionKeys;
-    private String password;
-    private String pnpDeviceId;
-    private String powerManagementCapabilities;
-    private String powerManagementSupported;
-    private String status;
-    private String statusInfo;
-    private String systemCreationClassName;
-    private String systemName;
+        Iterator<String> fieldIterator = content.fieldNames();
+
+        List<String> fieldNames = new ArrayList<>();
+        while (fieldIterator.hasNext()) {
+            fieldNames.add(fieldIterator.next());
+        }
+
+        return fieldNames.toArray(new String[0]);
+    }
 }

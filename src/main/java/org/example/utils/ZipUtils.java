@@ -32,8 +32,6 @@ public abstract class ZipUtils {
             log.error(ex.getMessage());
         }
 
-        File zip = new File(zipName);
-        zip.deleteOnExit();
-        return zip;
+        return new File(zipName);
     }
 }

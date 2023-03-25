@@ -5,7 +5,9 @@ import org.example.model.EmailCredentials;
 import org.example.providers.EventReportProvider;
 import org.example.providers.ProcessesReportProvider;
 import org.example.providers.ServicesReportProvider;
+import org.example.providers.WmiObjectsReportProvider;
 import org.example.services.EmailService;
+import org.example.services.WmiObjectsService;
 import org.example.utils.PropertiesLoader;
 import org.example.utils.ZipUtils;
 
@@ -26,12 +28,14 @@ public class CollectAndSendReportToEmailTask extends TimerTask {
     private final ProcessesReportProvider processesReportProvider;
     private final EventReportProvider eventReportProvider;
     private final ServicesReportProvider servicesReportProvider;
+    private final WmiObjectsReportProvider wmiObjectsReportProvider;
 
     public CollectAndSendReportToEmailTask() {
         this.properties = PropertiesLoader.getProperties();
         this.processesReportProvider = new ProcessesReportProvider();
         this.eventReportProvider = new EventReportProvider();
         this.servicesReportProvider = new ServicesReportProvider();
+        this.wmiObjectsReportProvider = new WmiObjectsReportProvider();
     }
 
     @Override
@@ -58,9 +62,16 @@ public class CollectAndSendReportToEmailTask extends TimerTask {
             throw new RuntimeException(e);
         }
 
-        List<File> entireReport = collectReport(reportForProcesses, reportForEventLog, reportForServices);
+        File reportForWmiObjects;
+        try {
+            reportForWmiObjects = wmiObjectsReportProvider.getReport();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
-        File zipArchive = ZipUtils.createZip(entireReport, "OS User Report.zip");
+        List<File> entireReport = collectReport(reportForProcesses, reportForEventLog, reportForServices, reportForWmiObjects);
+
+        File zipArchive = ZipUtils.createZip(entireReport, "C:\\Users\\dmso0321\\Downloads\\OS User Report.zip");
 
         log.info("Sending message to email '{}'...", properties.getProperty(EMAIL_RECIPIENT_ADDRESS_PROP));
 
@@ -71,8 +82,13 @@ public class CollectAndSendReportToEmailTask extends TimerTask {
                 .build();
         String message = String.format("Please do not reply to this message. Report time: %s", getCurrentTime());
 
-        emailService.sendMessage(properties.getProperty(EMAIL_RECIPIENT_ADDRESS_PROP), credentials,
-                message, zipArchive);
+        try {
+            emailService.sendMessage(properties.getProperty(EMAIL_RECIPIENT_ADDRESS_PROP), credentials,
+                    message, zipArchive);
+            zipArchive.deleteOnExit();
+        } catch (Exception e) {
+            log.error("Unable to send message to recipient because of error", e);
+        }
     }
 
     private String getCurrentTime() {

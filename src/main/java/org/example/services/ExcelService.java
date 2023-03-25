@@ -57,8 +57,16 @@ public class ExcelService {
 
             for (JsonNode objectField : objectJson) {
                 cell = row.createCell(cellNum++);
-                cell.setCellValue(objectField.asText());
+
+                if (objectField.isObject() || objectField.isArray()) {
+                    cell.setCellValue(objectField.toString());
+                } else {
+                    cell.setCellValue(objectField.asText());
+                }
+
             }
         }
     }
+
+
 }
