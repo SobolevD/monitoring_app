@@ -39,33 +39,33 @@ public class CollectAndSendReportToEmailTask extends TimerTask {
     @Override
     public void run() {
 
-//        File reportForProcesses;
-//        try {
-//            reportForProcesses = processesReportProvider.getReportForUser(CURRENT_USERNAME);
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
-//
-//        File reportForEventLog;
-//        try {
-//            reportForEventLog = eventReportProvider.getReport();
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
-//
-//        File reportForServices;
-//        try {
-//            reportForServices = servicesReportProvider.getReport();
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
-//
-//        File reportForWmiObjects;
-//        try {
-//            reportForWmiObjects = wmiObjectsReportProvider.getReport();
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
+        File reportForProcesses;
+        try {
+            reportForProcesses = processesReportProvider.getReportForUser(CURRENT_USERNAME);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        File reportForEventLog;
+        try {
+            reportForEventLog = eventReportProvider.getReport();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        File reportForServices;
+        try {
+            reportForServices = servicesReportProvider.getReport();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        File reportForWmiObjects;
+        try {
+            reportForWmiObjects = wmiObjectsReportProvider.getReport();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
         File reportForNetConnectionProfiles;
         try {
@@ -74,7 +74,11 @@ public class CollectAndSendReportToEmailTask extends TimerTask {
             throw new RuntimeException(e);
         }
 
-        List<File> entireReport = collectReport(reportForNetConnectionProfiles);
+        List<File> entireReport = collectReport(reportForProcesses,
+                reportForEventLog,
+                reportForServices,
+                reportForWmiObjects,
+                reportForNetConnectionProfiles);
 
         File zipArchive = ZipUtils.createZip(entireReport, "C:\\Users\\dmso0321\\Downloads\\OS User Report.zip");
 
