@@ -3,10 +3,7 @@ package org.example.tasks;
 import lombok.extern.slf4j.Slf4j;
 import org.example.model.EmailCredentials;
 import org.example.model.Report;
-import org.example.model.entity.NetworkConnectionProfileInfo;
-import org.example.model.entity.ProcessResourcesInfo;
-import org.example.model.entity.ScheduledTaskInfo;
-import org.example.model.entity.ServiceInfo;
+import org.example.model.entity.*;
 import org.example.providers.EventReportProvider;
 import org.example.providers.SimplePowerShellReportProvider;
 import org.example.providers.WmiObjectsReportProvider;
@@ -103,10 +100,34 @@ public class CollectAndSendReportToEmailTask extends TimerTask {
             throw new RuntimeException(e);
         }
 
+        Report reportForSystemInstalledApps;
+        try {
+            reportForSystemInstalledApps = powerShellReportProvider.getReport(POWERSHELL_GET_APPX_PACKAGE_COMMAND,
+                    AppxPackageInfo[].class,
+                    AppxPackageInfo.COLUMN_NAMES,
+                    "System applications installed",
+                    "OS system applications installed");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        Report reportForAcl;
+        try {
+            reportForAcl = powerShellReportProvider.getReportForSingleObject(POWERSHELL_GET_ACL_COMMAND,
+                    AclInfo.class,
+                    AclInfo.COLUMN_NAMES,
+                    "ACL info",
+                    "OS ACL info");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
         List<File> entireReport = collectReport(reportForProcesses,
                 reportForServices,
                 reportForScheduledTasks,
                 reportForNetConnectionProfiles,
+                reportForSystemInstalledApps,
+                reportForAcl,
                 reportForEventLog,
                 reportForWmiObjects);
 

@@ -59,7 +59,13 @@ public class ExcelService {
                 cell = row.createCell(cellNum++);
 
                 if (objectField.isObject() || objectField.isArray()) {
-                    cell.setCellValue(objectField.toString());
+                    String value = objectField.toString();
+
+                    if (value.length() > 32767) {
+                        value = value.substring(0, 32767);
+                    }
+
+                    cell.setCellValue(value);
                 } else {
                     cell.setCellValue(objectField.asText());
                 }
