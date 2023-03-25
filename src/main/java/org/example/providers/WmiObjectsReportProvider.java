@@ -23,7 +23,7 @@ import static java.util.Objects.isNull;
 public class WmiObjectsReportProvider {
 
     public File getReport() throws IOException {
-        log.info("Getting WMI objects list report...");
+        log.info("Getting WMI objects report...");
         WmiObjectsService wmiObjectsService = new WmiObjectsService();
 
         List<WMIObjectsListInfo> wmiObjectsListInfo;

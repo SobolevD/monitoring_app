@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 public class EventReportProvider {
 
     public File getReport() throws IOException {
-        log.info("Getting events...");
+        log.info("Getting events report...");
         EventsInfoService eventsInfoService = new EventsInfoService();
 
         List<EventLogGeneralInfo> eventLogGeneralInfos;

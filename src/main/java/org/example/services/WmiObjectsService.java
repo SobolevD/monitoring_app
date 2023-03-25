@@ -23,8 +23,8 @@ public class WmiObjectsService {
 
     public List<WMIObjectsListInfo> getWmiObjectsListInfo()
             throws IOException, InterruptedException {
-        File processResourcesFile = CommandExecutor.executeWithPowershellAndGetOutputInJsonFormat(GET_WMI_OBJECT_INFO_LIST_COMMAND);
-        return Arrays.asList(new ObjectMapper().readValue(processResourcesFile, WMIObjectsListInfo[].class));
+        File consoleOutput = CommandExecutor.executeWithPowershellAndGetOutputInJsonFormat(GET_WMI_OBJECT_INFO_LIST_COMMAND);
+        return Arrays.asList(new ObjectMapper().readValue(consoleOutput, WMIObjectsListInfo[].class));
     }
 
     public List<WMIObjectInfo> getWmiObjectsClassInfo(String wmiObjectClass)

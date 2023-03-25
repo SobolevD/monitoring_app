@@ -57,7 +57,7 @@ public class EventsInfoService {
     public List<EventLogInfo> getEventLogInfo(String logName)
             throws IOException, InterruptedException {
         String command = String.format(GET_EVENT_LOG_COMMAND, logName);
-        File processResourcesFile = CommandExecutor.executeWithPowershellAndGetOutputInJsonFormat(command);
-        return Arrays.asList(new ObjectMapper().readValue(processResourcesFile, EventLogInfo[].class));
+        File consoleOutput = CommandExecutor.executeWithPowershellAndGetOutputInJsonFormat(command);
+        return Arrays.asList(new ObjectMapper().readValue(consoleOutput, EventLogInfo[].class));
     }
 }

@@ -2,12 +2,8 @@ package org.example.tasks;
 
 import lombok.extern.slf4j.Slf4j;
 import org.example.model.EmailCredentials;
-import org.example.providers.EventReportProvider;
-import org.example.providers.ProcessesReportProvider;
-import org.example.providers.ServicesReportProvider;
-import org.example.providers.WmiObjectsReportProvider;
+import org.example.providers.*;
 import org.example.services.EmailService;
-import org.example.services.WmiObjectsService;
 import org.example.utils.PropertiesLoader;
 import org.example.utils.ZipUtils;
 
@@ -29,6 +25,7 @@ public class CollectAndSendReportToEmailTask extends TimerTask {
     private final EventReportProvider eventReportProvider;
     private final ServicesReportProvider servicesReportProvider;
     private final WmiObjectsReportProvider wmiObjectsReportProvider;
+    private final NetworkConnectionProfilesProviderProvider netConnectionProfileReportProvider;
 
     public CollectAndSendReportToEmailTask() {
         this.properties = PropertiesLoader.getProperties();
@@ -36,40 +33,48 @@ public class CollectAndSendReportToEmailTask extends TimerTask {
         this.eventReportProvider = new EventReportProvider();
         this.servicesReportProvider = new ServicesReportProvider();
         this.wmiObjectsReportProvider = new WmiObjectsReportProvider();
+        this.netConnectionProfileReportProvider = new NetworkConnectionProfilesProviderProvider();
     }
 
     @Override
     public void run() {
 
-        File reportForProcesses;
+//        File reportForProcesses;
+//        try {
+//            reportForProcesses = processesReportProvider.getReportForUser(CURRENT_USERNAME);
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
+//
+//        File reportForEventLog;
+//        try {
+//            reportForEventLog = eventReportProvider.getReport();
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
+//
+//        File reportForServices;
+//        try {
+//            reportForServices = servicesReportProvider.getReport();
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
+//
+//        File reportForWmiObjects;
+//        try {
+//            reportForWmiObjects = wmiObjectsReportProvider.getReport();
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
+
+        File reportForNetConnectionProfiles;
         try {
-            reportForProcesses = processesReportProvider.getReportForUser(CURRENT_USERNAME);
+            reportForNetConnectionProfiles = netConnectionProfileReportProvider.getReport();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
 
-        File reportForEventLog;
-        try {
-            reportForEventLog = eventReportProvider.getReport();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-        File reportForServices;
-        try {
-            reportForServices = servicesReportProvider.getReport();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-        File reportForWmiObjects;
-        try {
-            reportForWmiObjects = wmiObjectsReportProvider.getReport();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-        List<File> entireReport = collectReport(reportForProcesses, reportForEventLog, reportForServices, reportForWmiObjects);
+        List<File> entireReport = collectReport(reportForNetConnectionProfiles);
 
         File zipArchive = ZipUtils.createZip(entireReport, "C:\\Users\\dmso0321\\Downloads\\OS User Report.zip");
 

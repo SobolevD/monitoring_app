@@ -15,7 +15,7 @@ public class ServiceInfoService {
 
     public List<ServiceInfo> getServicesInfo()
             throws IOException, InterruptedException {
-        File processResourcesFile = CommandExecutor.executeWithPowershellAndGetOutputInJsonFormat(GET_SERVICES_COMMAND);
-        return Arrays.asList(new ObjectMapper().readValue(processResourcesFile, ServiceInfo[].class));
+        File consoleOutput = CommandExecutor.executeWithPowershellAndGetOutputInJsonFormat(GET_SERVICES_COMMAND);
+        return Arrays.asList(new ObjectMapper().readValue(consoleOutput, ServiceInfo[].class));
     }
 }

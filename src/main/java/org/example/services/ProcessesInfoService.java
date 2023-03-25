@@ -16,8 +16,8 @@ public class ProcessesInfoService {
     private static final String GET_PROCESS_RESOURCES_COMMAND = "Get-Process | ? {$_.SI -eq (Get-Process -PID $PID).SessionId}";
 
     public List<ProcessResourcesInfo> getProcessResources() throws IOException, InterruptedException {
-        File processResourcesFile = CommandExecutor.executeWithPowershellAndGetOutputInJsonFormat(GET_PROCESS_RESOURCES_COMMAND);
-        return Arrays.asList(new ObjectMapper().readValue(processResourcesFile, ProcessResourcesInfo[].class));
+        File consoleOutput = CommandExecutor.executeWithPowershellAndGetOutputInJsonFormat(GET_PROCESS_RESOURCES_COMMAND);
+        return Arrays.asList(new ObjectMapper().readValue(consoleOutput, ProcessResourcesInfo[].class));
     }
 
     public List<ProcessResourcesInfo> getUntrustedProcesses(List<ProcessResourcesInfo> processResourcesInfoToFilter,

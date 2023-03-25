@@ -17,7 +17,7 @@ import static org.example.common.Constants.TRUSTED_PROCESSES_FILE_PATH;
 public class ProcessesReportProvider {
 
     public File getReportForUser(String username) throws IOException {
-        log.info("Getting processes info for user '{}'...", username);
+        log.info("Getting processes report for user '{}'...", username);
         ProcessesInfoService processesInfoService = new ProcessesInfoService();
 
         List<ProcessResourcesInfo> processResourceInfos;
