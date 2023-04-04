@@ -1,9 +1,9 @@
 package org.example.tasks;
 
 import lombok.extern.slf4j.Slf4j;
-import org.example.model.EmailCredentials;
-import org.example.model.Report;
-import org.example.model.entity.*;
+import org.example.model.common.EmailCredentials;
+import org.example.model.common.Report;
+import org.example.model.entity.powershell.*;
 import org.example.providers.EventReportProvider;
 import org.example.providers.SimplePowerShellReportProvider;
 import org.example.providers.WmiObjectsReportProvider;

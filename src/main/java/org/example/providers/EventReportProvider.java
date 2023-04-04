@@ -2,9 +2,9 @@ package org.example.providers;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.example.model.Report;
-import org.example.model.entity.EventLogGeneralInfo;
-import org.example.model.entity.EventLogInfo;
+import org.example.model.common.Report;
+import org.example.model.entity.powershell.EventLogGeneralInfo;
+import org.example.model.entity.powershell.EventLogInfo;
 import org.example.services.EventsInfoService;
 import org.example.services.ExcelService;
 

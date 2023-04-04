@@ -3,8 +3,8 @@ package org.example.services;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
-import org.example.model.entity.EventLogGeneralInfo;
-import org.example.model.entity.EventLogInfo;
+import org.example.model.entity.powershell.EventLogGeneralInfo;
+import org.example.model.entity.powershell.EventLogInfo;
 import org.example.utils.CommandExecutor;
 
 import java.io.File;

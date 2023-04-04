@@ -2,7 +2,7 @@ package org.example.providers;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.example.model.Report;
+import org.example.model.common.Report;
 import org.example.services.ExcelService;
 import org.example.services.SimplePowerShellService;
 

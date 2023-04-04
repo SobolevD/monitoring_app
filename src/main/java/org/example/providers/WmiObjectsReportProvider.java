@@ -3,9 +3,9 @@ package org.example.providers;
 import com.fasterxml.jackson.databind.JsonNode;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.example.model.Report;
-import org.example.model.entity.WMIObjectInfo;
-import org.example.model.entity.WMIObjectsListInfo;
+import org.example.model.common.Report;
+import org.example.model.entity.powershell.WMIObjectInfo;
+import org.example.model.entity.powershell.WMIObjectsListInfo;
 import org.example.services.ExcelService;
 import org.example.services.WmiObjectsService;
 

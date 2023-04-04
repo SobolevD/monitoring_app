@@ -1,4 +1,4 @@
-package org.example.model;
+package org.example.model.common;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;

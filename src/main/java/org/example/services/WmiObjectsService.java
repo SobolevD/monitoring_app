@@ -2,8 +2,8 @@ package org.example.services;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.example.model.entity.WMIObjectInfo;
-import org.example.model.entity.WMIObjectsListInfo;
+import org.example.model.entity.powershell.WMIObjectInfo;
+import org.example.model.entity.powershell.WMIObjectsListInfo;
 import org.example.utils.CommandExecutor;
 
 import java.io.File;

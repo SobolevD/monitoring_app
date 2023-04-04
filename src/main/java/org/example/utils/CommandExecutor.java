@@ -33,4 +33,15 @@ public abstract class CommandExecutor {
         file.deleteOnExit();
         return file;
     }
+
+    public static File executeWithPowershellAndGetOutput(String cmd)
+            throws IOException, InterruptedException {
+        String powershellCommand = String.format("powershell \"%s | Out-File temp_shell.txt\"", cmd);
+        Process p = Runtime.getRuntime().exec(powershellCommand);
+        p.waitFor();
+
+        File file = new File("temp_shell.txt");
+        file.deleteOnExit();
+        return file;
+    }
 }

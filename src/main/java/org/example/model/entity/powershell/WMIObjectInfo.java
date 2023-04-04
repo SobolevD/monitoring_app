@@ -1,4 +1,4 @@
-package org.example.model.entity;
+package org.example.model.entity.powershell;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import lombok.*;

@@ -1,7 +1,7 @@
 package org.example.services;
 
 import lombok.extern.slf4j.Slf4j;
-import org.example.model.EmailCredentials;
+import org.example.model.common.EmailCredentials;
 import org.example.utils.PropertiesLoader;
 
 import javax.mail.*;
