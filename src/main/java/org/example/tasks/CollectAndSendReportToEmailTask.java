@@ -146,11 +146,11 @@ public class CollectAndSendReportToEmailTask extends TimerTask {
 
         Report reportForPnpDevices;
         try {
-            reportForPnpDevices = powerShellReportProvider.getReport(POWERSHELL_GET_PNP_DEVICES_COMMAND,
-                    PnpDeviceInfo[].class,
-                    PnpDeviceInfo.COLUMN_NAMES,
-                    "Installed devices",
-                    "OS Installed devices"
+            reportForPnpDevices = powerShellReportProvider.getReport(POWERSHELL_GET_HOTFIX_COMMAND,
+                    HotFixInfo[].class,
+                    HotFixInfo.COLUMN_NAMES,
+                    "Installed hotfixes",
+                    "OS Installed hotfixes"
             );
         } catch (IOException e) {
             throw new RuntimeException(e);
