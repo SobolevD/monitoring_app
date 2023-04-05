@@ -10,4 +10,5 @@ public abstract class Commands {
     public static final String POWERSHELL_GET_INSTALLED_APPLICATIONS_COMMAND = "Get-ItemProperty HKLM:\\Software\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\*";
     public static final String POWERSHELL_GET_PNP_DEVICES_COMMAND = "Get-PnpDevice";
     public static final String POWERSHELL_GET_HOTFIX_COMMAND = "Get-HotFix";
+    public static final String POWERSHELL_GET_NET_IP_CONFIG_COMMAND = "Get-NetIPConfiguration";
 }
