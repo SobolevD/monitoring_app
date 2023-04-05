@@ -132,19 +132,31 @@ public class CollectAndSendReportToEmailTask extends TimerTask {
 //            throw new RuntimeException(e);
 //        }
 
-        Report reportForInstalledApps;
+//        Report reportForInstalledApps;
+//        try {
+//            reportForInstalledApps = powerShellReportProvider.getReport(POWERSHELL_GET_INSTALLED_APPLICATIONS,
+//                    InstalledAppsInfo[].class,
+//                    InstalledAppsInfo.COLUMN_NAMES,
+//                    "Installed applications",
+//                    "OS Installed applications"
+//            );
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
+
+        Report reportForPnpDevices;
         try {
-            reportForInstalledApps = powerShellReportProvider.getReport(POWERSHELL_GET_INSTALLED_APPLICATIONS,
-                    InstalledAppsInfo[].class,
-                    InstalledAppsInfo.COLUMN_NAMES,
-                    "Installed applications",
-                    "OS Installed applications"
+            reportForPnpDevices = powerShellReportProvider.getReport(POWERSHELL_GET_PNP_DEVICES_COMMAND,
+                    PnpDeviceInfo[].class,
+                    PnpDeviceInfo.COLUMN_NAMES,
+                    "Installed devices",
+                    "OS Installed devices"
             );
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
 
-        List<File> entireReport = collectReport(reportForInstalledApps
+        List<File> entireReport = collectReport(reportForPnpDevices
 //                reportForServices,
 //                reportForScheduledTasks,
 //                reportForNetConnectionProfiles,
