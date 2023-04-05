@@ -7,4 +7,5 @@ public abstract class Commands {
     public static final String POWERSHELL_GET_SCHEDULED_TASKS_COMMAND = "Get-ScheduledTask";
     public static final String POWERSHELL_GET_APPX_PACKAGE_COMMAND = "Get-AppxPackage";
     public static final String POWERSHELL_GET_ACL_COMMAND = "Get-Acl";
+    public static final String POWERSHELL_GET_INSTALLED_APPLICATIONS = "Get-ItemProperty HKLM:\\Software\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\*";
 }
