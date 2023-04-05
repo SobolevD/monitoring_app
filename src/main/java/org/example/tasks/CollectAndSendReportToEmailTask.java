@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.example.model.common.EmailCredentials;
 import org.example.model.common.Report;
 import org.example.model.entity.powershell.*;
+import org.example.providers.DockerReportProvider;
 import org.example.providers.EventReportProvider;
 import org.example.providers.SimplePowerShellReportProvider;
 import org.example.providers.WmiObjectsReportProvider;
@@ -29,16 +30,25 @@ public class CollectAndSendReportToEmailTask extends TimerTask {
     private final EventReportProvider eventReportProvider;
     private final WmiObjectsReportProvider wmiObjectsReportProvider;
     private final SimplePowerShellReportProvider powerShellReportProvider;
+    private final DockerReportProvider dockerReportProvider;
 
     public CollectAndSendReportToEmailTask() {
         this.properties = PropertiesLoader.getProperties();
         this.eventReportProvider = new EventReportProvider();
         this.wmiObjectsReportProvider = new WmiObjectsReportProvider();
         this.powerShellReportProvider = new SimplePowerShellReportProvider();
+        this.dockerReportProvider = new DockerReportProvider();
     }
 
     @Override
     public void run() {
+
+        Report reportForDocker;
+        try {
+            reportForDocker = dockerReportProvider.getReport();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
         Report reportForProcesses;
         try {
@@ -70,12 +80,12 @@ public class CollectAndSendReportToEmailTask extends TimerTask {
             throw new RuntimeException(e);
         }
 
-        Report reportForWmiObjects;
-        try {
-            reportForWmiObjects = wmiObjectsReportProvider.getReport();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+//        Report reportForWmiObjects;
+//        try {
+//            reportForWmiObjects = wmiObjectsReportProvider.getReport();
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
 
         Report reportForNetConnectionProfiles;
         try {
@@ -129,7 +139,8 @@ public class CollectAndSendReportToEmailTask extends TimerTask {
                 reportForSystemInstalledApps,
                 reportForAcl,
                 reportForEventLog,
-                reportForWmiObjects);
+                //reportForWmiObjects,
+                reportForDocker);
 
         File zipArchive = ZipUtils.createZip(entireReport, "C:\\Users\\dmso0321\\Downloads\\OS User Report.zip");
 

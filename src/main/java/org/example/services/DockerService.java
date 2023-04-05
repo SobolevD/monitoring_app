@@ -30,7 +30,7 @@ public class DockerService {
             while ((line = br.readLine()) != null) {
 
                 line = line.replaceAll("[^A-Za-zА-Яа-я0-9-{}\"=+;%, :]", "");
-                line = line.replaceAll("\"Command\":\"\"dockerentrypoint\"\"", "\"Command\":\"dockerentrypoint\"");
+                line = line.replaceAll("\"Command\":\"\"docker-entrypoint\"\"", "\"Command\":\"docker-entrypoint\"");
 
                 if (line.length() == 0) {
                     continue;
