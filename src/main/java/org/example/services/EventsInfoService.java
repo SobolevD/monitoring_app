@@ -15,10 +15,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class EventsInfoService {
+import static org.example.common.Commands.GET_EVENT_LOG_COMMAND;
+import static org.example.common.Commands.GET_EVENT_LOG_LIST_COMMAND;
 
-    private static final String GET_EVENT_LOG_LIST_COMMAND = "Get-EventLog -List";
-    private static final String GET_EVENT_LOG_COMMAND = "Get-EventLog \"%s\"";
+public class EventsInfoService {
 
     public List<EventLogGeneralInfo> getEventLogGeneralInfo()
             throws IOException, InterruptedException {

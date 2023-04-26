@@ -1,10 +1,8 @@
 package org.example.model.entity.powershell;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.JsonNode;
 import lombok.*;
-
-import java.util.List;
 
 @Data
 @Builder
@@ -12,66 +10,12 @@ import java.util.List;
 @EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class NetworkConnectionProfileInfo {
 
-    public static final String[] COLUMN_NAMES = {"CimClass", "CimInstanceProperties",
-            "CimSystemProperties", "NetworkCategory", "DomainAuthenticationKind",
+    public static final String[] COLUMN_NAMES = {"NetworkCategory", "DomainAuthenticationKind",
             "IPv4Connectivity", "IPv6Connectivity", "Caption", "Description",
             "ElementName", "InstanceID", "InterfaceAlias", "InterfaceIndex", "Name", "PSComputerName"};
-
-    @Data
-    @Builder
-    @ToString
-    @EqualsAndHashCode
-    @NoArgsConstructor
-    @AllArgsConstructor
-    public static class CimInstanceProperties {
-
-        @JsonProperty("Name")
-        private String name;
-
-        @JsonProperty("Value")
-        private String value;
-
-        @JsonProperty("CimType")
-        private String cimType;
-
-        @JsonProperty("Flags")
-        private String flags;
-
-        @JsonProperty("IsValueModified")
-        private String isValueModified;
-    }
-
-    @Data
-    @Builder
-    @ToString
-    @EqualsAndHashCode
-    @NoArgsConstructor
-    @AllArgsConstructor
-    public static class CimSystemProperties {
-
-        @JsonProperty("Namespace")
-        private String namespace;
-
-        @JsonProperty("ServerName")
-        private String serverName;
-
-        @JsonProperty("ClassName")
-        private String className;
-
-        @JsonProperty("Path")
-        private String path;
-    }
-
-    @JsonProperty("CimClass")
-    private JsonNode cimClass;
-
-    @JsonProperty("CimInstanceProperties")
-    private List<CimInstanceProperties> cimInstanceProperties;
-
-    @JsonProperty("CimSystemProperties")
-    private CimSystemProperties cimSystemProperties;
 
     @JsonProperty("NetworkCategory")
     private String networkCategory;

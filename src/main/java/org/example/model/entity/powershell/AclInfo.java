@@ -1,5 +1,7 @@
 package org.example.model.entity.powershell;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.JsonNode;
 import lombok.*;
@@ -10,6 +12,7 @@ import lombok.*;
 @EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class AclInfo {
 
     public static final String[] COLUMN_NAMES = {"AccessRightType", "AccessRuleType", "AuditRuleType",
@@ -17,7 +20,7 @@ public class AclInfo {
             "PSPath", "PSParentPath", "PSChildName", "PSDrive",
             "PSProvider", "CentralAccessPolicyId", "CentralAccessPolicyName", "Path",
             "Owner", "Group", "Access", "Sddl",
-    "AccessToString", "AuditToString"};
+            "AccessToString", "AuditToString"};
 
     @JsonProperty("AccessRightType")
     private JsonNode accessRightType;

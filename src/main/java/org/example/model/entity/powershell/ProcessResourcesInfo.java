@@ -1,5 +1,6 @@
 package org.example.model.entity.powershell;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.JsonNode;
 import lombok.*;
@@ -12,6 +13,7 @@ import java.util.List;
 @EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class ProcessResourcesInfo {
 
     public static final String[] COLUMN_NAMES = {"Name", "SI", "Handles", "VM", "WS", "PM", "NPM", "Path", "Company", "CPU", "FileVersion",

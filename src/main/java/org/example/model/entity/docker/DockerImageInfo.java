@@ -1,6 +1,7 @@
 package org.example.model.entity.docker;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
@@ -10,6 +11,7 @@ import lombok.*;
 @EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class DockerImageInfo {
     public static final String[] COLUMN_NAMES = {"Containers", "CreatedAt",
             "CreatedSince", "Digest", "ID", "Repository", "SharedSize", "Size", "Tag",

@@ -2,6 +2,7 @@ package org.example.providers;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.example.model.ObjectMetadata;
 import org.example.model.common.Report;
 import org.example.services.ExcelService;
 import org.example.services.SimplePowerShellService;
@@ -13,11 +14,12 @@ import java.util.List;
 @Slf4j
 public class SimplePowerShellReportProvider {
 
-    public Report getReport(String command,
-                            Class<? extends Object[]> objectClass,
-                            String[] columnNames,
+    public Report getReport(ObjectMetadata objectMetadata,
                             String sheetName,
                             String workBookName) throws IOException {
+
+        Class<? extends Object[]> objectClass = objectMetadata.getObjectClass();
+        String command = objectMetadata.getCommand();
 
         log.info("Getting report for objects '{}'...", objectClass.getSimpleName());
         SimplePowerShellService powerShellService = new SimplePowerShellService();
@@ -31,14 +33,16 @@ public class SimplePowerShellReportProvider {
             throw new RuntimeException(e);
         }
 
+        String[] columnNames = objectMetadata.getColumns();
         return createReport(sheetName, workBookName, columnNames, objectsInfo);
     }
 
-    public Report getReportForSingleObject(String command,
-                          Class<?> objectClass,
-                          String[] columnNames,
+    public Report getReportForSingleObject(ObjectMetadata objectMetadata,
                           String sheetName,
                           String workBookName) throws IOException {
+
+        Class<?> objectClass = objectMetadata.getObjectClass();
+        String command = objectMetadata.getCommand();
 
         log.info("Getting report for single object '{}'...", objectClass.getSimpleName());
         SimplePowerShellService powerShellService = new SimplePowerShellService();
@@ -52,6 +56,7 @@ public class SimplePowerShellReportProvider {
             throw new RuntimeException(e);
         }
 
+        String[] columnNames = objectMetadata.getColumns();
         return createReport(sheetName, workBookName, columnNames, objectsInfo);
     }
 

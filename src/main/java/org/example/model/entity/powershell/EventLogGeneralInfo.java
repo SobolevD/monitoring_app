@@ -1,5 +1,6 @@
 package org.example.model.entity.powershell;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
 @Data
@@ -8,6 +9,7 @@ import lombok.*;
 @EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class EventLogGeneralInfo {
 
     public static final String[] COLUMN_NAMES = {"Entries", "LogDisplayName", "Log", "MachineName",

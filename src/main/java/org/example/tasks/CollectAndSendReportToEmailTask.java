@@ -3,7 +3,7 @@ package org.example.tasks;
 import lombok.extern.slf4j.Slf4j;
 import org.example.model.common.EmailCredentials;
 import org.example.model.common.Report;
-import org.example.model.entity.powershell.*;
+import org.example.model.entity.powershell.PrinterInfo;
 import org.example.providers.DockerReportProvider;
 import org.example.providers.EventReportProvider;
 import org.example.providers.SimplePowerShellReportProvider;
@@ -18,7 +18,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static org.example.common.Commands.*;
+import static org.example.common.ObjectsMetadataDictionary.getObjectMetadata;
 import static org.example.common.PropertiesNames.*;
 
 @Slf4j
@@ -43,129 +43,17 @@ public class CollectAndSendReportToEmailTask extends TimerTask {
     @Override
     public void run() {
 
-//        Report reportForDocker;
-//        try {
-//            reportForDocker = dockerReportProvider.getReport();
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
-//
-//        Report reportForProcesses;
-//        try {
-//            reportForProcesses = powerShellReportProvider.getReport(POWERSHELL_GET_PROCESSES_COMMAND,
-//                    ProcessResourcesInfo[].class,
-//                    ProcessResourcesInfo.COLUMN_NAMES,
-//                    "Processes",
-//                    "OS Processes"
-//            );
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
-//
-//        Report reportForEventLog;
-//        try {
-//            reportForEventLog = eventReportProvider.getReport();
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
-//
-//        Report reportForServices;
-//        try {
-//            reportForServices = powerShellReportProvider.getReport(POWERSHELL_GET_SERVICES_COMMAND,
-//                    ServiceInfo[].class,
-//                    ServiceInfo.COLUMN_NAMES,
-//                    "Services",
-//                    "OS Services");
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
-//
-////        Report reportForWmiObjects;
-////        try {
-////            reportForWmiObjects = wmiObjectsReportProvider.getReport();
-////        } catch (IOException e) {
-////            throw new RuntimeException(e);
-////        }
-//
-//        Report reportForNetConnectionProfiles;
-//        try {
-//            reportForNetConnectionProfiles = powerShellReportProvider.getReportForSingleObject(
-//                    POWERSHELL_GET_NET_CONNECTION_PROFILES_COMMAND,
-//                    NetworkConnectionProfileInfo.class,
-//                    NetworkConnectionProfileInfo.COLUMN_NAMES,
-//                    "Net connection profiles",
-//                    "OS Net Connection Profiles");
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
-//
-//        Report reportForScheduledTasks;
-//        try {
-//            reportForScheduledTasks = powerShellReportProvider.getReport(POWERSHELL_GET_SCHEDULED_TASKS_COMMAND,
-//                    ScheduledTaskInfo[].class,
-//                    ScheduledTaskInfo.COLUMN_NAMES,
-//                    "Scheduled tasks",
-//                    "OS Scheduled tasks");
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
-//
-//        Report reportForSystemInstalledApps;
-//        try {
-//            reportForSystemInstalledApps = powerShellReportProvider.getReport(POWERSHELL_GET_APPX_PACKAGE_COMMAND,
-//                    AppxPackageInfo[].class,
-//                    AppxPackageInfo.COLUMN_NAMES,
-//                    "System applications installed",
-//                    "OS system applications installed");
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
-//
-//        Report reportForAcl;
-//        try {
-//            reportForAcl = powerShellReportProvider.getReportForSingleObject(POWERSHELL_GET_ACL_COMMAND,
-//                    AclInfo.class,
-//                    AclInfo.COLUMN_NAMES,
-//                    "ACL info",
-//                    "OS ACL info");
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
-
-//        Report reportForInstalledApps;
-//        try {
-//            reportForInstalledApps = powerShellReportProvider.getReport(POWERSHELL_GET_INSTALLED_APPLICATIONS,
-//                    InstalledAppsInfo[].class,
-//                    InstalledAppsInfo.COLUMN_NAMES,
-//                    "Installed applications",
-//                    "OS Installed applications"
-//            );
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
-
-        Report reportForPnpDevices;
+        Report report;
         try {
-            reportForPnpDevices = powerShellReportProvider.getReport(POWERSHELL_GET_NET_IP_CONFIG_COMMAND,
-                    NetIpConfigInfo[].class,
-                    NetIpConfigInfo.COLUMN_NAMES,
-                    "Net IP configuration",
-                    "OS Net IP configuration"
+            report = powerShellReportProvider.getReport(getObjectMetadata(PrinterInfo[].class),
+                    "Printer Info",
+                    "OS Printer Info"
             );
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
 
-        List<File> entireReport = collectReport(reportForPnpDevices
-//                reportForServices,
-//                reportForScheduledTasks,
-//                reportForNetConnectionProfiles,
-//                reportForSystemInstalledApps,
-//                reportForAcl,
-//                reportForEventLog,
-                //reportForWmiObjects,
-//                reportForDocker
-        );
+        List<File> entireReport = collectReport(report);
 
         File zipArchive = ZipUtils.createZip(entireReport, "C:\\Users\\dmso0321\\Downloads\\OS User Report.zip");
 

@@ -1,5 +1,6 @@
 package org.example.model.entity.powershell;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
@@ -11,6 +12,7 @@ import java.util.List;
 @EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class WMIObjectsListInfo {
 
     public static final String[] COLUMN_NAMES = {"Path", "Derivation", "Methods",

@@ -1,5 +1,6 @@
 package org.example.model.entity.powershell;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.JsonNode;
 import lombok.*;
@@ -12,27 +13,19 @@ import java.util.List;
 @EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class PnpDeviceInfo {
 
     public static final String[] COLUMN_NAMES = {
-            "CimClass", "CimInstanceProperties", "CimSystemProperties", "Class", "FriendlyName",
+            "Class", "FriendlyName",
             "InstanceId", "Problem", "ConfigManagerErrorCode", "ProblemDescription",
-            "Caption","Description","InstallDate","Name","Status", "Availability",
-            "ConfigManagerUserConfig","CreationClassName","DeviceID","ErrorCleared",
-            "ErrorDescription","LastErrorCode","PNPDeviceID","PowerManagementCapabilities",
-            "PowerManagementSupported", "StatusInfo", "SystemCreationClassName","SystemName",
+            "Caption", "Description", "InstallDate", "Name", "Status", "Availability",
+            "ConfigManagerUserConfig", "CreationClassName", "DeviceID", "ErrorCleared",
+            "ErrorDescription", "LastErrorCode", "PNPDeviceID", "PowerManagementCapabilities",
+            "PowerManagementSupported", "StatusInfo", "SystemCreationClassName", "SystemName",
             "ClassGuid", "CompatibleID", "HardwareID", "Manufacturer", "PNPClass", "Present",
             "Service", "PSComputerName"
     };
-
-    @JsonProperty("CimClass")
-    private JsonNode cimClass;
-
-    @JsonProperty("CimInstanceProperties")
-    private List<String> cimInstanceProperties;
-
-    @JsonProperty("CimSystemProperties")
-    private JsonNode cimSystemProperties;
 
     @JsonProperty("Class")
     private String clazz;

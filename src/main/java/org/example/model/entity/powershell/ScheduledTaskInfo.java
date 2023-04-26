@@ -1,5 +1,6 @@
 package org.example.model.entity.powershell;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.JsonNode;
 import lombok.*;
@@ -12,21 +13,13 @@ import java.util.List;
 @EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class ScheduledTaskInfo {
 
-    public static final String[] COLUMN_NAMES = {"CimClass", "CimInstanceProperties", "CimSystemProperties",
+    public static final String[] COLUMN_NAMES = {
             "State", "Actions", "Author", "Date",
             "Description", "Documentation", "Principal", "SecurityDescriptor",
             "Settings", "Source", "TaskName", "TaskPath", "Triggers", "URI", "Version", "PSComputerName"};
-
-    @JsonProperty("CimClass")
-    private JsonNode cimClass;
-
-    @JsonProperty("CimInstanceProperties")
-    private List<String> cimInstanceProperties;
-
-    @JsonProperty("CimSystemProperties")
-    private JsonNode cimSystemProperties;
 
     @JsonProperty("State")
     private String state;

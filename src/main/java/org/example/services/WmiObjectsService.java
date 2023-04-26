@@ -12,10 +12,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class WmiObjectsService {
+import static org.example.common.Commands.GET_WMI_OBJECT_CLASS_INFO_COMMAND;
+import static org.example.common.Commands.GET_WMI_OBJECT_INFO_LIST_COMMAND;
 
-    private static final String GET_WMI_OBJECT_INFO_LIST_COMMAND = "Get-WMIObject -List";
-    private static final String GET_WMI_OBJECT_CLASS_INFO_COMMAND = "Get-WMIObject \"%s\"";
+public class WmiObjectsService {
 
     public List<WMIObjectsListInfo> getWmiObjectsListInfo()
             throws IOException, InterruptedException {
