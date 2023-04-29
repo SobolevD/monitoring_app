@@ -1,18 +1,12 @@
 package org.example.parsers.model.impl;
 
-import lombok.*;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 import org.example.parsers.model.ProxyServerBaseLogEntity;
-import org.springframework.http.HttpMethod;
 
-import java.net.InetAddress;
-import java.net.InetSocketAddress;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.sql.Time;
-import java.time.LocalDateTime;
 import java.util.Date;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 @EqualsAndHashCode(callSuper = true)
 @ToString

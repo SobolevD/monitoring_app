@@ -2,7 +2,6 @@ package org.example.model.entity.netsh;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
-import org.example.utils.CommandExecutor;
 
 @Data
 @Builder

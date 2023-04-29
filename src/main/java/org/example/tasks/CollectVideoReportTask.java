@@ -2,7 +2,6 @@ package org.example.tasks;
 
 import lombok.extern.slf4j.Slf4j;
 import org.example.model.common.Report;
-import org.example.providers.impl.AudioReportProvider;
 import org.example.providers.impl.VideoReportProvider;
 import org.example.utils.PropertiesLoader;
 

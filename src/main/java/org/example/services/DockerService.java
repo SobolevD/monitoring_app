@@ -3,7 +3,6 @@ package org.example.services;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.example.model.entity.docker.DockerContainerInfo;
 import org.example.model.entity.docker.DockerImageInfo;
-import org.example.model.entity.docker.DockerVersionInfo;
 import org.example.utils.CommandExecutor;
 
 import java.io.BufferedReader;

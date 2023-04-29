@@ -1,12 +1,9 @@
 package org.example.common;
 
 import org.example.model.GroupMetadata;
-import org.example.model.ObjectMetadata;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 import static org.example.common.Groups.*;
 import static org.example.common.PropertiesNames.*;
