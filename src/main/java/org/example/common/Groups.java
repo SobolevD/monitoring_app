@@ -20,6 +20,7 @@ public abstract class Groups {
     public static final String WMI_OBJECTS = "wmi-objects";
     public static final String AUDIO = "audio";
     public static final String VIDEO = "video";
+    public static final String SCREENSHOTS = "screenshots";
 
     public static final List<String> GROUPS_WITH_CUSTOM_EXCEL_REPORT_PROVIDERS
             = Arrays.asList("event-log", "wmi-objects");

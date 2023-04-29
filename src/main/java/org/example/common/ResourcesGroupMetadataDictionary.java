@@ -91,6 +91,11 @@ public class ResourcesGroupMetadataDictionary {
                 .delayPropertyName(TASK_COLLECT_VIDEO_INFO_DELAY_SECONDS_PROP)
                 .periodPropertyName(TASK_COLLECT_VIDEO_INFO_PERIOD_SECONDS_PROP)
                 .build());
+        put(SCREENSHOTS, GroupMetadata.builder()
+                .name(SCREENSHOTS)
+                .delayPropertyName(TASK_COLLECT_SCREENSHOTS_INFO_DELAY_SECONDS_PROP)
+                .periodPropertyName(TASK_COLLECT_SCREENSHOTS_INFO_PERIOD_SECONDS_PROP)
+                .build());
     }};
 
     public static GroupMetadata getGroupMetadataByGroup(String group) {

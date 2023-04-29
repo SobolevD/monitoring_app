@@ -40,4 +40,8 @@ public abstract class PropertiesNames {
     public static final String TASK_COLLECT_VIDEO_INFO_PERIOD_SECONDS_PROP = "task.collect.video.group.period.seconds";
     public static final String TASK_COLLECT_VIDEO_DURATION_SECONDS_PROP = "task.collect.video.duration.seconds";
     public static final String TASK_COLLECT_VIDEO_DELAY_BETWEEN_IMAGES_PROP = "task.collect.video.delay-between-images.millis";
+    public static final String TASK_COLLECT_SCREENSHOTS_INFO_DELAY_SECONDS_PROP = "task.collect.screenshots.group.delay.seconds";
+    public static final String TASK_COLLECT_SCREENSHOTS_INFO_PERIOD_SECONDS_PROP = "task.collect.screenshots.group.period.seconds";
+    public static final String TASK_COLLECT_SCREENSHOTS_DURATION_SECONDS_PROP = "task.collect.screenshots.duration.seconds";
+    public static final String TASK_COLLECT_SCREENSHOTS_DELAY_BETWEEN_IMAGES_PROP = "task.collect.screenshots.delay-between-images.millis";
 }

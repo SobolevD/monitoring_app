@@ -1,6 +1,7 @@
 package org.example.services;
 
 import com.github.sarxos.webcam.Webcam;
+import org.example.utils.Images2VideoConverter;
 import org.jcodec.api.awt.AWTSequenceEncoder;
 
 import java.awt.*;
@@ -14,6 +15,7 @@ import java.util.List;
 import static org.example.utils.DateTimeHelper.getCurrentTimeForFileName;
 
 public class WebCamService {
+
 
     private List<BufferedImage> getImages(long durationMillis, int delay) throws InterruptedException {
 
@@ -41,23 +43,7 @@ public class WebCamService {
     public File createVideo(long durationMillis, int delay)
             throws IOException, InterruptedException {
 
-        File videoFile = new File("cam_" + getCurrentTimeForFileName() + ".mp4");
-        videoFile.deleteOnExit();
-
         List<BufferedImage> images = getImages(durationMillis, delay);
-
-        AWTSequenceEncoder encoder = null;
-        try {
-            encoder = AWTSequenceEncoder.createSequenceEncoder(videoFile, 24);
-            for (BufferedImage image : images) {
-                encoder.encodeImage(image);
-            }
-        } catch (Exception e) {
-            System.out.println("Fail to generate video!");
-
-        }
-        encoder.finish();
-
-        return videoFile;
+        return Images2VideoConverter.createVideo(images);
     }
 }

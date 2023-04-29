@@ -4,12 +4,16 @@ import org.example.common.ResourcesGroupMetadataDictionary;
 import org.example.model.GroupMetadata;
 import org.example.providers.ExcelReportProvider;
 import org.example.providers.impl.SimplePowerShellExcelReportProvider;
+import org.example.services.ScreenshotsService;
 import org.example.tasks.CollectAudioReportTask;
 import org.example.tasks.CollectExcelReportTask;
+import org.example.tasks.CollectScreenshotsVideoReportTask;
 import org.example.tasks.CollectVideoReportTask;
 import org.example.utils.PropertiesLoader;
 import org.example.utils.ReportProviderResolver;
 
+import java.awt.*;
+import java.io.IOException;
 import java.util.Properties;
 import java.util.Timer;
 import java.util.concurrent.TimeUnit;
@@ -21,7 +25,7 @@ import static org.example.common.PropertiesNames.*;
 
 public class MonitoringApp {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException, AWTException {
         try {
             PropertiesLoader.loadProps(PROPERTIES_FILE_PATH_IN_PROJECT);
         } catch (RuntimeException e) {
@@ -63,6 +67,19 @@ public class MonitoringApp {
                 int delayBetweenImagesMillis = Integer.parseInt(delayBetweenImagesStr);
 
                 new Timer().schedule(new CollectVideoReportTask(durationMillis, delayBetweenImagesMillis),
+                        Long.parseLong(taskDelay),
+                        Long.parseLong(taskPeriod));
+                continue;
+            }
+
+            if (SCREENSHOTS.equals(group)) {
+                String durationStr = properties.getProperty(TASK_COLLECT_SCREENSHOTS_DURATION_SECONDS_PROP);
+                String delayBetweenImagesStr = properties.getProperty(TASK_COLLECT_SCREENSHOTS_DELAY_BETWEEN_IMAGES_PROP);
+
+                long durationMillis = TimeUnit.SECONDS.toMillis(Integer.parseInt(durationStr));
+                int delayBetweenImagesMillis = Integer.parseInt(delayBetweenImagesStr);
+
+                new Timer().schedule(new CollectScreenshotsVideoReportTask(durationMillis, delayBetweenImagesMillis),
                         Long.parseLong(taskDelay),
                         Long.parseLong(taskPeriod));
                 continue;
