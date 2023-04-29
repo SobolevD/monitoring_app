@@ -12,5 +12,5 @@ import java.util.List;
 @Getter
 public class Report {
     private List<?> objects;
-    private File excelReport;
+    private File report;
 }

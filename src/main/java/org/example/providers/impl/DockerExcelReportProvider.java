@@ -1,10 +1,12 @@
-package org.example.providers;
+package org.example.providers.impl;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.example.model.ObjectMetadata;
 import org.example.model.common.Report;
 import org.example.model.entity.docker.DockerContainerInfo;
 import org.example.model.entity.docker.DockerImageInfo;
+import org.example.providers.ExcelReportProvider;
 import org.example.services.DockerService;
 import org.example.services.ExcelService;
 
@@ -14,9 +16,11 @@ import java.util.Arrays;
 import java.util.List;
 
 @Slf4j
-public class DockerReportProvider {
+public class DockerExcelReportProvider implements ExcelReportProvider {
 
-    public Report getReport() throws IOException {
+    public Report getReport(ObjectMetadata objectMetadata,
+                            String sheetName,
+                            String workBookName) throws IOException {
         log.info("Getting docker report...");
         DockerService dockerService = new DockerService();
         ExcelService excelService = new ExcelService();

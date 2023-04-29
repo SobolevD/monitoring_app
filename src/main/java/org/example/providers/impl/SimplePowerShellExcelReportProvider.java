@@ -1,27 +1,25 @@
-package org.example.providers;
+package org.example.providers.impl;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.example.model.ObjectMetadata;
 import org.example.model.common.Report;
+import org.example.providers.ExcelReportProvider;
 import org.example.services.ExcelService;
 import org.example.services.SimplePowerShellService;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
-import java.util.Objects;
 
 import static java.util.Objects.isNull;
 
 @Slf4j
-public class SimplePowerShellReportProvider {
+public class SimplePowerShellExcelReportProvider implements ExcelReportProvider {
 
     public Report getReport(ObjectMetadata objectMetadata,
                             String sheetName,
                             String workBookName) throws IOException, InterruptedException {
-
-
 
         Class<? extends Object[]> objectArrayClass = objectMetadata.getObjectArrayClass();
         Class<?> objectClass = objectMetadata.getObjectClass();

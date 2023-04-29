@@ -638,15 +638,10 @@ public abstract class ObjectsMetadataDictionary {
                 .build());
     }};
 
-    public static ObjectMetadata getObjectMetadata(Class<?> objectClass) {
-        return MAP.get(objectClass);
-    }
-
     public static List<ObjectMetadata> getObjectMetadataByGroup(String group) {
         return MAP.values()
                 .stream()
                 .filter(objectMetadata -> objectMetadata.getGroup().equals(group))
                 .collect(Collectors.toList());
     }
-
 }

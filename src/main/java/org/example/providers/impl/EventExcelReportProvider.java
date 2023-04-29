@@ -1,10 +1,12 @@
-package org.example.providers;
+package org.example.providers.impl;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.example.model.ObjectMetadata;
 import org.example.model.common.Report;
 import org.example.model.entity.powershell.EventLogGeneralInfo;
 import org.example.model.entity.powershell.EventLogInfo;
+import org.example.providers.ExcelReportProvider;
 import org.example.services.EventsInfoService;
 import org.example.services.ExcelService;
 
@@ -17,9 +19,11 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @Slf4j
-public class EventReportProvider {
+public class EventExcelReportProvider implements ExcelReportProvider {
 
-    public Report getReport() throws IOException {
+    public Report getReport(ObjectMetadata objectMetadata,
+                            String sheetName,
+                            String workBookName) throws IOException {
         log.info("Getting events report...");
         EventsInfoService eventsInfoService = new EventsInfoService();
 
@@ -61,11 +65,11 @@ public class EventReportProvider {
 
         HSSFWorkbook workbook = excelService.createBlankReport();
         try {
-            excelService.addToXls(workbook, "Event log general info", EventLogGeneralInfo.COLUMN_NAMES, eventLogGeneralInfos);
+            excelService.addToXls(workbook, sheetName, EventLogGeneralInfo.COLUMN_NAMES, eventLogGeneralInfos);
             for (Map.Entry<String, List<EventLogInfo>> nameAndEventLog : nameAndEventLogInfoMapping.entrySet()) {
-                String sheetName = nameAndEventLog.getKey();
+                String currentSheetName = nameAndEventLog.getKey();
                 List<EventLogInfo> eventLogList = nameAndEventLog.getValue();
-                excelService.addToXls(workbook, sheetName, EventLogInfo.COLUMN_NAMES, eventLogList);
+                excelService.addToXls(workbook, currentSheetName, EventLogInfo.COLUMN_NAMES, eventLogList);
 
                 objectsForComplexReport.add(eventLogList);
             }

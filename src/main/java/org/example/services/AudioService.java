@@ -4,21 +4,23 @@ import javax.sound.sampled.*;
 import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
-import java.util.Date;
+
+import static org.example.utils.DateTimeHelper.getCurrentTimeForFileName;
 
 public class AudioService {
 
     private static final AudioFileFormat.Type FILE_TYPE = AudioFileFormat.Type.WAVE;
     private static final int MONO = 1;
-    // определение формата аудио данных
+
     private static final AudioFormat FORMAT = new AudioFormat(
             AudioFormat.Encoding.PCM_SIGNED, 44100, 16, MONO, 2, 44100, true);
 
     private TargetDataLine mike;
 
-    public File record(long recordLengthMillis) throws InterruptedException, IOException {
+    public File record(long recordLengthMillis) throws InterruptedException {
 
-        File audioFile = File.createTempFile("record_" + "_", "." + FILE_TYPE.getExtension());
+        File audioFile = new File("record_" + getCurrentTimeForFileName() + "." + FILE_TYPE.getExtension());
+        audioFile.deleteOnExit();
 
         startRecording(audioFile);
         Thread.sleep(recordLengthMillis);

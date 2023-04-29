@@ -1,11 +1,13 @@
-package org.example.providers;
+package org.example.providers.impl;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.example.model.ObjectMetadata;
 import org.example.model.common.Report;
 import org.example.model.entity.powershell.WMIObjectInfo;
 import org.example.model.entity.powershell.WMIObjectsListInfo;
+import org.example.providers.ExcelReportProvider;
 import org.example.services.ExcelService;
 import org.example.services.WmiObjectsService;
 
@@ -20,9 +22,11 @@ import java.util.stream.Collectors;
 import static java.util.Objects.isNull;
 
 @Slf4j
-public class WmiObjectsReportProvider {
+public class WmiObjectsExcelReportProvider implements ExcelReportProvider {
 
-    public Report getReport() throws IOException {
+    public Report getReport(ObjectMetadata objectMetadata,
+                            String sheetName,
+                            String workBookName) throws IOException {
         log.info("Getting WMI objects report...");
         WmiObjectsService wmiObjectsService = new WmiObjectsService();
 
@@ -63,10 +67,10 @@ public class WmiObjectsReportProvider {
         HSSFWorkbook workbook = excelService.createBlankReport();
 
         try {
-            excelService.addToXls(workbook, "WMI Objects Classes list", WMIObjectsListInfo.COLUMN_NAMES, wmiObjectsListInfo);
+            excelService.addToXls(workbook, sheetName, WMIObjectsListInfo.COLUMN_NAMES, wmiObjectsListInfo);
             for (Map.Entry<String, List<WMIObjectInfo>> classAndWmiObjectInfo : classNameAndWmiObjectInfoMapping.entrySet()) {
 
-                String sheetName = classAndWmiObjectInfo.getKey();
+                String currentSheetName = classAndWmiObjectInfo.getKey();
                 List<WMIObjectInfo> wmiObjectsInfo = classAndWmiObjectInfo.getValue();
 
                 if (isNull(wmiObjectsInfo) || wmiObjectsInfo.isEmpty()) {
@@ -77,7 +81,7 @@ public class WmiObjectsReportProvider {
                         .map(WMIObjectInfo::getContent)
                         .collect(Collectors.toList());
 
-                excelService.addToXls(workbook, sheetName, wmiObjectsInfo.get(0).getFields(), wmiObjectJsonNodes);
+                excelService.addToXls(workbook, currentSheetName, wmiObjectsInfo.get(0).getFields(), wmiObjectJsonNodes);
                 objectsForComplexReport.add(wmiObjectJsonNodes);
             }
         } catch (IOException e) {

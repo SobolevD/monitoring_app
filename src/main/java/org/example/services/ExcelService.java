@@ -53,6 +53,10 @@ public class ExcelService {
 
         for (JsonNode objectJson : objectsJsonArray) {
             cellNum = 0;
+
+            if (rownum > 65535) {
+                break;
+            }
             row = sheet.createRow(rownum++);
 
             for (JsonNode objectField : objectJson) {
