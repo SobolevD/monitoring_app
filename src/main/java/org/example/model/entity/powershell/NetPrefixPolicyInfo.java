@@ -12,10 +12,11 @@ import lombok.*;
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class NetPrefixPolicyInfo {
-    public static final String[] COLUMN_NAMES = {"Caption", "Description", "ElementName", "InstanceID", "Label", "Precedence", "Prefix", "Store", "PSComputerName"};
 
-    @JsonProperty("Caption")
-    private String caption;
+    public static final String[] COLUMN_NAMES = {"PSComputerName", "Description", "ElementName", "Prefix", "Store", "InstanceID", "Caption", "Label", "Precedence"};
+
+    @JsonProperty("PSComputerName")
+    private String pSComputerName;
 
     @JsonProperty("Description")
     private String description;
@@ -23,22 +24,22 @@ public class NetPrefixPolicyInfo {
     @JsonProperty("ElementName")
     private String elementName;
 
-    @JsonProperty("InstanceID")
-    private String instanceID;
-
-    @JsonProperty("Label")
-    private String label;
-
-    @JsonProperty("Precedence")
-    private String precedence;
-
     @JsonProperty("Prefix")
     private String prefix;
 
     @JsonProperty("Store")
     private String store;
 
-    @JsonProperty("PSComputerName")
-    private String pSComputerName;
+    @JsonProperty("InstanceID")
+    private String instanceID;
+
+    @JsonProperty("Caption")
+    private String caption;
+
+    @JsonProperty("Label")
+    private String label;
+
+    @JsonProperty("Precedence")
+    private String precedence;
 
 }

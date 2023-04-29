@@ -2,6 +2,7 @@ package org.example.model.entity.powershell;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.JsonNode;
 import lombok.*;
 
 @Data
@@ -12,51 +13,32 @@ import lombok.*;
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class NetFirewallAddressFilterInfo {
-    public static final String[] COLUMN_NAMES = {"LocalAddress", "LocalIP", "RemoteAddress", "RemoteIP", "Caption", "Description", "ElementName", "InstanceID", "CommunicationStatus", "DetailedStatus", "HealthState", "InstallDate", "Name", "OperatingStatus", "OperationalStatus", "PrimaryStatus", "Status", "StatusDescriptions", "CreationClassName", "IsNegated", "SystemCreationClassName", "SystemName", "PSComputerName"};
 
+    public static final String[] COLUMN_NAMES = {"PSComputerName", "LocalAddress", "RemoteAddress", "Status", "RemoteIP", "Description", "CommunicationStatus", "SystemCreationClassName", "OperationalStatus", "PrimaryStatus", "Caption", "InstallDate", "Name", "CreationClassName", "OperatingStatus", "IsNegated", "LocalIP", "ElementName", "DetailedStatus", "SystemName", "InstanceID", "StatusDescriptions", "HealthState"};
 
+    @JsonProperty("PSComputerName")
+    private String pSComputerName;
 
     @JsonProperty("LocalAddress")
-    private String localAddress;
-
-    @JsonProperty("LocalIP")
-    private String localIP;
+    private JsonNode localAddress;
 
     @JsonProperty("RemoteAddress")
-    private String remoteAddress;
+    private JsonNode remoteAddress;
+
+    @JsonProperty("Status")
+    private String status;
 
     @JsonProperty("RemoteIP")
-    private String remoteIP;
-
-    @JsonProperty("Caption")
-    private String caption;
+    private JsonNode remoteIP;
 
     @JsonProperty("Description")
     private String description;
 
-    @JsonProperty("ElementName")
-    private String elementName;
-
-    @JsonProperty("InstanceID")
-    private String instanceID;
-
     @JsonProperty("CommunicationStatus")
     private String communicationStatus;
 
-    @JsonProperty("DetailedStatus")
-    private String detailedStatus;
-
-    @JsonProperty("HealthState")
-    private String healthState;
-
-    @JsonProperty("InstallDate")
-    private String installDate;
-
-    @JsonProperty("Name")
-    private String name;
-
-    @JsonProperty("OperatingStatus")
-    private String operatingStatus;
+    @JsonProperty("SystemCreationClassName")
+    private String systemCreationClassName;
 
     @JsonProperty("OperationalStatus")
     private String operationalStatus;
@@ -64,25 +46,43 @@ public class NetFirewallAddressFilterInfo {
     @JsonProperty("PrimaryStatus")
     private String primaryStatus;
 
-    @JsonProperty("Status")
-    private String status;
+    @JsonProperty("Caption")
+    private String caption;
 
-    @JsonProperty("StatusDescriptions")
-    private String statusDescriptions;
+    @JsonProperty("InstallDate")
+    private String installDate;
+
+    @JsonProperty("Name")
+    private String name;
 
     @JsonProperty("CreationClassName")
     private String creationClassName;
 
+    @JsonProperty("OperatingStatus")
+    private String operatingStatus;
+
     @JsonProperty("IsNegated")
     private String isNegated;
 
-    @JsonProperty("SystemCreationClassName")
-    private String systemCreationClassName;
+    @JsonProperty("LocalIP")
+    private String localIP;
+
+    @JsonProperty("ElementName")
+    private String elementName;
+
+    @JsonProperty("DetailedStatus")
+    private String detailedStatus;
 
     @JsonProperty("SystemName")
     private String systemName;
 
-    @JsonProperty("PSComputerName")
-    private String pSComputerName;
+    @JsonProperty("InstanceID")
+    private String instanceID;
+
+    @JsonProperty("StatusDescriptions")
+    private String statusDescriptions;
+
+    @JsonProperty("HealthState")
+    private String healthState;
 
 }

@@ -12,22 +12,29 @@ import lombok.*;
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class NetIsatapConfigurationInfo {
-    public static final String[] COLUMN_NAMES = {"State", "ResolutionState", "Caption", "Description", "ElementName", "InstanceID", "PolicyStore", "ResolutionInterval", "Router", "PSComputerName"};
 
-    @JsonProperty("State")
-    private String state;
+    public static final String[] COLUMN_NAMES = {"PSComputerName", "ResolutionState", "ResolutionInterval", "Description", "State", "ElementName", "Router", "InstanceID", "PolicyStore", "Caption"};
+
+    @JsonProperty("PSComputerName")
+    private String pSComputerName;
 
     @JsonProperty("ResolutionState")
     private String resolutionState;
 
-    @JsonProperty("Caption")
-    private String caption;
+    @JsonProperty("ResolutionInterval")
+    private String resolutionInterval;
 
     @JsonProperty("Description")
     private String description;
 
+    @JsonProperty("State")
+    private String state;
+
     @JsonProperty("ElementName")
     private String elementName;
+
+    @JsonProperty("Router")
+    private String router;
 
     @JsonProperty("InstanceID")
     private String instanceID;
@@ -35,13 +42,7 @@ public class NetIsatapConfigurationInfo {
     @JsonProperty("PolicyStore")
     private String policyStore;
 
-    @JsonProperty("ResolutionInterval")
-    private String resolutionInterval;
-
-    @JsonProperty("Router")
-    private String router;
-
-    @JsonProperty("PSComputerName")
-    private String pSComputerName;
+    @JsonProperty("Caption")
+    private String caption;
 
 }

@@ -12,76 +12,26 @@ import lombok.*;
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class NetIPv4ProtocolInfo {
-    public static final String[] COLUMN_NAMES = {"IcmpRedirects", "SourceRoutingBehavior", "DhcpMediaSense", "MediaSenseEventLog", "MldLevel", "MldVersion", "MulticastForwarding", "GroupForwardedFragments", "RandomizeIdentifiers", "AddressMaskReply", "DeadGatewayDetection", "IGMPLevel", "IGMPVersion", "Caption", "Description", "ElementName", "InstanceID", "CommunicationStatus", "DetailedStatus", "HealthState", "InstallDate", "Name", "OperatingStatus", "OperationalStatus", "PrimaryStatus", "Status", "StatusDescriptions", "AvailableRequestedStates", "EnabledDefault", "EnabledState", "OtherEnabledState", "RequestedState", "TimeOfLastStateChange", "TransitioningToState", "CreationClassName", "SystemCreationClassName", "SystemName", "NameFormat", "OtherTypeDescription", "ProtocolIFType", "ProtocolType", "DefaultHopLimit", "NeighborCacheLimit", "ReassemblyLimit", "RouteCacheLimit", "MinimumMtu", "PSComputerName"};
 
-    @JsonProperty("IcmpRedirects")
-    private String icmpRedirects;
-
-    @JsonProperty("SourceRoutingBehavior")
-    private String sourceRoutingBehavior;
-
-    @JsonProperty("DhcpMediaSense")
-    private String dhcpMediaSense;
-
-    @JsonProperty("MediaSenseEventLog")
-    private String mediaSenseEventLog;
+    public static final String[] COLUMN_NAMES = {"MldLevel", "IGMPVersion", "TransitioningToState", "GroupForwardedFragments", "Status", "MinimumMtu", "OperationalStatus", "PrimaryStatus", "RouteCacheLimit", "Caption", "InstallDate", "DeadGatewayDetection", "OtherTypeDescription", "CreationClassName", "OtherEnabledState", "EnabledDefault", "ProtocolType", "AvailableRequestedStates", "MulticastForwarding", "NeighborCacheLimit", "DhcpMediaSense", "HealthState", "PSComputerName", "AddressMaskReply", "EnabledState", "ReassemblyLimit", "Description", "RandomizeIdentifiers", "CommunicationStatus", "NameFormat", "SystemCreationClassName", "DefaultHopLimit", "SourceRoutingBehavior", "MldVersion", "Name", "RequestedState", "OperatingStatus", "TimeOfLastStateChange", "ElementName", "ProtocolIFType", "DetailedStatus", "SystemName", "MediaSenseEventLog", "InstanceID", "IGMPLevel", "IcmpRedirects", "StatusDescriptions"};
 
     @JsonProperty("MldLevel")
     private String mldLevel;
 
-    @JsonProperty("MldVersion")
-    private String mldVersion;
+    @JsonProperty("IGMPVersion")
+    private String iGMPVersion;
 
-    @JsonProperty("MulticastForwarding")
-    private String multicastForwarding;
+    @JsonProperty("TransitioningToState")
+    private String transitioningToState;
 
     @JsonProperty("GroupForwardedFragments")
     private String groupForwardedFragments;
 
-    @JsonProperty("RandomizeIdentifiers")
-    private String randomizeIdentifiers;
+    @JsonProperty("Status")
+    private String status;
 
-    @JsonProperty("AddressMaskReply")
-    private String addressMaskReply;
-
-    @JsonProperty("DeadGatewayDetection")
-    private String deadGatewayDetection;
-
-    @JsonProperty("IGMPLevel")
-    private String iGMPLevel;
-
-    @JsonProperty("IGMPVersion")
-    private String iGMPVersion;
-
-    @JsonProperty("Caption")
-    private String caption;
-
-    @JsonProperty("Description")
-    private String description;
-
-    @JsonProperty("ElementName")
-    private String elementName;
-
-    @JsonProperty("InstanceID")
-    private String instanceID;
-
-    @JsonProperty("CommunicationStatus")
-    private String communicationStatus;
-
-    @JsonProperty("DetailedStatus")
-    private String detailedStatus;
-
-    @JsonProperty("HealthState")
-    private String healthState;
-
-    @JsonProperty("InstallDate")
-    private String installDate;
-
-    @JsonProperty("Name")
-    private String name;
-
-    @JsonProperty("OperatingStatus")
-    private String operatingStatus;
+    @JsonProperty("MinimumMtu")
+    private String minimumMtu;
 
     @JsonProperty("OperationalStatus")
     private String operationalStatus;
@@ -89,70 +39,121 @@ public class NetIPv4ProtocolInfo {
     @JsonProperty("PrimaryStatus")
     private String primaryStatus;
 
-    @JsonProperty("Status")
-    private String status;
+    @JsonProperty("RouteCacheLimit")
+    private String routeCacheLimit;
 
-    @JsonProperty("StatusDescriptions")
-    private String statusDescriptions;
+    @JsonProperty("Caption")
+    private String caption;
 
-    @JsonProperty("AvailableRequestedStates")
-    private String availableRequestedStates;
+    @JsonProperty("InstallDate")
+    private String installDate;
 
-    @JsonProperty("EnabledDefault")
-    private String enabledDefault;
-
-    @JsonProperty("EnabledState")
-    private String enabledState;
-
-    @JsonProperty("OtherEnabledState")
-    private String otherEnabledState;
-
-    @JsonProperty("RequestedState")
-    private String requestedState;
-
-    @JsonProperty("TimeOfLastStateChange")
-    private String timeOfLastStateChange;
-
-    @JsonProperty("TransitioningToState")
-    private String transitioningToState;
-
-    @JsonProperty("CreationClassName")
-    private String creationClassName;
-
-    @JsonProperty("SystemCreationClassName")
-    private String systemCreationClassName;
-
-    @JsonProperty("SystemName")
-    private String systemName;
-
-    @JsonProperty("NameFormat")
-    private String nameFormat;
+    @JsonProperty("DeadGatewayDetection")
+    private String deadGatewayDetection;
 
     @JsonProperty("OtherTypeDescription")
     private String otherTypeDescription;
 
-    @JsonProperty("ProtocolIFType")
-    private String protocolIFType;
+    @JsonProperty("CreationClassName")
+    private String creationClassName;
+
+    @JsonProperty("OtherEnabledState")
+    private String otherEnabledState;
+
+    @JsonProperty("EnabledDefault")
+    private String enabledDefault;
 
     @JsonProperty("ProtocolType")
     private String protocolType;
 
-    @JsonProperty("DefaultHopLimit")
-    private String defaultHopLimit;
+    @JsonProperty("AvailableRequestedStates")
+    private String availableRequestedStates;
+
+    @JsonProperty("MulticastForwarding")
+    private String multicastForwarding;
 
     @JsonProperty("NeighborCacheLimit")
     private String neighborCacheLimit;
 
-    @JsonProperty("ReassemblyLimit")
-    private String reassemblyLimit;
+    @JsonProperty("DhcpMediaSense")
+    private String dhcpMediaSense;
 
-    @JsonProperty("RouteCacheLimit")
-    private String routeCacheLimit;
-
-    @JsonProperty("MinimumMtu")
-    private String minimumMtu;
+    @JsonProperty("HealthState")
+    private String healthState;
 
     @JsonProperty("PSComputerName")
     private String pSComputerName;
+
+    @JsonProperty("AddressMaskReply")
+    private String addressMaskReply;
+
+    @JsonProperty("EnabledState")
+    private String enabledState;
+
+    @JsonProperty("ReassemblyLimit")
+    private String reassemblyLimit;
+
+    @JsonProperty("Description")
+    private String description;
+
+    @JsonProperty("RandomizeIdentifiers")
+    private String randomizeIdentifiers;
+
+    @JsonProperty("CommunicationStatus")
+    private String communicationStatus;
+
+    @JsonProperty("NameFormat")
+    private String nameFormat;
+
+    @JsonProperty("SystemCreationClassName")
+    private String systemCreationClassName;
+
+    @JsonProperty("DefaultHopLimit")
+    private String defaultHopLimit;
+
+    @JsonProperty("SourceRoutingBehavior")
+    private String sourceRoutingBehavior;
+
+    @JsonProperty("MldVersion")
+    private String mldVersion;
+
+    @JsonProperty("Name")
+    private String name;
+
+    @JsonProperty("RequestedState")
+    private String requestedState;
+
+    @JsonProperty("OperatingStatus")
+    private String operatingStatus;
+
+    @JsonProperty("TimeOfLastStateChange")
+    private String timeOfLastStateChange;
+
+    @JsonProperty("ElementName")
+    private String elementName;
+
+    @JsonProperty("ProtocolIFType")
+    private String protocolIFType;
+
+    @JsonProperty("DetailedStatus")
+    private String detailedStatus;
+
+    @JsonProperty("SystemName")
+    private String systemName;
+
+    @JsonProperty("MediaSenseEventLog")
+    private String mediaSenseEventLog;
+
+    @JsonProperty("InstanceID")
+    private String instanceID;
+
+    @JsonProperty("IGMPLevel")
+    private String iGMPLevel;
+
+    @JsonProperty("IcmpRedirects")
+    private String icmpRedirects;
+
+    @JsonProperty("StatusDescriptions")
+    private String statusDescriptions;
 
 }

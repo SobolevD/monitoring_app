@@ -12,22 +12,35 @@ import lombok.*;
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class NetOffloadGlobalSettingInfo {
-    public static final String[] COLUMN_NAMES = {"ReceiveSideScaling", "ReceiveSegmentCoalescing", "Chimney", "TaskOffload", "NetworkDirect", "NetworkDirectAcrossIPSubnets", "PacketCoalescingFilter", "Caption", "Description", "ElementName", "InstanceID", "PSComputerName"};
 
-    @JsonProperty("ReceiveSideScaling")
-    private String receiveSideScaling;
+    public static final String[] COLUMN_NAMES = {"PSComputerName", "Description", "ElementName", "ReceiveSegmentCoalescing", "InstanceID", "TaskOffload", "Chimney", "NetworkDirect", "ReceiveSideScaling", "NetworkDirectAcrossIPSubnets", "PacketCoalescingFilter", "Caption"};
+
+    @JsonProperty("PSComputerName")
+    private String pSComputerName;
+
+    @JsonProperty("Description")
+    private String description;
+
+    @JsonProperty("ElementName")
+    private String elementName;
 
     @JsonProperty("ReceiveSegmentCoalescing")
     private String receiveSegmentCoalescing;
 
-    @JsonProperty("Chimney")
-    private String chimney;
+    @JsonProperty("InstanceID")
+    private String instanceID;
 
     @JsonProperty("TaskOffload")
     private String taskOffload;
 
+    @JsonProperty("Chimney")
+    private String chimney;
+
     @JsonProperty("NetworkDirect")
     private String networkDirect;
+
+    @JsonProperty("ReceiveSideScaling")
+    private String receiveSideScaling;
 
     @JsonProperty("NetworkDirectAcrossIPSubnets")
     private String networkDirectAcrossIPSubnets;
@@ -37,17 +50,5 @@ public class NetOffloadGlobalSettingInfo {
 
     @JsonProperty("Caption")
     private String caption;
-
-    @JsonProperty("Description")
-    private String description;
-
-    @JsonProperty("ElementName")
-    private String elementName;
-
-    @JsonProperty("InstanceID")
-    private String instanceID;
-
-    @JsonProperty("PSComputerName")
-    private String pSComputerName;
 
 }

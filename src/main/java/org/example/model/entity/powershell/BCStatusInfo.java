@@ -2,6 +2,7 @@ package org.example.model.entity.powershell;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.JsonNode;
 import lombok.*;
 
 @Data
@@ -12,36 +13,41 @@ import lombok.*;
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class BCStatusInfo {
-    public static final String[] COLUMN_NAMES = {"BranchCacheServiceStatus", "BranchCacheServiceStartType", "Caption", "Description", "ElementName", "InstanceID", "CommunicationStatus", "DetailedStatus", "HealthState", "InstallDate", "Name", "OperatingStatus", "OperationalStatus", "PrimaryStatus", "Status", "StatusDescriptions", "BranchCacheIsEnabled", "ClientConfiguration", "ContentServerConfiguration", "DataCache", "HashCache", "HostedCacheServerConfiguration", "NetworkConfiguration", "PSComputerName"};
 
+    public static final String[] COLUMN_NAMES = {"HashCache", "PSComputerName", "DataCache", "Status", "BranchCacheServiceStartType", "Description", "ContentServerConfiguration", "CommunicationStatus", "OperationalStatus", "PrimaryStatus", "Caption", "InstallDate", "Name", "OperatingStatus", "BranchCacheIsEnabled", "NetworkConfiguration", "ElementName", "DetailedStatus", "HostedCacheServerConfiguration", "InstanceID", "StatusDescriptions", "BranchCacheServiceStatus", "HealthState", "ClientConfiguration"};
 
+    @JsonProperty("HashCache")
+    private JsonNode hashCache;
 
-    @JsonProperty("BranchCacheServiceStatus")
-    private String branchCacheServiceStatus;
+    @JsonProperty("PSComputerName")
+    private String pSComputerName;
+
+    @JsonProperty("DataCache")
+    private JsonNode dataCache;
+
+    @JsonProperty("Status")
+    private String status;
 
     @JsonProperty("BranchCacheServiceStartType")
     private String branchCacheServiceStartType;
 
-    @JsonProperty("Caption")
-    private String caption;
-
     @JsonProperty("Description")
     private String description;
 
-    @JsonProperty("ElementName")
-    private String elementName;
-
-    @JsonProperty("InstanceID")
-    private String instanceID;
+    @JsonProperty("ContentServerConfiguration")
+    private JsonNode contentServerConfiguration;
 
     @JsonProperty("CommunicationStatus")
     private String communicationStatus;
 
-    @JsonProperty("DetailedStatus")
-    private String detailedStatus;
+    @JsonProperty("OperationalStatus")
+    private String operationalStatus;
 
-    @JsonProperty("HealthState")
-    private String healthState;
+    @JsonProperty("PrimaryStatus")
+    private String primaryStatus;
+
+    @JsonProperty("Caption")
+    private String caption;
 
     @JsonProperty("InstallDate")
     private String installDate;
@@ -52,40 +58,34 @@ public class BCStatusInfo {
     @JsonProperty("OperatingStatus")
     private String operatingStatus;
 
-    @JsonProperty("OperationalStatus")
-    private String operationalStatus;
+    @JsonProperty("BranchCacheIsEnabled")
+    private String branchCacheIsEnabled;
 
-    @JsonProperty("PrimaryStatus")
-    private String primaryStatus;
+    @JsonProperty("NetworkConfiguration")
+    private JsonNode networkConfiguration;
 
-    @JsonProperty("Status")
-    private String status;
+    @JsonProperty("ElementName")
+    private String elementName;
+
+    @JsonProperty("DetailedStatus")
+    private String detailedStatus;
+
+    @JsonProperty("HostedCacheServerConfiguration")
+    private JsonNode hostedCacheServerConfiguration;
+
+    @JsonProperty("InstanceID")
+    private String instanceID;
 
     @JsonProperty("StatusDescriptions")
     private String statusDescriptions;
 
-    @JsonProperty("BranchCacheIsEnabled")
-    private String branchCacheIsEnabled;
+    @JsonProperty("BranchCacheServiceStatus")
+    private String branchCacheServiceStatus;
+
+    @JsonProperty("HealthState")
+    private String healthState;
 
     @JsonProperty("ClientConfiguration")
-    private String clientConfiguration;
-
-    @JsonProperty("ContentServerConfiguration")
-    private String contentServerConfiguration;
-
-    @JsonProperty("DataCache")
-    private String dataCache;
-
-    @JsonProperty("HashCache")
-    private String hashCache;
-
-    @JsonProperty("HostedCacheServerConfiguration")
-    private String hostedCacheServerConfiguration;
-
-    @JsonProperty("NetworkConfiguration")
-    private String networkConfiguration;
-
-    @JsonProperty("PSComputerName")
-    private String pSComputerName;
+    private JsonNode clientConfiguration;
 
 }

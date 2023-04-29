@@ -2,6 +2,7 @@ package org.example.model.entity.powershell;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.JsonNode;
 import lombok.*;
 
 @Data
@@ -29,7 +30,7 @@ public class DnsClientInfo {
     private String suffix;
 
     @JsonProperty("SuffixSearchList")
-    private String suffixSearchList;
+    private JsonNode suffixSearchList;
 
     @JsonProperty("Caption")
     private String caption;
@@ -125,7 +126,7 @@ public class DnsClientInfo {
     private String connectionSpecificSuffix;
 
     @JsonProperty("ConnectionSpecificSuffixSearchList")
-    private String connectionSpecificSuffixSearchList;
+    private JsonNode connectionSpecificSuffixSearchList;
 
     @JsonProperty("InterfaceAlias")
     private String interfaceAlias;

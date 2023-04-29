@@ -2,6 +2,7 @@ package org.example.model.entity.powershell;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.JsonNode;
 import lombok.*;
 
 @Data
@@ -12,75 +13,76 @@ import lombok.*;
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class HnsNetworkInfo {
-    public static final String[] COLUMN_NAMES = {"ActivityId", "AdditionalParams", "CurrentEndpointCount", "DNSServerList", "Extensions", "Flags", "GatewayMac", "Health", "ID", "IPv6", "IsolateSwitch", "LayeredOn", "MacPools", "MaxConcurrentEndpoints", "Name", "NatName", "Policies", "State", "Subnets", "TotalEndpoints", "Type", "Version", "Resources"};
 
-    @JsonProperty("ActivityId")
-    private String activityId;
+    public static final String[] COLUMN_NAMES = {"AdditionalParams", "Health", "GatewayMac", "ActivityId", "IPv6", "DNSServerList", "IsolateSwitch", "MacPools", "Flags", "LayeredOn", "Extensions", "Name", "CurrentEndpointCount", "Subnets", "Type", "State", "NatName", "ID", "Version", "Resources", "MaxConcurrentEndpoints", "Policies", "TotalEndpoints"};
 
     @JsonProperty("AdditionalParams")
-    private String additionalParams;
+    private JsonNode additionalParams;
 
-    @JsonProperty("CurrentEndpointCount")
-    private String currentEndpointCount;
-
-    @JsonProperty("DNSServerList")
-    private String dNSServerList;
-
-    @JsonProperty("Extensions")
-    private String extensions;
-
-    @JsonProperty("Flags")
-    private String flags;
+    @JsonProperty("Health")
+    private JsonNode health;
 
     @JsonProperty("GatewayMac")
     private String gatewayMac;
 
-    @JsonProperty("Health")
-    private String health;
-
-    @JsonProperty("ID")
-    private String iD;
+    @JsonProperty("ActivityId")
+    private String activityId;
 
     @JsonProperty("IPv6")
     private String iPv6;
 
+    @JsonProperty("DNSServerList")
+    private String dNSServerList;
+
     @JsonProperty("IsolateSwitch")
     private String isolateSwitch;
+
+    @JsonProperty("MacPools")
+    private JsonNode macPools;
+
+    @JsonProperty("Flags")
+    private String flags;
 
     @JsonProperty("LayeredOn")
     private String layeredOn;
 
-    @JsonProperty("MacPools")
-    private String macPools;
-
-    @JsonProperty("MaxConcurrentEndpoints")
-    private String maxConcurrentEndpoints;
+    @JsonProperty("Extensions")
+    private JsonNode extensions;
 
     @JsonProperty("Name")
     private String name;
 
-    @JsonProperty("NatName")
-    private String natName;
+    @JsonProperty("CurrentEndpointCount")
+    private String currentEndpointCount;
 
-    @JsonProperty("Policies")
-    private String policies;
+    @JsonProperty("Subnets")
+    private JsonNode subnets;
+
+    @JsonProperty("Type")
+    private String type;
 
     @JsonProperty("State")
     private String state;
 
-    @JsonProperty("Subnets")
-    private String subnets;
+    @JsonProperty("NatName")
+    private String natName;
 
-    @JsonProperty("TotalEndpoints")
-    private String totalEndpoints;
-
-    @JsonProperty("Type")
-    private String type;
+    @JsonProperty("ID")
+    private String iD;
 
     @JsonProperty("Version")
     private String version;
 
     @JsonProperty("Resources")
-    private String resources;
+    private JsonNode resources;
+
+    @JsonProperty("MaxConcurrentEndpoints")
+    private String maxConcurrentEndpoints;
+
+    @JsonProperty("Policies")
+    private JsonNode policies;
+
+    @JsonProperty("TotalEndpoints")
+    private String totalEndpoints;
 
 }

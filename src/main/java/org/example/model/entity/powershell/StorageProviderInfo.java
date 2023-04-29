@@ -12,13 +12,17 @@ import lombok.*;
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class StorageProviderInfo {
-    public static final String[] COLUMN_NAMES = {"Type", "RemoteSubsystemCacheMode", "SupportedRemoteSubsystemCacheModes", "ObjectId", "PassThroughClass", "PassThroughIds", "PassThroughNamespace", "PassThroughServer", "UniqueId", "CimServerName", "Manufacturer", "Name", "SupportsSubsystemRegistration", "URI", "URI_IP", "Version", "PSComputerName"};
 
-    @JsonProperty("Type")
-    private String type;
+    public static final String[] COLUMN_NAMES = {"PSComputerName", "PassThroughServer", "PassThroughIds", "SupportedRemoteSubsystemCacheModes", "ObjectId", "UniqueId", "PassThroughNamespace", "URI", "URI_IP", "RemoteSubsystemCacheMode", "PassThroughClass", "Name", "Type", "SupportsSubsystemRegistration", "Manufacturer", "Version"};
 
-    @JsonProperty("RemoteSubsystemCacheMode")
-    private String remoteSubsystemCacheMode;
+    @JsonProperty("PSComputerName")
+    private String pSComputerName;
+
+    @JsonProperty("PassThroughServer")
+    private String passThroughServer;
+
+    @JsonProperty("PassThroughIds")
+    private String passThroughIds;
 
     @JsonProperty("SupportedRemoteSubsystemCacheModes")
     private String supportedRemoteSubsystemCacheModes;
@@ -26,32 +30,11 @@ public class StorageProviderInfo {
     @JsonProperty("ObjectId")
     private String objectId;
 
-    @JsonProperty("PassThroughClass")
-    private String passThroughClass;
-
-    @JsonProperty("PassThroughIds")
-    private String passThroughIds;
-
-    @JsonProperty("PassThroughNamespace")
-    private String passThroughNamespace;
-
-    @JsonProperty("PassThroughServer")
-    private String passThroughServer;
-
     @JsonProperty("UniqueId")
     private String uniqueId;
 
-    @JsonProperty("CimServerName")
-    private String cimServerName;
-
-    @JsonProperty("Manufacturer")
-    private String manufacturer;
-
-    @JsonProperty("Name")
-    private String name;
-
-    @JsonProperty("SupportsSubsystemRegistration")
-    private String supportsSubsystemRegistration;
+    @JsonProperty("PassThroughNamespace")
+    private String passThroughNamespace;
 
     @JsonProperty("URI")
     private String uRI;
@@ -59,10 +42,25 @@ public class StorageProviderInfo {
     @JsonProperty("URI_IP")
     private String uRI_IP;
 
+    @JsonProperty("RemoteSubsystemCacheMode")
+    private String remoteSubsystemCacheMode;
+
+    @JsonProperty("PassThroughClass")
+    private String passThroughClass;
+
+    @JsonProperty("Name")
+    private String name;
+
+    @JsonProperty("Type")
+    private String type;
+
+    @JsonProperty("SupportsSubsystemRegistration")
+    private String supportsSubsystemRegistration;
+
+    @JsonProperty("Manufacturer")
+    private String manufacturer;
+
     @JsonProperty("Version")
     private String version;
-
-    @JsonProperty("PSComputerName")
-    private String pSComputerName;
 
 }

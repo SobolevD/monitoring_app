@@ -2,6 +2,7 @@ package org.example.model.entity.powershell;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.JsonNode;
 import lombok.*;
 
 @Data
@@ -12,27 +13,26 @@ import lombok.*;
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class DnsClientGlobalSettingInfo {
-    public static final String[] COLUMN_NAMES = {"Caption", "Description", "ElementName", "InstanceID", "AddressOrigin", "ProtocolIFType", "AppendParentSuffixes", "AppendPrimarySuffixes", "DNSSuffixesToAppend", "DevolutionLevel", "SuffixSearchList", "UseDevolution", "UseSuffixSearchList", "PSComputerName"};
 
+    public static final String[] COLUMN_NAMES = {"PSComputerName", "Description", "UseDevolution", "DNSSuffixesToAppend", "DevolutionLevel", "Caption", "AppendParentSuffixes", "AppendPrimarySuffixes", "AddressOrigin", "ElementName", "UseSuffixSearchList", "ProtocolIFType", "InstanceID", "SuffixSearchList"};
 
-
-    @JsonProperty("Caption")
-    private String caption;
+    @JsonProperty("PSComputerName")
+    private String pSComputerName;
 
     @JsonProperty("Description")
     private String description;
 
-    @JsonProperty("ElementName")
-    private String elementName;
+    @JsonProperty("UseDevolution")
+    private String useDevolution;
 
-    @JsonProperty("InstanceID")
-    private String instanceID;
+    @JsonProperty("DNSSuffixesToAppend")
+    private JsonNode dNSSuffixesToAppend;
 
-    @JsonProperty("AddressOrigin")
-    private String addressOrigin;
+    @JsonProperty("DevolutionLevel")
+    private String devolutionLevel;
 
-    @JsonProperty("ProtocolIFType")
-    private String protocolIFType;
+    @JsonProperty("Caption")
+    private String caption;
 
     @JsonProperty("AppendParentSuffixes")
     private String appendParentSuffixes;
@@ -40,22 +40,22 @@ public class DnsClientGlobalSettingInfo {
     @JsonProperty("AppendPrimarySuffixes")
     private String appendPrimarySuffixes;
 
-    @JsonProperty("DNSSuffixesToAppend")
-    private String dNSSuffixesToAppend;
+    @JsonProperty("AddressOrigin")
+    private String addressOrigin;
 
-    @JsonProperty("DevolutionLevel")
-    private String devolutionLevel;
-
-    @JsonProperty("SuffixSearchList")
-    private String suffixSearchList;
-
-    @JsonProperty("UseDevolution")
-    private String useDevolution;
+    @JsonProperty("ElementName")
+    private String elementName;
 
     @JsonProperty("UseSuffixSearchList")
     private String useSuffixSearchList;
 
-    @JsonProperty("PSComputerName")
-    private String pSComputerName;
+    @JsonProperty("ProtocolIFType")
+    private String protocolIFType;
+
+    @JsonProperty("InstanceID")
+    private String instanceID;
+
+    @JsonProperty("SuffixSearchList")
+    private JsonNode suffixSearchList;
 
 }

@@ -12,10 +12,11 @@ import lombok.*;
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class BCContentServerConfigurationInfo {
-    public static final String[] COLUMN_NAMES = {"Caption", "Description", "ElementName", "InstanceID", "ContentServerIsEnabled", "PSComputerName"};
 
-    @JsonProperty("Caption")
-    private String caption;
+    public static final String[] COLUMN_NAMES = {"PSComputerName", "Description", "ElementName", "InstanceID", "Caption", "ContentServerIsEnabled"};
+
+    @JsonProperty("PSComputerName")
+    private String pSComputerName;
 
     @JsonProperty("Description")
     private String description;
@@ -26,10 +27,10 @@ public class BCContentServerConfigurationInfo {
     @JsonProperty("InstanceID")
     private String instanceID;
 
+    @JsonProperty("Caption")
+    private String caption;
+
     @JsonProperty("ContentServerIsEnabled")
     private String contentServerIsEnabled;
-
-    @JsonProperty("PSComputerName")
-    private String pSComputerName;
 
 }

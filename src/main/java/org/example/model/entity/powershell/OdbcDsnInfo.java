@@ -2,6 +2,7 @@ package org.example.model.entity.powershell;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.JsonNode;
 import lombok.*;
 
 @Data
@@ -12,32 +13,31 @@ import lombok.*;
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class OdbcDsnInfo {
-    public static final String[] COLUMN_NAMES = {"Attribute", "PropertyValue", "DriverName", "DsnType", "KeyValuePair", "Name", "Platform", "PSComputerName"};
 
+    public static final String[] COLUMN_NAMES = {"PSComputerName", "Attribute", "DsnType", "KeyValuePair", "Platform", "DriverName", "PropertyValue", "Name"};
 
+    @JsonProperty("PSComputerName")
+    private String pSComputerName;
 
     @JsonProperty("Attribute")
-    private String attribute;
-
-    @JsonProperty("PropertyValue")
-    private String propertyValue;
-
-    @JsonProperty("DriverName")
-    private String driverName;
+    private JsonNode attribute;
 
     @JsonProperty("DsnType")
     private String dsnType;
 
     @JsonProperty("KeyValuePair")
-    private String keyValuePair;
-
-    @JsonProperty("Name")
-    private String name;
+    private JsonNode keyValuePair;
 
     @JsonProperty("Platform")
     private String platform;
 
-    @JsonProperty("PSComputerName")
-    private String pSComputerName;
+    @JsonProperty("DriverName")
+    private String driverName;
+
+    @JsonProperty("PropertyValue")
+    private JsonNode propertyValue;
+
+    @JsonProperty("Name")
+    private String name;
 
 }

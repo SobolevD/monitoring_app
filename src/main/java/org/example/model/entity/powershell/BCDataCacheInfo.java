@@ -12,39 +12,23 @@ import lombok.*;
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class BCDataCacheInfo {
-    public static final String[] COLUMN_NAMES = {"Caption", "Description", "ElementName", "InstanceID", "CommunicationStatus", "DetailedStatus", "HealthState", "InstallDate", "Name", "OperatingStatus", "OperationalStatus", "PrimaryStatus", "Status", "StatusDescriptions", "CacheFileDirectoryPath", "CurrentSizeOnDiskAsNumberOfBytes", "MaxCacheSizeAsNumberOfBytes", "MaxCacheSizeAsPercentageOfDiskVolume", "CurrentActiveCacheSize", "DataCacheExtensions", "PSComputerName"};
 
+    public static final String[] COLUMN_NAMES = {"PSComputerName", "Status", "Description", "CommunicationStatus", "CurrentActiveCacheSize", "OperationalStatus", "PrimaryStatus", "Caption", "InstallDate", "DataCacheExtensions", "Name", "OperatingStatus", "MaxCacheSizeAsPercentageOfDiskVolume", "ElementName", "DetailedStatus", "InstanceID", "CurrentSizeOnDiskAsNumberOfBytes", "StatusDescriptions", "CacheFileDirectoryPath", "MaxCacheSizeAsNumberOfBytes", "HealthState"};
 
+    @JsonProperty("PSComputerName")
+    private String pSComputerName;
 
-    @JsonProperty("Caption")
-    private String caption;
+    @JsonProperty("Status")
+    private String status;
 
     @JsonProperty("Description")
     private String description;
 
-    @JsonProperty("ElementName")
-    private String elementName;
-
-    @JsonProperty("InstanceID")
-    private String instanceID;
-
     @JsonProperty("CommunicationStatus")
     private String communicationStatus;
 
-    @JsonProperty("DetailedStatus")
-    private String detailedStatus;
-
-    @JsonProperty("HealthState")
-    private String healthState;
-
-    @JsonProperty("InstallDate")
-    private String installDate;
-
-    @JsonProperty("Name")
-    private String name;
-
-    @JsonProperty("OperatingStatus")
-    private String operatingStatus;
+    @JsonProperty("CurrentActiveCacheSize")
+    private String currentActiveCacheSize;
 
     @JsonProperty("OperationalStatus")
     private String operationalStatus;
@@ -52,8 +36,35 @@ public class BCDataCacheInfo {
     @JsonProperty("PrimaryStatus")
     private String primaryStatus;
 
-    @JsonProperty("Status")
-    private String status;
+    @JsonProperty("Caption")
+    private String caption;
+
+    @JsonProperty("InstallDate")
+    private String installDate;
+
+    @JsonProperty("DataCacheExtensions")
+    private String dataCacheExtensions;
+
+    @JsonProperty("Name")
+    private String name;
+
+    @JsonProperty("OperatingStatus")
+    private String operatingStatus;
+
+    @JsonProperty("MaxCacheSizeAsPercentageOfDiskVolume")
+    private String maxCacheSizeAsPercentageOfDiskVolume;
+
+    @JsonProperty("ElementName")
+    private String elementName;
+
+    @JsonProperty("DetailedStatus")
+    private String detailedStatus;
+
+    @JsonProperty("InstanceID")
+    private String instanceID;
+
+    @JsonProperty("CurrentSizeOnDiskAsNumberOfBytes")
+    private String currentSizeOnDiskAsNumberOfBytes;
 
     @JsonProperty("StatusDescriptions")
     private String statusDescriptions;
@@ -61,22 +72,10 @@ public class BCDataCacheInfo {
     @JsonProperty("CacheFileDirectoryPath")
     private String cacheFileDirectoryPath;
 
-    @JsonProperty("CurrentSizeOnDiskAsNumberOfBytes")
-    private String currentSizeOnDiskAsNumberOfBytes;
-
     @JsonProperty("MaxCacheSizeAsNumberOfBytes")
     private String maxCacheSizeAsNumberOfBytes;
 
-    @JsonProperty("MaxCacheSizeAsPercentageOfDiskVolume")
-    private String maxCacheSizeAsPercentageOfDiskVolume;
-
-    @JsonProperty("CurrentActiveCacheSize")
-    private String currentActiveCacheSize;
-
-    @JsonProperty("DataCacheExtensions")
-    private String dataCacheExtensions;
-
-    @JsonProperty("PSComputerName")
-    private String pSComputerName;
+    @JsonProperty("HealthState")
+    private String healthState;
 
 }

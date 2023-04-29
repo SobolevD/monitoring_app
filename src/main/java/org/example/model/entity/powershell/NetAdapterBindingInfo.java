@@ -12,31 +12,35 @@ import lombok.*;
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class NetAdapterBindingInfo {
-    public static final String[] COLUMN_NAMES = { "ifAlias", "InterfaceAlias", "ifDesc", "Caption", "Description", "ElementName", "InstanceID", "InterfaceDescription", "Name", "Source", "SystemName", "BindName", "Characteristics", "ComponentClassGuid", "ComponentClassName", "ComponentID", "DisplayName", "Enabled", "PSComputerName"};
 
-    @JsonProperty("ifAlias")
-    private String ifAlias;
+    public static final String[] COLUMN_NAMES = {"PSComputerName", "ComponentClassName", "ComponentClassGuid", "Description", "InterfaceDescription", "ifDesc", "Enabled", "Caption", "InterfaceAlias", "Name", "Source", "BindName", "ifAlias", "ComponentID", "ElementName", "SystemName", "DisplayName", "InstanceID", "Characteristics"};
 
-    @JsonProperty("InterfaceAlias")
-    private String interfaceAlias;
+    @JsonProperty("PSComputerName")
+    private String pSComputerName;
 
-    @JsonProperty("ifDesc")
-    private String ifDesc;
+    @JsonProperty("ComponentClassName")
+    private String componentClassName;
 
-    @JsonProperty("Caption")
-    private String caption;
+    @JsonProperty("ComponentClassGuid")
+    private String componentClassGuid;
 
     @JsonProperty("Description")
     private String description;
 
-    @JsonProperty("ElementName")
-    private String elementName;
-
-    @JsonProperty("InstanceID")
-    private String instanceID;
-
     @JsonProperty("InterfaceDescription")
     private String interfaceDescription;
+
+    @JsonProperty("ifDesc")
+    private String ifDesc;
+
+    @JsonProperty("Enabled")
+    private String enabled;
+
+    @JsonProperty("Caption")
+    private String caption;
+
+    @JsonProperty("InterfaceAlias")
+    private String interfaceAlias;
 
     @JsonProperty("Name")
     private String name;
@@ -44,31 +48,28 @@ public class NetAdapterBindingInfo {
     @JsonProperty("Source")
     private String source;
 
-    @JsonProperty("SystemName")
-    private String systemName;
-
     @JsonProperty("BindName")
     private String bindName;
 
-    @JsonProperty("Characteristics")
-    private String characteristics;
-
-    @JsonProperty("ComponentClassGuid")
-    private String componentClassGuid;
-
-    @JsonProperty("ComponentClassName")
-    private String componentClassName;
+    @JsonProperty("ifAlias")
+    private String ifAlias;
 
     @JsonProperty("ComponentID")
     private String componentID;
 
+    @JsonProperty("ElementName")
+    private String elementName;
+
+    @JsonProperty("SystemName")
+    private String systemName;
+
     @JsonProperty("DisplayName")
     private String displayName;
 
-    @JsonProperty("Enabled")
-    private String enabled;
+    @JsonProperty("InstanceID")
+    private String instanceID;
 
-    @JsonProperty("PSComputerName")
-    private String pSComputerName;
+    @JsonProperty("Characteristics")
+    private String characteristics;
 
 }

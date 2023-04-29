@@ -2,6 +2,7 @@ package org.example.model.entity.powershell;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.JsonNode;
 import lombok.*;
 
 @Data
@@ -12,52 +13,20 @@ import lombok.*;
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class NetAdapterRscInfo {
-    public static final String[] COLUMN_NAMES = {"IPv4FailureReason", "IPv6FailureReason", "ifAlias", "InterfaceAlias", "ifDesc", "Caption", "Description", "ElementName", "InstanceID", "InterfaceDescription", "Name", "Source", "SystemName", "IPv4Enabled", "IPv4OperationalState", "IPv6Enabled", "IPv6OperationalState", "RscHardwareCapabilities", "PSComputerName"};
 
-    @JsonProperty("IPv4FailureReason")
-    private String iPv4FailureReason;
+    public static final String[] COLUMN_NAMES = {"PSComputerName", "IPv4Enabled", "Description", "InterfaceDescription", "IPv6Enabled", "IPv6OperationalState", "IPv4FailureReason", "ifDesc", "IPv6FailureReason", "Caption", "InterfaceAlias", "Name", "Source", "IPv4OperationalState", "ifAlias", "ElementName", "RscHardwareCapabilities", "SystemName", "InstanceID"};
 
-    @JsonProperty("IPv6FailureReason")
-    private String iPv6FailureReason;
-
-    @JsonProperty("ifAlias")
-    private String ifAlias;
-
-    @JsonProperty("InterfaceAlias")
-    private String interfaceAlias;
-
-    @JsonProperty("ifDesc")
-    private String ifDesc;
-
-    @JsonProperty("Caption")
-    private String caption;
-
-    @JsonProperty("Description")
-    private String description;
-
-    @JsonProperty("ElementName")
-    private String elementName;
-
-    @JsonProperty("InstanceID")
-    private String instanceID;
-
-    @JsonProperty("InterfaceDescription")
-    private String interfaceDescription;
-
-    @JsonProperty("Name")
-    private String name;
-
-    @JsonProperty("Source")
-    private String source;
-
-    @JsonProperty("SystemName")
-    private String systemName;
+    @JsonProperty("PSComputerName")
+    private String pSComputerName;
 
     @JsonProperty("IPv4Enabled")
     private String iPv4Enabled;
 
-    @JsonProperty("IPv4OperationalState")
-    private String iPv4OperationalState;
+    @JsonProperty("Description")
+    private String description;
+
+    @JsonProperty("InterfaceDescription")
+    private String interfaceDescription;
 
     @JsonProperty("IPv6Enabled")
     private String iPv6Enabled;
@@ -65,10 +34,43 @@ public class NetAdapterRscInfo {
     @JsonProperty("IPv6OperationalState")
     private String iPv6OperationalState;
 
-    @JsonProperty("RscHardwareCapabilities")
-    private String rscHardwareCapabilities;
+    @JsonProperty("IPv4FailureReason")
+    private String iPv4FailureReason;
 
-    @JsonProperty("PSComputerName")
-    private String pSComputerName;
+    @JsonProperty("ifDesc")
+    private String ifDesc;
+
+    @JsonProperty("IPv6FailureReason")
+    private String iPv6FailureReason;
+
+    @JsonProperty("Caption")
+    private String caption;
+
+    @JsonProperty("InterfaceAlias")
+    private String interfaceAlias;
+
+    @JsonProperty("Name")
+    private String name;
+
+    @JsonProperty("Source")
+    private String source;
+
+    @JsonProperty("IPv4OperationalState")
+    private String iPv4OperationalState;
+
+    @JsonProperty("ifAlias")
+    private String ifAlias;
+
+    @JsonProperty("ElementName")
+    private String elementName;
+
+    @JsonProperty("RscHardwareCapabilities")
+    private JsonNode rscHardwareCapabilities;
+
+    @JsonProperty("SystemName")
+    private String systemName;
+
+    @JsonProperty("InstanceID")
+    private String instanceID;
 
 }

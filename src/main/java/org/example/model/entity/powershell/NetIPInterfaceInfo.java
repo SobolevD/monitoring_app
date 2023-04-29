@@ -2,6 +2,7 @@ package org.example.model.entity.powershell;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.JsonNode;
 import lombok.*;
 
 @Data
@@ -12,25 +13,41 @@ import lombok.*;
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class NetIPInterfaceInfo {
-    public static final String[] COLUMN_NAMES = {"Store", "AddressFamily", "Forwarding", "ClampMss", "Advertising", "NeighborUnreachabilityDetection", "RouterDiscovery", "NeighborDiscoverySupported", "ManagedAddressConfiguration", "OtherStatefulConfiguration", "WeakHostSend", "WeakHostReceive", "IgnoreDefaultRoutes", "AdvertiseDefaultRoute", "ForceArpNdWolPattern", "DirectedMacWolPattern", "EcnMarking", "Dhcp", "ConnectionState", "AutomaticMetric", "ifIndex", "ifAlias", "Caption", "Description", "ElementName", "InstanceID", "CommunicationStatus", "DetailedStatus", "HealthState", "InstallDate", "Name", "OperatingStatus", "OperationalStatus", "PrimaryStatus", "Status", "StatusDescriptions", "AvailableRequestedStates", "EnabledDefault", "EnabledState", "OtherEnabledState", "RequestedState", "TimeOfLastStateChange", "TransitioningToState", "CreationClassName", "SystemCreationClassName", "SystemName", "NameFormat", "OtherTypeDescription", "ProtocolIFType", "ProtocolType", "AliasAddresses", "GroupAddresses", "LANID", "LANType", "MACAddress", "MaxDataSize", "OtherLANType", "AdvertisedRouterLifetime", "BaseReachableTime", "CompartmentId", "CurrentHopLimit", "DadRetransmitTime", "DadTransmits", "InterfaceAlias", "InterfaceIndex", "InterfaceMetric", "IsolationId", "LowestIfNetLuid", "NlMtu", "ReachableTime", "RetransmitTime", "PSComputerName"};
 
-    @JsonProperty("Store")
-    private String store;
+    public static final String[] COLUMN_NAMES = {"DadTransmits", "OtherStatefulConfiguration", "NeighborUnreachabilityDetection", "IsolationId", "Status", "AutomaticMetric", "OperationalStatus", "Dhcp", "ifAlias", "OtherEnabledState", "CompartmentId", "RouterDiscovery", "NeighborDiscoverySupported", "WeakHostReceive", "LowestIfNetLuid", "PSComputerName", "Store", "RequestedState", "AddressFamily", "OperatingStatus", "Forwarding", "TimeOfLastStateChange", "ElementName", "ProtocolIFType", "InterfaceMetric", "DetailedStatus", "SystemName", "Advertising", "InstanceID", "CurrentHopLimit", "RetransmitTime", "StatusDescriptions", "GroupAddresses", "LANID", "TransitioningToState", "ManagedAddressConfiguration", "OtherLANType", "LANType", "EcnMarking", "AdvertisedRouterLifetime", "AdvertiseDefaultRoute", "PrimaryStatus", "ForceArpNdWolPattern", "Caption", "InstallDate", "OtherTypeDescription", "WeakHostSend", "CreationClassName", "IgnoreDefaultRoutes", "EnabledDefault", "MACAddress", "ProtocolType", "AvailableRequestedStates", "ClampMss", "ReachableTime", "ConnectionState", "AliasAddresses", "HealthState", "ifIndex", "MaxDataSize", "EnabledState", "Description", "CommunicationStatus", "NameFormat", "DirectedMacWolPattern", "SystemCreationClassName", "BaseReachableTime", "Name", "InterfaceAlias", "InterfaceIndex", "NlMtu", "DadRetransmitTime"};
 
-    @JsonProperty("AddressFamily")
-    private String addressFamily;
+    @JsonProperty("DadTransmits")
+    private String dadTransmits;
 
-    @JsonProperty("Forwarding")
-    private String forwarding;
-
-    @JsonProperty("ClampMss")
-    private String clampMss;
-
-    @JsonProperty("Advertising")
-    private String advertising;
+    @JsonProperty("OtherStatefulConfiguration")
+    private String otherStatefulConfiguration;
 
     @JsonProperty("NeighborUnreachabilityDetection")
     private String neighborUnreachabilityDetection;
+
+    @JsonProperty("IsolationId")
+    private String isolationId;
+
+    @JsonProperty("Status")
+    private String status;
+
+    @JsonProperty("AutomaticMetric")
+    private String automaticMetric;
+
+    @JsonProperty("OperationalStatus")
+    private String operationalStatus;
+
+    @JsonProperty("Dhcp")
+    private String dhcp;
+
+    @JsonProperty("ifAlias")
+    private String ifAlias;
+
+    @JsonProperty("OtherEnabledState")
+    private String otherEnabledState;
+
+    @JsonProperty("CompartmentId")
+    private String compartmentId;
 
     @JsonProperty("RouterDiscovery")
     private String routerDiscovery;
@@ -38,134 +55,62 @@ public class NetIPInterfaceInfo {
     @JsonProperty("NeighborDiscoverySupported")
     private String neighborDiscoverySupported;
 
-    @JsonProperty("ManagedAddressConfiguration")
-    private String managedAddressConfiguration;
-
-    @JsonProperty("OtherStatefulConfiguration")
-    private String otherStatefulConfiguration;
-
-    @JsonProperty("WeakHostSend")
-    private String weakHostSend;
-
     @JsonProperty("WeakHostReceive")
     private String weakHostReceive;
 
-    @JsonProperty("IgnoreDefaultRoutes")
-    private String ignoreDefaultRoutes;
+    @JsonProperty("LowestIfNetLuid")
+    private String lowestIfNetLuid;
 
-    @JsonProperty("AdvertiseDefaultRoute")
-    private String advertiseDefaultRoute;
+    @JsonProperty("PSComputerName")
+    private String pSComputerName;
 
-    @JsonProperty("ForceArpNdWolPattern")
-    private String forceArpNdWolPattern;
-
-    @JsonProperty("DirectedMacWolPattern")
-    private String directedMacWolPattern;
-
-    @JsonProperty("EcnMarking")
-    private String ecnMarking;
-
-    @JsonProperty("Dhcp")
-    private String dhcp;
-
-    @JsonProperty("ConnectionState")
-    private String connectionState;
-
-    @JsonProperty("AutomaticMetric")
-    private String automaticMetric;
-
-    @JsonProperty("ifIndex")
-    private String ifIndex;
-
-    @JsonProperty("ifAlias")
-    private String ifAlias;
-
-    @JsonProperty("Caption")
-    private String caption;
-
-    @JsonProperty("Description")
-    private String description;
-
-    @JsonProperty("ElementName")
-    private String elementName;
-
-    @JsonProperty("InstanceID")
-    private String instanceID;
-
-    @JsonProperty("CommunicationStatus")
-    private String communicationStatus;
-
-    @JsonProperty("DetailedStatus")
-    private String detailedStatus;
-
-    @JsonProperty("HealthState")
-    private String healthState;
-
-    @JsonProperty("InstallDate")
-    private String installDate;
-
-    @JsonProperty("Name")
-    private String name;
-
-    @JsonProperty("OperatingStatus")
-    private String operatingStatus;
-
-    @JsonProperty("OperationalStatus")
-    private String operationalStatus;
-
-    @JsonProperty("PrimaryStatus")
-    private String primaryStatus;
-
-    @JsonProperty("Status")
-    private String status;
-
-    @JsonProperty("StatusDescriptions")
-    private String statusDescriptions;
-
-    @JsonProperty("AvailableRequestedStates")
-    private String availableRequestedStates;
-
-    @JsonProperty("EnabledDefault")
-    private String enabledDefault;
-
-    @JsonProperty("EnabledState")
-    private String enabledState;
-
-    @JsonProperty("OtherEnabledState")
-    private String otherEnabledState;
+    @JsonProperty("Store")
+    private String store;
 
     @JsonProperty("RequestedState")
     private String requestedState;
 
+    @JsonProperty("AddressFamily")
+    private String addressFamily;
+
+    @JsonProperty("OperatingStatus")
+    private String operatingStatus;
+
+    @JsonProperty("Forwarding")
+    private String forwarding;
+
     @JsonProperty("TimeOfLastStateChange")
     private String timeOfLastStateChange;
 
-    @JsonProperty("TransitioningToState")
-    private String transitioningToState;
-
-    @JsonProperty("CreationClassName")
-    private String creationClassName;
-
-    @JsonProperty("SystemCreationClassName")
-    private String systemCreationClassName;
-
-    @JsonProperty("SystemName")
-    private String systemName;
-
-    @JsonProperty("NameFormat")
-    private String nameFormat;
-
-    @JsonProperty("OtherTypeDescription")
-    private String otherTypeDescription;
+    @JsonProperty("ElementName")
+    private String elementName;
 
     @JsonProperty("ProtocolIFType")
     private String protocolIFType;
 
-    @JsonProperty("ProtocolType")
-    private String protocolType;
+    @JsonProperty("InterfaceMetric")
+    private String interfaceMetric;
 
-    @JsonProperty("AliasAddresses")
-    private String aliasAddresses;
+    @JsonProperty("DetailedStatus")
+    private String detailedStatus;
+
+    @JsonProperty("SystemName")
+    private String systemName;
+
+    @JsonProperty("Advertising")
+    private String advertising;
+
+    @JsonProperty("InstanceID")
+    private String instanceID;
+
+    @JsonProperty("CurrentHopLimit")
+    private String currentHopLimit;
+
+    @JsonProperty("RetransmitTime")
+    private String retransmitTime;
+
+    @JsonProperty("StatusDescriptions")
+    private String statusDescriptions;
 
     @JsonProperty("GroupAddresses")
     private String groupAddresses;
@@ -173,35 +118,107 @@ public class NetIPInterfaceInfo {
     @JsonProperty("LANID")
     private String lANID;
 
-    @JsonProperty("LANType")
-    private String lANType;
+    @JsonProperty("TransitioningToState")
+    private String transitioningToState;
 
-    @JsonProperty("MACAddress")
-    private String mACAddress;
-
-    @JsonProperty("MaxDataSize")
-    private String maxDataSize;
+    @JsonProperty("ManagedAddressConfiguration")
+    private String managedAddressConfiguration;
 
     @JsonProperty("OtherLANType")
     private String otherLANType;
 
+    @JsonProperty("LANType")
+    private String lANType;
+
+    @JsonProperty("EcnMarking")
+    private String ecnMarking;
+
     @JsonProperty("AdvertisedRouterLifetime")
-    private String advertisedRouterLifetime;
+    private JsonNode advertisedRouterLifetime;
+
+    @JsonProperty("AdvertiseDefaultRoute")
+    private String advertiseDefaultRoute;
+
+    @JsonProperty("PrimaryStatus")
+    private String primaryStatus;
+
+    @JsonProperty("ForceArpNdWolPattern")
+    private String forceArpNdWolPattern;
+
+    @JsonProperty("Caption")
+    private String caption;
+
+    @JsonProperty("InstallDate")
+    private String installDate;
+
+    @JsonProperty("OtherTypeDescription")
+    private String otherTypeDescription;
+
+    @JsonProperty("WeakHostSend")
+    private String weakHostSend;
+
+    @JsonProperty("CreationClassName")
+    private String creationClassName;
+
+    @JsonProperty("IgnoreDefaultRoutes")
+    private String ignoreDefaultRoutes;
+
+    @JsonProperty("EnabledDefault")
+    private String enabledDefault;
+
+    @JsonProperty("MACAddress")
+    private String mACAddress;
+
+    @JsonProperty("ProtocolType")
+    private String protocolType;
+
+    @JsonProperty("AvailableRequestedStates")
+    private String availableRequestedStates;
+
+    @JsonProperty("ClampMss")
+    private String clampMss;
+
+    @JsonProperty("ReachableTime")
+    private String reachableTime;
+
+    @JsonProperty("ConnectionState")
+    private String connectionState;
+
+    @JsonProperty("AliasAddresses")
+    private String aliasAddresses;
+
+    @JsonProperty("HealthState")
+    private String healthState;
+
+    @JsonProperty("ifIndex")
+    private String ifIndex;
+
+    @JsonProperty("MaxDataSize")
+    private String maxDataSize;
+
+    @JsonProperty("EnabledState")
+    private String enabledState;
+
+    @JsonProperty("Description")
+    private String description;
+
+    @JsonProperty("CommunicationStatus")
+    private String communicationStatus;
+
+    @JsonProperty("NameFormat")
+    private String nameFormat;
+
+    @JsonProperty("DirectedMacWolPattern")
+    private String directedMacWolPattern;
+
+    @JsonProperty("SystemCreationClassName")
+    private String systemCreationClassName;
 
     @JsonProperty("BaseReachableTime")
     private String baseReachableTime;
 
-    @JsonProperty("CompartmentId")
-    private String compartmentId;
-
-    @JsonProperty("CurrentHopLimit")
-    private String currentHopLimit;
-
-    @JsonProperty("DadRetransmitTime")
-    private String dadRetransmitTime;
-
-    @JsonProperty("DadTransmits")
-    private String dadTransmits;
+    @JsonProperty("Name")
+    private String name;
 
     @JsonProperty("InterfaceAlias")
     private String interfaceAlias;
@@ -209,25 +226,10 @@ public class NetIPInterfaceInfo {
     @JsonProperty("InterfaceIndex")
     private String interfaceIndex;
 
-    @JsonProperty("InterfaceMetric")
-    private String interfaceMetric;
-
-    @JsonProperty("IsolationId")
-    private String isolationId;
-
-    @JsonProperty("LowestIfNetLuid")
-    private String lowestIfNetLuid;
-
     @JsonProperty("NlMtu")
     private String nlMtu;
 
-    @JsonProperty("ReachableTime")
-    private String reachableTime;
-
-    @JsonProperty("RetransmitTime")
-    private String retransmitTime;
-
-    @JsonProperty("PSComputerName")
-    private String pSComputerName;
+    @JsonProperty("DadRetransmitTime")
+    private String dadRetransmitTime;
 
 }

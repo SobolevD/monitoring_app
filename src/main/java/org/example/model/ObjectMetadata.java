@@ -9,7 +9,10 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ObjectMetadata {
-    private Class<? extends Object[]> objectClass;
+    private Class<? extends Object[]> objectArrayClass;
+    private Class<?> objectClass;
     private String[] columns;
     private String command;
+    private String group;
+    private String simpleName;
 }

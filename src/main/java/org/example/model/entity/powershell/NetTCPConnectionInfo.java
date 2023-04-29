@@ -12,46 +12,20 @@ import lombok.*;
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class NetTCPConnectionInfo {
-    public static final String[] COLUMN_NAMES = {"State", "AppliedSetting", "OffloadState", "Caption", "Description", "ElementName", "InstanceID", "CommunicationStatus", "DetailedStatus", "HealthState", "InstallDate", "Name", "OperatingStatus", "OperationalStatus", "PrimaryStatus", "Status", "StatusDescriptions", "AvailableRequestedStates", "EnabledDefault", "EnabledState", "OtherEnabledState", "RequestedState", "TimeOfLastStateChange", "TransitioningToState", "AggregationBehavior", "Directionality", "CreationTime", "LocalAddress", "LocalPort", "OwningProcess", "RemoteAddress", "RemotePort", "PSComputerName"};
 
-    @JsonProperty("State")
-    private String state;
+    public static final String[] COLUMN_NAMES = {"TransitioningToState", "LocalAddress", "Status", "RemotePort", "OperationalStatus", "PrimaryStatus", "Caption", "InstallDate", "AppliedSetting", "OtherEnabledState", "LocalPort", "EnabledDefault", "AvailableRequestedStates", "State", "Directionality", "HealthState", "CreationTime", "OwningProcess", "PSComputerName", "EnabledState", "RemoteAddress", "Description", "OffloadState", "CommunicationStatus", "Name", "RequestedState", "OperatingStatus", "TimeOfLastStateChange", "ElementName", "DetailedStatus", "InstanceID", "AggregationBehavior", "StatusDescriptions"};
 
-    @JsonProperty("AppliedSetting")
-    private String appliedSetting;
+    @JsonProperty("TransitioningToState")
+    private String transitioningToState;
 
-    @JsonProperty("OffloadState")
-    private String offloadState;
+    @JsonProperty("LocalAddress")
+    private String localAddress;
 
-    @JsonProperty("Caption")
-    private String caption;
+    @JsonProperty("Status")
+    private String status;
 
-    @JsonProperty("Description")
-    private String description;
-
-    @JsonProperty("ElementName")
-    private String elementName;
-
-    @JsonProperty("InstanceID")
-    private String instanceID;
-
-    @JsonProperty("CommunicationStatus")
-    private String communicationStatus;
-
-    @JsonProperty("DetailedStatus")
-    private String detailedStatus;
-
-    @JsonProperty("HealthState")
-    private String healthState;
-
-    @JsonProperty("InstallDate")
-    private String installDate;
-
-    @JsonProperty("Name")
-    private String name;
-
-    @JsonProperty("OperatingStatus")
-    private String operatingStatus;
+    @JsonProperty("RemotePort")
+    private String remotePort;
 
     @JsonProperty("OperationalStatus")
     private String operationalStatus;
@@ -59,58 +33,85 @@ public class NetTCPConnectionInfo {
     @JsonProperty("PrimaryStatus")
     private String primaryStatus;
 
-    @JsonProperty("Status")
-    private String status;
+    @JsonProperty("Caption")
+    private String caption;
 
-    @JsonProperty("StatusDescriptions")
-    private String statusDescriptions;
+    @JsonProperty("InstallDate")
+    private String installDate;
 
-    @JsonProperty("AvailableRequestedStates")
-    private String availableRequestedStates;
-
-    @JsonProperty("EnabledDefault")
-    private String enabledDefault;
-
-    @JsonProperty("EnabledState")
-    private String enabledState;
+    @JsonProperty("AppliedSetting")
+    private String appliedSetting;
 
     @JsonProperty("OtherEnabledState")
     private String otherEnabledState;
 
-    @JsonProperty("RequestedState")
-    private String requestedState;
+    @JsonProperty("LocalPort")
+    private String localPort;
 
-    @JsonProperty("TimeOfLastStateChange")
-    private String timeOfLastStateChange;
+    @JsonProperty("EnabledDefault")
+    private String enabledDefault;
 
-    @JsonProperty("TransitioningToState")
-    private String transitioningToState;
+    @JsonProperty("AvailableRequestedStates")
+    private String availableRequestedStates;
 
-    @JsonProperty("AggregationBehavior")
-    private String aggregationBehavior;
+    @JsonProperty("State")
+    private String state;
 
     @JsonProperty("Directionality")
     private String directionality;
 
+    @JsonProperty("HealthState")
+    private String healthState;
+
     @JsonProperty("CreationTime")
     private String creationTime;
-
-    @JsonProperty("LocalAddress")
-    private String localAddress;
-
-    @JsonProperty("LocalPort")
-    private String localPort;
 
     @JsonProperty("OwningProcess")
     private String owningProcess;
 
+    @JsonProperty("PSComputerName")
+    private String pSComputerName;
+
+    @JsonProperty("EnabledState")
+    private String enabledState;
+
     @JsonProperty("RemoteAddress")
     private String remoteAddress;
 
-    @JsonProperty("RemotePort")
-    private String remotePort;
+    @JsonProperty("Description")
+    private String description;
 
-    @JsonProperty("PSComputerName")
-    private String pSComputerName;
+    @JsonProperty("OffloadState")
+    private String offloadState;
+
+    @JsonProperty("CommunicationStatus")
+    private String communicationStatus;
+
+    @JsonProperty("Name")
+    private String name;
+
+    @JsonProperty("RequestedState")
+    private String requestedState;
+
+    @JsonProperty("OperatingStatus")
+    private String operatingStatus;
+
+    @JsonProperty("TimeOfLastStateChange")
+    private String timeOfLastStateChange;
+
+    @JsonProperty("ElementName")
+    private String elementName;
+
+    @JsonProperty("DetailedStatus")
+    private String detailedStatus;
+
+    @JsonProperty("InstanceID")
+    private String instanceID;
+
+    @JsonProperty("AggregationBehavior")
+    private String aggregationBehavior;
+
+    @JsonProperty("StatusDescriptions")
+    private String statusDescriptions;
 
 }

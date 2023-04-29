@@ -2,6 +2,7 @@ package org.example.model.entity.powershell;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.JsonNode;
 import lombok.*;
 
 @Data
@@ -12,10 +13,14 @@ import lombok.*;
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class StorageSubSystemInfo {
-    public static final String[] COLUMN_NAMES = {"NameFormat", "HealthStatus", "OperationalStatus", "FaultDomainAwarenessDefault", "MaskingValidInitiatorIdTypes", "MaskingPortsPerView", "DataTieringType", "iSCSITargetCreationScheme", "SupportedHostType", "SupportedDeduplicationObjectTypes", "SupportedDeduplicationFileSystemTypes", "SupportedFileSystems", "StorageConnectionType", "SupportedFileServerProtocols", "ObjectId", "PassThroughClass", "PassThroughIds", "PassThroughNamespace", "PassThroughServer", "UniqueId", "AutomaticClusteringEnabled", "CimServerName", "CurrentCacheLevel", "Description", "FirmwareVersion", "FriendlyName", "Manufacturer", "MaskingClientSelectableDeviceNumbers", "MaskingMapCountMax", "MaskingOneInitiatorIdPerView", "MaskingOtherValidInitiatorIdTypes", "Model", "Name", "NumberOfSlots", "OtherHostTypeDescription", "OtherIdentifyingInfo", "OtherIdentifyingInfoDescription", "OtherOperationalStatusDescription", "PhysicalDisksPerStoragePoolMin", "ReplicasPerSourceCloneMax", "ReplicasPerSourceMirrorMax", "ReplicasPerSourceSnapshotMax", "SerialNumber", "SupportsAutomaticStoragePoolSelection", "SupportsCloneLocal", "SupportsCloneRemote", "SupportsContinuouslyAvailableFileServer", "SupportsFileServer", "SupportsFileServerCreation", "SupportsMaskingVirtualDiskToHosts", "SupportsMirrorLocal", "SupportsMirrorRemote", "SupportsMultipleResiliencySettingsPerStoragePool", "SupportsSnapshotLocal", "SupportsSnapshotRemote", "SupportsStoragePoolAddPhysicalDisk", "SupportsStoragePoolCreation", "SupportsStoragePoolDeletion", "SupportsStoragePoolFriendlyNameModification", "SupportsStoragePoolRemovePhysicalDisk", "SupportsStorageTierCreation", "SupportsStorageTierDeletion", "SupportsStorageTieredVirtualDiskCreation", "SupportsStorageTierFriendlyNameModification", "SupportsStorageTierResize", "SupportsVirtualDiskCapacityExpansion", "SupportsVirtualDiskCapacityReduction", "SupportsVirtualDiskCreation", "SupportsVirtualDiskDeletion", "SupportsVirtualDiskModification", "SupportsVirtualDiskRepair", "SupportsVolumeCreation", "Tag", "VirtualDiskRepairEnabled", "PSComputerName"};
 
-    @JsonProperty("NameFormat")
-    private String nameFormat;
+    public static final String[] COLUMN_NAMES = {"SupportsStorageTierDeletion", "OtherHostTypeDescription", "HealthStatus", "OperationalStatus", "PassThroughClass", "FirmwareVersion", "MaskingPortsPerView", "SupportsVirtualDiskCapacityReduction", "SupportsCloneLocal", "SupportsStorageTierFriendlyNameModification", "OtherIdentifyingInfoDescription", "Tag", "SupportsFileServer", "SupportsStoragePoolDeletion", "PSComputerName", "SupportsVirtualDiskDeletion", "SupportsSnapshotRemote", "SupportedDeduplicationFileSystemTypes", "PassThroughNamespace", "NumberOfSlots", "iSCSITargetCreationScheme", "SupportsStoragePoolAddPhysicalDisk", "OtherIdentifyingInfo", "SupportedFileSystems", "SupportsStorageTieredVirtualDiskCreation", "ReplicasPerSourceSnapshotMax", "SupportsCloneRemote", "SupportsStorageTierResize", "SupportedHostType", "FaultDomainAwarenessDefault", "SupportedDeduplicationObjectTypes", "SupportsFileServerCreation", "SupportsStoragePoolRemovePhysicalDisk", "PhysicalDisksPerStoragePoolMin", "SupportsStorageTierCreation", "MaskingOtherValidInitiatorIdTypes", "CurrentCacheLevel", "SupportsMirrorLocal", "SupportsMirrorRemote", "ObjectId", "UniqueId", "FriendlyName", "MaskingMapCountMax", "StorageConnectionType", "OtherOperationalStatusDescription", "ReplicasPerSourceCloneMax", "SupportsStoragePoolCreation", "SupportsContinuouslyAvailableFileServer", "SerialNumber", "AutomaticClusteringEnabled", "SupportsAutomaticStoragePoolSelection", "Model", "VirtualDiskRepairEnabled", "SupportsStoragePoolFriendlyNameModification", "MaskingClientSelectableDeviceNumbers", "PassThroughServer", "PassThroughIds", "MaskingOneInitiatorIdPerView", "Description", "SupportsVirtualDiskCapacityExpansion", "NameFormat", "DataTieringType", "SupportsVolumeCreation", "SupportsMaskingVirtualDiskToHosts", "SupportsMultipleResiliencySettingsPerStoragePool", "SupportsVirtualDiskModification", "Name", "SupportsVirtualDiskRepair", "SupportsSnapshotLocal", "MaskingValidInitiatorIdTypes", "SupportedFileServerProtocols", "SupportsVirtualDiskCreation", "Manufacturer", "ReplicasPerSourceMirrorMax"};
+
+    @JsonProperty("SupportsStorageTierDeletion")
+    private String supportsStorageTierDeletion;
+
+    @JsonProperty("OtherHostTypeDescription")
+    private String otherHostTypeDescription;
 
     @JsonProperty("HealthStatus")
     private String healthStatus;
@@ -23,146 +28,104 @@ public class StorageSubSystemInfo {
     @JsonProperty("OperationalStatus")
     private String operationalStatus;
 
-    @JsonProperty("FaultDomainAwarenessDefault")
-    private String faultDomainAwarenessDefault;
-
-    @JsonProperty("MaskingValidInitiatorIdTypes")
-    private String maskingValidInitiatorIdTypes;
-
-    @JsonProperty("MaskingPortsPerView")
-    private String maskingPortsPerView;
-
-    @JsonProperty("DataTieringType")
-    private String dataTieringType;
-
-    @JsonProperty("iSCSITargetCreationScheme")
-    private String iSCSITargetCreationScheme;
-
-    @JsonProperty("SupportedHostType")
-    private String supportedHostType;
-
-    @JsonProperty("SupportedDeduplicationObjectTypes")
-    private String supportedDeduplicationObjectTypes;
-
-    @JsonProperty("SupportedDeduplicationFileSystemTypes")
-    private String supportedDeduplicationFileSystemTypes;
-
-    @JsonProperty("SupportedFileSystems")
-    private String supportedFileSystems;
-
-    @JsonProperty("StorageConnectionType")
-    private String storageConnectionType;
-
-    @JsonProperty("SupportedFileServerProtocols")
-    private String supportedFileServerProtocols;
-
-    @JsonProperty("ObjectId")
-    private String objectId;
-
     @JsonProperty("PassThroughClass")
     private String passThroughClass;
-
-    @JsonProperty("PassThroughIds")
-    private String passThroughIds;
-
-    @JsonProperty("PassThroughNamespace")
-    private String passThroughNamespace;
-
-    @JsonProperty("PassThroughServer")
-    private String passThroughServer;
-
-    @JsonProperty("UniqueId")
-    private String uniqueId;
-
-    @JsonProperty("AutomaticClusteringEnabled")
-    private String automaticClusteringEnabled;
-
-    @JsonProperty("CimServerName")
-    private String cimServerName;
-
-    @JsonProperty("CurrentCacheLevel")
-    private String currentCacheLevel;
-
-    @JsonProperty("Description")
-    private String description;
 
     @JsonProperty("FirmwareVersion")
     private String firmwareVersion;
 
-    @JsonProperty("FriendlyName")
-    private String friendlyName;
+    @JsonProperty("MaskingPortsPerView")
+    private String maskingPortsPerView;
 
-    @JsonProperty("Manufacturer")
-    private String manufacturer;
-
-    @JsonProperty("MaskingClientSelectableDeviceNumbers")
-    private String maskingClientSelectableDeviceNumbers;
-
-    @JsonProperty("MaskingMapCountMax")
-    private String maskingMapCountMax;
-
-    @JsonProperty("MaskingOneInitiatorIdPerView")
-    private String maskingOneInitiatorIdPerView;
-
-    @JsonProperty("MaskingOtherValidInitiatorIdTypes")
-    private String maskingOtherValidInitiatorIdTypes;
-
-    @JsonProperty("Model")
-    private String model;
-
-    @JsonProperty("Name")
-    private String name;
-
-    @JsonProperty("NumberOfSlots")
-    private String numberOfSlots;
-
-    @JsonProperty("OtherHostTypeDescription")
-    private String otherHostTypeDescription;
-
-    @JsonProperty("OtherIdentifyingInfo")
-    private String otherIdentifyingInfo;
-
-    @JsonProperty("OtherIdentifyingInfoDescription")
-    private String otherIdentifyingInfoDescription;
-
-    @JsonProperty("OtherOperationalStatusDescription")
-    private String otherOperationalStatusDescription;
-
-    @JsonProperty("PhysicalDisksPerStoragePoolMin")
-    private String physicalDisksPerStoragePoolMin;
-
-    @JsonProperty("ReplicasPerSourceCloneMax")
-    private String replicasPerSourceCloneMax;
-
-    @JsonProperty("ReplicasPerSourceMirrorMax")
-    private String replicasPerSourceMirrorMax;
-
-    @JsonProperty("ReplicasPerSourceSnapshotMax")
-    private String replicasPerSourceSnapshotMax;
-
-    @JsonProperty("SerialNumber")
-    private String serialNumber;
-
-    @JsonProperty("SupportsAutomaticStoragePoolSelection")
-    private String supportsAutomaticStoragePoolSelection;
+    @JsonProperty("SupportsVirtualDiskCapacityReduction")
+    private String supportsVirtualDiskCapacityReduction;
 
     @JsonProperty("SupportsCloneLocal")
     private String supportsCloneLocal;
 
-    @JsonProperty("SupportsCloneRemote")
-    private String supportsCloneRemote;
+    @JsonProperty("SupportsStorageTierFriendlyNameModification")
+    private String supportsStorageTierFriendlyNameModification;
 
-    @JsonProperty("SupportsContinuouslyAvailableFileServer")
-    private String supportsContinuouslyAvailableFileServer;
+    @JsonProperty("OtherIdentifyingInfoDescription")
+    private String otherIdentifyingInfoDescription;
+
+    @JsonProperty("Tag")
+    private String tag;
 
     @JsonProperty("SupportsFileServer")
     private String supportsFileServer;
 
+    @JsonProperty("SupportsStoragePoolDeletion")
+    private String supportsStoragePoolDeletion;
+
+    @JsonProperty("PSComputerName")
+    private String pSComputerName;
+
+    @JsonProperty("SupportsVirtualDiskDeletion")
+    private String supportsVirtualDiskDeletion;
+
+    @JsonProperty("SupportsSnapshotRemote")
+    private String supportsSnapshotRemote;
+
+    @JsonProperty("SupportedDeduplicationFileSystemTypes")
+    private JsonNode supportedDeduplicationFileSystemTypes;
+
+    @JsonProperty("PassThroughNamespace")
+    private String passThroughNamespace;
+
+    @JsonProperty("NumberOfSlots")
+    private String numberOfSlots;
+
+    @JsonProperty("iSCSITargetCreationScheme")
+    private String iSCSITargetCreationScheme;
+
+    @JsonProperty("SupportsStoragePoolAddPhysicalDisk")
+    private String supportsStoragePoolAddPhysicalDisk;
+
+    @JsonProperty("OtherIdentifyingInfo")
+    private String otherIdentifyingInfo;
+
+    @JsonProperty("SupportedFileSystems")
+    private JsonNode supportedFileSystems;
+
+    @JsonProperty("SupportsStorageTieredVirtualDiskCreation")
+    private String supportsStorageTieredVirtualDiskCreation;
+
+    @JsonProperty("ReplicasPerSourceSnapshotMax")
+    private String replicasPerSourceSnapshotMax;
+
+    @JsonProperty("SupportsCloneRemote")
+    private String supportsCloneRemote;
+
+    @JsonProperty("SupportsStorageTierResize")
+    private String supportsStorageTierResize;
+
+    @JsonProperty("SupportedHostType")
+    private JsonNode supportedHostType;
+
+    @JsonProperty("FaultDomainAwarenessDefault")
+    private String faultDomainAwarenessDefault;
+
+    @JsonProperty("SupportedDeduplicationObjectTypes")
+    private JsonNode supportedDeduplicationObjectTypes;
+
     @JsonProperty("SupportsFileServerCreation")
     private String supportsFileServerCreation;
 
-    @JsonProperty("SupportsMaskingVirtualDiskToHosts")
-    private String supportsMaskingVirtualDiskToHosts;
+    @JsonProperty("SupportsStoragePoolRemovePhysicalDisk")
+    private String supportsStoragePoolRemovePhysicalDisk;
+
+    @JsonProperty("PhysicalDisksPerStoragePoolMin")
+    private String physicalDisksPerStoragePoolMin;
+
+    @JsonProperty("SupportsStorageTierCreation")
+    private String supportsStorageTierCreation;
+
+    @JsonProperty("MaskingOtherValidInitiatorIdTypes")
+    private String maskingOtherValidInitiatorIdTypes;
+
+    @JsonProperty("CurrentCacheLevel")
+    private String currentCacheLevel;
 
     @JsonProperty("SupportsMirrorLocal")
     private String supportsMirrorLocal;
@@ -170,73 +133,109 @@ public class StorageSubSystemInfo {
     @JsonProperty("SupportsMirrorRemote")
     private String supportsMirrorRemote;
 
-    @JsonProperty("SupportsMultipleResiliencySettingsPerStoragePool")
-    private String supportsMultipleResiliencySettingsPerStoragePool;
+    @JsonProperty("ObjectId")
+    private String objectId;
 
-    @JsonProperty("SupportsSnapshotLocal")
-    private String supportsSnapshotLocal;
+    @JsonProperty("UniqueId")
+    private String uniqueId;
 
-    @JsonProperty("SupportsSnapshotRemote")
-    private String supportsSnapshotRemote;
+    @JsonProperty("FriendlyName")
+    private String friendlyName;
 
-    @JsonProperty("SupportsStoragePoolAddPhysicalDisk")
-    private String supportsStoragePoolAddPhysicalDisk;
+    @JsonProperty("MaskingMapCountMax")
+    private String maskingMapCountMax;
+
+    @JsonProperty("StorageConnectionType")
+    private String storageConnectionType;
+
+    @JsonProperty("OtherOperationalStatusDescription")
+    private String otherOperationalStatusDescription;
+
+    @JsonProperty("ReplicasPerSourceCloneMax")
+    private String replicasPerSourceCloneMax;
 
     @JsonProperty("SupportsStoragePoolCreation")
     private String supportsStoragePoolCreation;
 
-    @JsonProperty("SupportsStoragePoolDeletion")
-    private String supportsStoragePoolDeletion;
+    @JsonProperty("SupportsContinuouslyAvailableFileServer")
+    private String supportsContinuouslyAvailableFileServer;
 
-    @JsonProperty("SupportsStoragePoolFriendlyNameModification")
-    private String supportsStoragePoolFriendlyNameModification;
+    @JsonProperty("SerialNumber")
+    private String serialNumber;
 
-    @JsonProperty("SupportsStoragePoolRemovePhysicalDisk")
-    private String supportsStoragePoolRemovePhysicalDisk;
+    @JsonProperty("AutomaticClusteringEnabled")
+    private String automaticClusteringEnabled;
 
-    @JsonProperty("SupportsStorageTierCreation")
-    private String supportsStorageTierCreation;
+    @JsonProperty("SupportsAutomaticStoragePoolSelection")
+    private String supportsAutomaticStoragePoolSelection;
 
-    @JsonProperty("SupportsStorageTierDeletion")
-    private String supportsStorageTierDeletion;
-
-    @JsonProperty("SupportsStorageTieredVirtualDiskCreation")
-    private String supportsStorageTieredVirtualDiskCreation;
-
-    @JsonProperty("SupportsStorageTierFriendlyNameModification")
-    private String supportsStorageTierFriendlyNameModification;
-
-    @JsonProperty("SupportsStorageTierResize")
-    private String supportsStorageTierResize;
-
-    @JsonProperty("SupportsVirtualDiskCapacityExpansion")
-    private String supportsVirtualDiskCapacityExpansion;
-
-    @JsonProperty("SupportsVirtualDiskCapacityReduction")
-    private String supportsVirtualDiskCapacityReduction;
-
-    @JsonProperty("SupportsVirtualDiskCreation")
-    private String supportsVirtualDiskCreation;
-
-    @JsonProperty("SupportsVirtualDiskDeletion")
-    private String supportsVirtualDiskDeletion;
-
-    @JsonProperty("SupportsVirtualDiskModification")
-    private String supportsVirtualDiskModification;
-
-    @JsonProperty("SupportsVirtualDiskRepair")
-    private String supportsVirtualDiskRepair;
-
-    @JsonProperty("SupportsVolumeCreation")
-    private String supportsVolumeCreation;
-
-    @JsonProperty("Tag")
-    private String tag;
+    @JsonProperty("Model")
+    private String model;
 
     @JsonProperty("VirtualDiskRepairEnabled")
     private String virtualDiskRepairEnabled;
 
-    @JsonProperty("PSComputerName")
-    private String pSComputerName;
+    @JsonProperty("SupportsStoragePoolFriendlyNameModification")
+    private String supportsStoragePoolFriendlyNameModification;
+
+    @JsonProperty("MaskingClientSelectableDeviceNumbers")
+    private String maskingClientSelectableDeviceNumbers;
+
+    @JsonProperty("PassThroughServer")
+    private String passThroughServer;
+
+    @JsonProperty("PassThroughIds")
+    private String passThroughIds;
+
+    @JsonProperty("MaskingOneInitiatorIdPerView")
+    private String maskingOneInitiatorIdPerView;
+
+    @JsonProperty("Description")
+    private String description;
+
+    @JsonProperty("SupportsVirtualDiskCapacityExpansion")
+    private String supportsVirtualDiskCapacityExpansion;
+
+    @JsonProperty("NameFormat")
+    private String nameFormat;
+
+    @JsonProperty("DataTieringType")
+    private String dataTieringType;
+
+    @JsonProperty("SupportsVolumeCreation")
+    private String supportsVolumeCreation;
+
+    @JsonProperty("SupportsMaskingVirtualDiskToHosts")
+    private String supportsMaskingVirtualDiskToHosts;
+
+    @JsonProperty("SupportsMultipleResiliencySettingsPerStoragePool")
+    private String supportsMultipleResiliencySettingsPerStoragePool;
+
+    @JsonProperty("SupportsVirtualDiskModification")
+    private String supportsVirtualDiskModification;
+
+    @JsonProperty("Name")
+    private String name;
+
+    @JsonProperty("SupportsVirtualDiskRepair")
+    private String supportsVirtualDiskRepair;
+
+    @JsonProperty("SupportsSnapshotLocal")
+    private String supportsSnapshotLocal;
+
+    @JsonProperty("MaskingValidInitiatorIdTypes")
+    private String maskingValidInitiatorIdTypes;
+
+    @JsonProperty("SupportedFileServerProtocols")
+    private String supportedFileServerProtocols;
+
+    @JsonProperty("SupportsVirtualDiskCreation")
+    private String supportsVirtualDiskCreation;
+
+    @JsonProperty("Manufacturer")
+    private String manufacturer;
+
+    @JsonProperty("ReplicasPerSourceMirrorMax")
+    private String replicasPerSourceMirrorMax;
 
 }

@@ -12,28 +12,32 @@ import lombok.*;
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class PrinterPortInfo {
-    public static final String[] COLUMN_NAMES = {"Caption", "Description", "ElementName", "InstanceID", "CommunicationStatus", "DetailedStatus", "HealthState", "InstallDate", "Name", "OperatingStatus", "OperationalStatus", "PrimaryStatus", "Status", "StatusDescriptions", "ComputerName", "PortMonitor", "PSComputerName"};
 
-    @JsonProperty("Caption")
-    private String caption;
+    public static final String[] COLUMN_NAMES = {"PSComputerName", "Status", "PortMonitor", "Description", "CommunicationStatus", "OperationalStatus", "PrimaryStatus", "Caption", "InstallDate", "Name", "OperatingStatus", "ElementName", "DetailedStatus", "InstanceID", "ComputerName", "StatusDescriptions", "HealthState"};
+
+    @JsonProperty("PSComputerName")
+    private String pSComputerName;
+
+    @JsonProperty("Status")
+    private String status;
+
+    @JsonProperty("PortMonitor")
+    private String portMonitor;
 
     @JsonProperty("Description")
     private String description;
 
-    @JsonProperty("ElementName")
-    private String elementName;
-
-    @JsonProperty("InstanceID")
-    private String instanceID;
-
     @JsonProperty("CommunicationStatus")
     private String communicationStatus;
 
-    @JsonProperty("DetailedStatus")
-    private String detailedStatus;
+    @JsonProperty("OperationalStatus")
+    private String operationalStatus;
 
-    @JsonProperty("HealthState")
-    private String healthState;
+    @JsonProperty("PrimaryStatus")
+    private String primaryStatus;
+
+    @JsonProperty("Caption")
+    private String caption;
 
     @JsonProperty("InstallDate")
     private String installDate;
@@ -44,25 +48,22 @@ public class PrinterPortInfo {
     @JsonProperty("OperatingStatus")
     private String operatingStatus;
 
-    @JsonProperty("OperationalStatus")
-    private String operationalStatus;
+    @JsonProperty("ElementName")
+    private String elementName;
 
-    @JsonProperty("PrimaryStatus")
-    private String primaryStatus;
+    @JsonProperty("DetailedStatus")
+    private String detailedStatus;
 
-    @JsonProperty("Status")
-    private String status;
-
-    @JsonProperty("StatusDescriptions")
-    private String statusDescriptions;
+    @JsonProperty("InstanceID")
+    private String instanceID;
 
     @JsonProperty("ComputerName")
     private String computerName;
 
-    @JsonProperty("PortMonitor")
-    private String portMonitor;
+    @JsonProperty("StatusDescriptions")
+    private String statusDescriptions;
 
-    @JsonProperty("PSComputerName")
-    private String pSComputerName;
+    @JsonProperty("HealthState")
+    private String healthState;
 
 }

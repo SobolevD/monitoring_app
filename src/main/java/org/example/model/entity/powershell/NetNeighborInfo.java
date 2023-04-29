@@ -12,49 +12,17 @@ import lombok.*;
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class NetNeighborInfo {
-    public static final String[] COLUMN_NAMES = {"State", "Store", "AddressFamily", "ifIndex", "Caption", "Description", "ElementName", "InstanceID", "CommunicationStatus", "DetailedStatus", "HealthState", "InstallDate", "Name", "OperatingStatus", "OperationalStatus", "PrimaryStatus", "Status", "StatusDescriptions", "AvailableRequestedStates", "EnabledDefault", "EnabledState", "OtherEnabledState", "RequestedState", "TimeOfLastStateChange", "TransitioningToState", "CreationClassName", "SystemCreationClassName", "SystemName", "AccessContext", "AccessInfo", "InfoFormat", "OtherAccessContext", "OtherInfoFormatDescription", "InterfaceAlias", "InterfaceIndex", "IPAddress", "LinkLayerAddress", "PSComputerName"};
 
-    @JsonProperty("State")
-    private String state;
+    public static final String[] COLUMN_NAMES = {"TransitioningToState", "Status", "AccessInfo", "OperationalStatus", "PrimaryStatus", "Caption", "InstallDate", "CreationClassName", "OtherEnabledState", "EnabledDefault", "AvailableRequestedStates", "State", "AccessContext", "IPAddress", "HealthState", "OtherInfoFormatDescription", "ifIndex", "PSComputerName", "EnabledState", "Description", "Store", "CommunicationStatus", "SystemCreationClassName", "InfoFormat", "Name", "InterfaceAlias", "RequestedState", "OtherAccessContext", "InterfaceIndex", "LinkLayerAddress", "AddressFamily", "OperatingStatus", "TimeOfLastStateChange", "ElementName", "DetailedStatus", "SystemName", "InstanceID", "StatusDescriptions"};
 
-    @JsonProperty("Store")
-    private String store;
+    @JsonProperty("TransitioningToState")
+    private String transitioningToState;
 
-    @JsonProperty("AddressFamily")
-    private String addressFamily;
+    @JsonProperty("Status")
+    private String status;
 
-    @JsonProperty("ifIndex")
-    private String ifIndex;
-
-    @JsonProperty("Caption")
-    private String caption;
-
-    @JsonProperty("Description")
-    private String description;
-
-    @JsonProperty("ElementName")
-    private String elementName;
-
-    @JsonProperty("InstanceID")
-    private String instanceID;
-
-    @JsonProperty("CommunicationStatus")
-    private String communicationStatus;
-
-    @JsonProperty("DetailedStatus")
-    private String detailedStatus;
-
-    @JsonProperty("HealthState")
-    private String healthState;
-
-    @JsonProperty("InstallDate")
-    private String installDate;
-
-    @JsonProperty("Name")
-    private String name;
-
-    @JsonProperty("OperatingStatus")
-    private String operatingStatus;
+    @JsonProperty("AccessInfo")
+    private String accessInfo;
 
     @JsonProperty("OperationalStatus")
     private String operationalStatus;
@@ -62,70 +30,103 @@ public class NetNeighborInfo {
     @JsonProperty("PrimaryStatus")
     private String primaryStatus;
 
-    @JsonProperty("Status")
-    private String status;
+    @JsonProperty("Caption")
+    private String caption;
 
-    @JsonProperty("StatusDescriptions")
-    private String statusDescriptions;
-
-    @JsonProperty("AvailableRequestedStates")
-    private String availableRequestedStates;
-
-    @JsonProperty("EnabledDefault")
-    private String enabledDefault;
-
-    @JsonProperty("EnabledState")
-    private String enabledState;
-
-    @JsonProperty("OtherEnabledState")
-    private String otherEnabledState;
-
-    @JsonProperty("RequestedState")
-    private String requestedState;
-
-    @JsonProperty("TimeOfLastStateChange")
-    private String timeOfLastStateChange;
-
-    @JsonProperty("TransitioningToState")
-    private String transitioningToState;
+    @JsonProperty("InstallDate")
+    private String installDate;
 
     @JsonProperty("CreationClassName")
     private String creationClassName;
 
-    @JsonProperty("SystemCreationClassName")
-    private String systemCreationClassName;
+    @JsonProperty("OtherEnabledState")
+    private String otherEnabledState;
 
-    @JsonProperty("SystemName")
-    private String systemName;
+    @JsonProperty("EnabledDefault")
+    private String enabledDefault;
+
+    @JsonProperty("AvailableRequestedStates")
+    private String availableRequestedStates;
+
+    @JsonProperty("State")
+    private String state;
 
     @JsonProperty("AccessContext")
     private String accessContext;
 
-    @JsonProperty("AccessInfo")
-    private String accessInfo;
+    @JsonProperty("IPAddress")
+    private String iPAddress;
 
-    @JsonProperty("InfoFormat")
-    private String infoFormat;
-
-    @JsonProperty("OtherAccessContext")
-    private String otherAccessContext;
+    @JsonProperty("HealthState")
+    private String healthState;
 
     @JsonProperty("OtherInfoFormatDescription")
     private String otherInfoFormatDescription;
 
+    @JsonProperty("ifIndex")
+    private String ifIndex;
+
+    @JsonProperty("PSComputerName")
+    private String pSComputerName;
+
+    @JsonProperty("EnabledState")
+    private String enabledState;
+
+    @JsonProperty("Description")
+    private String description;
+
+    @JsonProperty("Store")
+    private String store;
+
+    @JsonProperty("CommunicationStatus")
+    private String communicationStatus;
+
+    @JsonProperty("SystemCreationClassName")
+    private String systemCreationClassName;
+
+    @JsonProperty("InfoFormat")
+    private String infoFormat;
+
+    @JsonProperty("Name")
+    private String name;
+
     @JsonProperty("InterfaceAlias")
     private String interfaceAlias;
+
+    @JsonProperty("RequestedState")
+    private String requestedState;
+
+    @JsonProperty("OtherAccessContext")
+    private String otherAccessContext;
 
     @JsonProperty("InterfaceIndex")
     private String interfaceIndex;
 
-    @JsonProperty("IPAddress")
-    private String iPAddress;
-
     @JsonProperty("LinkLayerAddress")
     private String linkLayerAddress;
 
-    @JsonProperty("PSComputerName")
-    private String pSComputerName;
+    @JsonProperty("AddressFamily")
+    private String addressFamily;
+
+    @JsonProperty("OperatingStatus")
+    private String operatingStatus;
+
+    @JsonProperty("TimeOfLastStateChange")
+    private String timeOfLastStateChange;
+
+    @JsonProperty("ElementName")
+    private String elementName;
+
+    @JsonProperty("DetailedStatus")
+    private String detailedStatus;
+
+    @JsonProperty("SystemName")
+    private String systemName;
+
+    @JsonProperty("InstanceID")
+    private String instanceID;
+
+    @JsonProperty("StatusDescriptions")
+    private String statusDescriptions;
 
 }

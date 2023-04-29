@@ -12,69 +12,70 @@ import lombok.*;
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class NetFirewallSettingInfo {
-    public static final String[] COLUMN_NAMES = {"Name", "Exemptions", "EnableStatefulFtp", "EnableStatefulPptp", "ActiveProfile", "RequireFullAuthSupport", "CertValidationLevel", "AllowIPsecThroughNAT", "MaxSAIdleTimeSeconds", "KeyEncoding", "EnablePacketQueuing", "Caption", "Description", "ElementName", "InstanceID", "Profile", "RemoteMachineTransportAuthorizationList", "RemoteMachineTunnelAuthorizationList", "RemoteUserTransportAuthorizationList", "RemoteUserTunnelAuthorizationList", "PSComputerName"};
 
-    @JsonProperty("Name")
-    private String name;
+    public static final String[] COLUMN_NAMES = {"PSComputerName", "ActiveProfile", "AllowIPsecThroughNAT", "Description", "RemoteUserTransportAuthorizationList", "Caption", "Name", "Profile", "RequireFullAuthSupport", "EnablePacketQueuing", "RemoteUserTunnelAuthorizationList", "CertValidationLevel", "EnableStatefulFtp", "RemoteMachineTunnelAuthorizationList", "ElementName", "Exemptions", "InstanceID", "RemoteMachineTransportAuthorizationList", "EnableStatefulPptp", "KeyEncoding", "MaxSAIdleTimeSeconds"};
 
-    @JsonProperty("Exemptions")
-    private String exemptions;
-
-    @JsonProperty("EnableStatefulFtp")
-    private String enableStatefulFtp;
-
-    @JsonProperty("EnableStatefulPptp")
-    private String enableStatefulPptp;
+    @JsonProperty("PSComputerName")
+    private String pSComputerName;
 
     @JsonProperty("ActiveProfile")
     private String activeProfile;
 
-    @JsonProperty("RequireFullAuthSupport")
-    private String requireFullAuthSupport;
-
-    @JsonProperty("CertValidationLevel")
-    private String certValidationLevel;
-
     @JsonProperty("AllowIPsecThroughNAT")
     private String allowIPsecThroughNAT;
-
-    @JsonProperty("MaxSAIdleTimeSeconds")
-    private String maxSAIdleTimeSeconds;
-
-    @JsonProperty("KeyEncoding")
-    private String keyEncoding;
-
-    @JsonProperty("EnablePacketQueuing")
-    private String enablePacketQueuing;
-
-    @JsonProperty("Caption")
-    private String caption;
 
     @JsonProperty("Description")
     private String description;
 
-    @JsonProperty("ElementName")
-    private String elementName;
+    @JsonProperty("RemoteUserTransportAuthorizationList")
+    private String remoteUserTransportAuthorizationList;
 
-    @JsonProperty("InstanceID")
-    private String instanceID;
+    @JsonProperty("Caption")
+    private String caption;
+
+    @JsonProperty("Name")
+    private String name;
 
     @JsonProperty("Profile")
     private String profile;
 
-    @JsonProperty("RemoteMachineTransportAuthorizationList")
-    private String remoteMachineTransportAuthorizationList;
+    @JsonProperty("RequireFullAuthSupport")
+    private String requireFullAuthSupport;
 
-    @JsonProperty("RemoteMachineTunnelAuthorizationList")
-    private String remoteMachineTunnelAuthorizationList;
-
-    @JsonProperty("RemoteUserTransportAuthorizationList")
-    private String remoteUserTransportAuthorizationList;
+    @JsonProperty("EnablePacketQueuing")
+    private String enablePacketQueuing;
 
     @JsonProperty("RemoteUserTunnelAuthorizationList")
     private String remoteUserTunnelAuthorizationList;
 
-    @JsonProperty("PSComputerName")
-    private String pSComputerName;
+    @JsonProperty("CertValidationLevel")
+    private String certValidationLevel;
+
+    @JsonProperty("EnableStatefulFtp")
+    private String enableStatefulFtp;
+
+    @JsonProperty("RemoteMachineTunnelAuthorizationList")
+    private String remoteMachineTunnelAuthorizationList;
+
+    @JsonProperty("ElementName")
+    private String elementName;
+
+    @JsonProperty("Exemptions")
+    private String exemptions;
+
+    @JsonProperty("InstanceID")
+    private String instanceID;
+
+    @JsonProperty("RemoteMachineTransportAuthorizationList")
+    private String remoteMachineTransportAuthorizationList;
+
+    @JsonProperty("EnableStatefulPptp")
+    private String enableStatefulPptp;
+
+    @JsonProperty("KeyEncoding")
+    private String keyEncoding;
+
+    @JsonProperty("MaxSAIdleTimeSeconds")
+    private String maxSAIdleTimeSeconds;
 
 }

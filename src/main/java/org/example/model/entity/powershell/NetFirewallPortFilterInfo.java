@@ -2,6 +2,7 @@ package org.example.model.entity.powershell;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.JsonNode;
 import lombok.*;
 
 @Data
@@ -12,55 +13,17 @@ import lombok.*;
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class NetFirewallPortFilterInfo {
-    public static final String[] COLUMN_NAMES = {"Protocol", "LocalPort", "RemotePort", "IcmpType", "DynamicTarget", "DynamicTransport", "Caption", "Description", "ElementName", "InstanceID", "CommunicationStatus", "DetailedStatus", "HealthState", "InstallDate", "Name", "OperatingStatus", "OperationalStatus", "PrimaryStatus", "Status", "StatusDescriptions", "CreationClassName", "IsNegated", "SystemCreationClassName", "SystemName", "PSComputerName"};
 
-    @JsonProperty("Protocol")
-    private String protocol;
+    public static final String[] COLUMN_NAMES = {"Status", "RemotePort", "IcmpType", "OperationalStatus", "PrimaryStatus", "Caption", "InstallDate", "CreationClassName", "LocalPort", "IsNegated", "DynamicTransport", "HealthState", "PSComputerName", "Description", "DynamicTarget", "CommunicationStatus", "SystemCreationClassName", "Name", "Protocol", "OperatingStatus", "ElementName", "DetailedStatus", "SystemName", "InstanceID", "StatusDescriptions"};
 
-    @JsonProperty("LocalPort")
-    private String localPort;
+    @JsonProperty("Status")
+    private String status;
 
     @JsonProperty("RemotePort")
-    private String remotePort;
+    private JsonNode remotePort;
 
     @JsonProperty("IcmpType")
     private String icmpType;
-
-    @JsonProperty("DynamicTarget")
-    private String dynamicTarget;
-
-    @JsonProperty("DynamicTransport")
-    private String dynamicTransport;
-
-    @JsonProperty("Caption")
-    private String caption;
-
-    @JsonProperty("Description")
-    private String description;
-
-    @JsonProperty("ElementName")
-    private String elementName;
-
-    @JsonProperty("InstanceID")
-    private String instanceID;
-
-    @JsonProperty("CommunicationStatus")
-    private String communicationStatus;
-
-    @JsonProperty("DetailedStatus")
-    private String detailedStatus;
-
-    @JsonProperty("HealthState")
-    private String healthState;
-
-    @JsonProperty("InstallDate")
-    private String installDate;
-
-    @JsonProperty("Name")
-    private String name;
-
-    @JsonProperty("OperatingStatus")
-    private String operatingStatus;
 
     @JsonProperty("OperationalStatus")
     private String operationalStatus;
@@ -68,25 +31,64 @@ public class NetFirewallPortFilterInfo {
     @JsonProperty("PrimaryStatus")
     private String primaryStatus;
 
-    @JsonProperty("Status")
-    private String status;
+    @JsonProperty("Caption")
+    private String caption;
 
-    @JsonProperty("StatusDescriptions")
-    private String statusDescriptions;
+    @JsonProperty("InstallDate")
+    private String installDate;
 
     @JsonProperty("CreationClassName")
     private String creationClassName;
 
+    @JsonProperty("LocalPort")
+    private JsonNode localPort;
+
     @JsonProperty("IsNegated")
     private String isNegated;
+
+    @JsonProperty("DynamicTransport")
+    private String dynamicTransport;
+
+    @JsonProperty("HealthState")
+    private String healthState;
+
+    @JsonProperty("PSComputerName")
+    private String pSComputerName;
+
+    @JsonProperty("Description")
+    private String description;
+
+    @JsonProperty("DynamicTarget")
+    private String dynamicTarget;
+
+    @JsonProperty("CommunicationStatus")
+    private String communicationStatus;
 
     @JsonProperty("SystemCreationClassName")
     private String systemCreationClassName;
 
+    @JsonProperty("Name")
+    private String name;
+
+    @JsonProperty("Protocol")
+    private String protocol;
+
+    @JsonProperty("OperatingStatus")
+    private String operatingStatus;
+
+    @JsonProperty("ElementName")
+    private String elementName;
+
+    @JsonProperty("DetailedStatus")
+    private String detailedStatus;
+
     @JsonProperty("SystemName")
     private String systemName;
 
-    @JsonProperty("PSComputerName")
-    private String pSComputerName;
+    @JsonProperty("InstanceID")
+    private String instanceID;
+
+    @JsonProperty("StatusDescriptions")
+    private String statusDescriptions;
 
 }

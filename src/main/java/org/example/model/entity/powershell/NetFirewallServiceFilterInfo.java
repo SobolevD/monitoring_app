@@ -12,40 +12,29 @@ import lombok.*;
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class NetFirewallServiceFilterInfo {
-    public static final String[] COLUMN_NAMES = {"Service", "Caption", "Description", "ElementName", "InstanceID", "CommunicationStatus", "DetailedStatus", "HealthState", "InstallDate", "Name", "OperatingStatus", "OperationalStatus", "PrimaryStatus", "Status", "StatusDescriptions", "CreationClassName", "IsNegated", "SystemCreationClassName", "SystemName", "ServiceName", "PSComputerName"};
 
-    @JsonProperty("Service")
-    private String service;
+    public static final String[] COLUMN_NAMES = {"PSComputerName", "Status", "Description", "Service", "CommunicationStatus", "SystemCreationClassName", "ServiceName", "OperationalStatus", "PrimaryStatus", "Caption", "InstallDate", "Name", "CreationClassName", "OperatingStatus", "IsNegated", "ElementName", "DetailedStatus", "SystemName", "InstanceID", "StatusDescriptions", "HealthState"};
 
-    @JsonProperty("Caption")
-    private String caption;
+    @JsonProperty("PSComputerName")
+    private String pSComputerName;
+
+    @JsonProperty("Status")
+    private String status;
 
     @JsonProperty("Description")
     private String description;
 
-    @JsonProperty("ElementName")
-    private String elementName;
-
-    @JsonProperty("InstanceID")
-    private String instanceID;
+    @JsonProperty("Service")
+    private String service;
 
     @JsonProperty("CommunicationStatus")
     private String communicationStatus;
 
-    @JsonProperty("DetailedStatus")
-    private String detailedStatus;
+    @JsonProperty("SystemCreationClassName")
+    private String systemCreationClassName;
 
-    @JsonProperty("HealthState")
-    private String healthState;
-
-    @JsonProperty("InstallDate")
-    private String installDate;
-
-    @JsonProperty("Name")
-    private String name;
-
-    @JsonProperty("OperatingStatus")
-    private String operatingStatus;
+    @JsonProperty("ServiceName")
+    private String serviceName;
 
     @JsonProperty("OperationalStatus")
     private String operationalStatus;
@@ -53,28 +42,40 @@ public class NetFirewallServiceFilterInfo {
     @JsonProperty("PrimaryStatus")
     private String primaryStatus;
 
-    @JsonProperty("Status")
-    private String status;
+    @JsonProperty("Caption")
+    private String caption;
 
-    @JsonProperty("StatusDescriptions")
-    private String statusDescriptions;
+    @JsonProperty("InstallDate")
+    private String installDate;
+
+    @JsonProperty("Name")
+    private String name;
 
     @JsonProperty("CreationClassName")
     private String creationClassName;
 
+    @JsonProperty("OperatingStatus")
+    private String operatingStatus;
+
     @JsonProperty("IsNegated")
     private String isNegated;
 
-    @JsonProperty("SystemCreationClassName")
-    private String systemCreationClassName;
+    @JsonProperty("ElementName")
+    private String elementName;
+
+    @JsonProperty("DetailedStatus")
+    private String detailedStatus;
 
     @JsonProperty("SystemName")
     private String systemName;
 
-    @JsonProperty("ServiceName")
-    private String serviceName;
+    @JsonProperty("InstanceID")
+    private String instanceID;
 
-    @JsonProperty("PSComputerName")
-    private String pSComputerName;
+    @JsonProperty("StatusDescriptions")
+    private String statusDescriptions;
+
+    @JsonProperty("HealthState")
+    private String healthState;
 
 }

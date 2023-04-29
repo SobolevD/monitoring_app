@@ -1,13 +1,11 @@
 package org.example.tasks;
 
 import lombok.extern.slf4j.Slf4j;
+import org.example.model.ObjectMetadata;
 import org.example.model.common.EmailCredentials;
 import org.example.model.common.Report;
 import org.example.model.entity.powershell.PrinterInfo;
-import org.example.providers.DockerReportProvider;
-import org.example.providers.EventReportProvider;
 import org.example.providers.SimplePowerShellReportProvider;
-import org.example.providers.WmiObjectsReportProvider;
 import org.example.services.AudioService;
 import org.example.services.EmailService;
 import org.example.utils.PropertiesLoader;
@@ -17,58 +15,60 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.stream.Collectors;
 
 import static org.example.common.ObjectsMetadataDictionary.getObjectMetadata;
+import static org.example.common.ObjectsMetadataDictionary.getObjectMetadataByGroup;
 import static org.example.common.PropertiesNames.*;
 
 @Slf4j
-public class CollectAndSendReportToEmailTask extends TimerTask {
+public class CollectReport extends TimerTask {
 
     private static final String DATE_FORMAT = "yyyy-MM-dd HH:mm:ss:SSS z";
     private final Properties properties;
-
-    private final EventReportProvider eventReportProvider;
-    private final WmiObjectsReportProvider wmiObjectsReportProvider;
+    private final String group;
     private final SimplePowerShellReportProvider powerShellReportProvider;
-    private final DockerReportProvider dockerReportProvider;
+    private final ExecutorService executorService;
 
-    public CollectAndSendReportToEmailTask() {
+    public CollectReport(String group) {
+        this.executorService = Executors.newFixedThreadPool(4);
+        this.group = group;
         this.properties = PropertiesLoader.getProperties();
-        this.eventReportProvider = new EventReportProvider();
-        this.wmiObjectsReportProvider = new WmiObjectsReportProvider();
         this.powerShellReportProvider = new SimplePowerShellReportProvider();
-        this.dockerReportProvider = new DockerReportProvider();
     }
 
     @Override
     public void run() {
 
-        Report report;
-        try {
-            report = powerShellReportProvider.getReport(getObjectMetadata(PrinterInfo[].class),
-                    "Printer Info",
-                    "OS Printer Info"
+        List<ObjectMetadata> objectsMetadata = getObjectMetadataByGroup(group);
+
+        List<Report> reports = new ArrayList<>();
+        for (ObjectMetadata metadata : objectsMetadata) {
+            executorService.submit(
+                    () -> {
+                        Report report;
+                        try {
+                            report = powerShellReportProvider.getReport(metadata,
+                                    metadata.getSimpleName(),
+                                    metadata.getGroup());
+                            reports.add(report);
+                        } catch (IOException | InterruptedException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
             );
-        } catch (IOException e) {
-            throw new RuntimeException(e);
         }
 
-        List<File> entireReport = collectReport(report);
+        executorService.shutdown();
 
-        AudioService audioService = new AudioService();
-        File audioFile;
-        try {
-            audioFile = audioService.record(5000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        while (!executorService.isTerminated()) {
         }
 
-        entireReport.add(audioFile);
+        List<File> entireReport = collectReport(reports);
 
-        File zipArchive = ZipUtils.createZip(entireReport, "C:\\Users\\dmso0321\\Downloads\\OS User Report.zip");
+        File zipArchive = ZipUtils.createZip(entireReport, "OS User Report.zip");
 
         log.info("Sending message to email '{}'...", properties.getProperty(EMAIL_RECIPIENT_ADDRESS_PROP));
 
@@ -96,5 +96,9 @@ public class CollectAndSendReportToEmailTask extends TimerTask {
 
     private List<File> collectReport(Report... reports) {
         return Arrays.stream(reports).map(Report::getExcelReport).collect(Collectors.toList());
+    }
+
+    private List<File> collectReport(List<Report> reports) {
+        return collectReport(reports.toArray(new Report[0]));
     }
 }

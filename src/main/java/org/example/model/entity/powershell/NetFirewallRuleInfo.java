@@ -2,6 +2,7 @@ package org.example.model.entity.powershell;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.JsonNode;
 import lombok.*;
 
 @Data
@@ -12,46 +13,35 @@ import lombok.*;
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class NetFirewallRuleInfo {
-    public static final String[] COLUMN_NAMES = {"Name", "ID", "DisplayName", "Group", "Enabled", "Profile", "Platform", "Direction", "Action", "EdgeTraversalPolicy", "LSM", "PrimaryStatus", "Status", "EnforcementStatus", "PolicyStoreSourceType", "Caption", "Description", "ElementName", "InstanceID", "CommonName", "PolicyKeywords", "PolicyDecisionStrategy", "PolicyRoles", "ConditionListType", "CreationClassName", "ExecutionStrategy", "Mandatory", "PolicyRuleName", "Priority", "RuleUsage", "SequencedActions", "SystemCreationClassName", "SystemName", "DisplayGroup", "LocalOnlyMapping", "LooseSourceMapping", "Owner", "Platforms", "PolicyStoreSource", "Profiles", "RemoteDynamicKeywordAddresses", "RuleGroup", "StatusCode", "PSComputerName"};
 
-    @JsonProperty("Name")
-    private String name;
+    public static final String[] COLUMN_NAMES = {"Priority", "LooseSourceMapping", "Status", "LSM", "ConditionListType", "Enabled", "RemoteDynamicKeywordAddresses", "PrimaryStatus", "Caption", "EnforcementStatus", "PolicyStoreSourceType", "PolicyRuleName", "RuleGroup", "PolicyDecisionStrategy", "CreationClassName", "EdgeTraversalPolicy", "PolicyKeywords", "Mandatory", "Group", "PolicyStoreSource", "PSComputerName", "Action", "DisplayGroup", "Owner", "Description", "Platform", "SequencedActions", "SystemCreationClassName", "Direction", "StatusCode", "Name", "Profile", "PolicyRoles", "Profiles", "LocalOnlyMapping", "ElementName", "RuleUsage", "DisplayName", "SystemName", "ID", "InstanceID", "CommonName", "ExecutionStrategy", "Platforms"};
 
-    @JsonProperty("ID")
-    private String iD;
+    @JsonProperty("Priority")
+    private String priority;
 
-    @JsonProperty("DisplayName")
-    private String displayName;
+    @JsonProperty("LooseSourceMapping")
+    private String looseSourceMapping;
 
-    @JsonProperty("Group")
-    private String group;
-
-    @JsonProperty("Enabled")
-    private String enabled;
-
-    @JsonProperty("Profile")
-    private String profile;
-
-    @JsonProperty("Platform")
-    private String platform;
-
-    @JsonProperty("Direction")
-    private String direction;
-
-    @JsonProperty("Action")
-    private String action;
-
-    @JsonProperty("EdgeTraversalPolicy")
-    private String edgeTraversalPolicy;
+    @JsonProperty("Status")
+    private String status;
 
     @JsonProperty("LSM")
     private String lSM;
 
+    @JsonProperty("ConditionListType")
+    private String conditionListType;
+
+    @JsonProperty("Enabled")
+    private String enabled;
+
+    @JsonProperty("RemoteDynamicKeywordAddresses")
+    private String remoteDynamicKeywordAddresses;
+
     @JsonProperty("PrimaryStatus")
     private String primaryStatus;
 
-    @JsonProperty("Status")
-    private String status;
+    @JsonProperty("Caption")
+    private String caption;
 
     @JsonProperty("EnforcementStatus")
     private String enforcementStatus;
@@ -59,50 +49,50 @@ public class NetFirewallRuleInfo {
     @JsonProperty("PolicyStoreSourceType")
     private String policyStoreSourceType;
 
-    @JsonProperty("Caption")
-    private String caption;
+    @JsonProperty("PolicyRuleName")
+    private String policyRuleName;
 
-    @JsonProperty("Description")
-    private String description;
-
-    @JsonProperty("ElementName")
-    private String elementName;
-
-    @JsonProperty("InstanceID")
-    private String instanceID;
-
-    @JsonProperty("CommonName")
-    private String commonName;
-
-    @JsonProperty("PolicyKeywords")
-    private String policyKeywords;
+    @JsonProperty("RuleGroup")
+    private String ruleGroup;
 
     @JsonProperty("PolicyDecisionStrategy")
     private String policyDecisionStrategy;
 
-    @JsonProperty("PolicyRoles")
-    private String policyRoles;
-
-    @JsonProperty("ConditionListType")
-    private String conditionListType;
-
     @JsonProperty("CreationClassName")
     private String creationClassName;
 
-    @JsonProperty("ExecutionStrategy")
-    private String executionStrategy;
+    @JsonProperty("EdgeTraversalPolicy")
+    private String edgeTraversalPolicy;
+
+    @JsonProperty("PolicyKeywords")
+    private String policyKeywords;
 
     @JsonProperty("Mandatory")
     private String mandatory;
 
-    @JsonProperty("PolicyRuleName")
-    private String policyRuleName;
+    @JsonProperty("Group")
+    private String group;
 
-    @JsonProperty("Priority")
-    private String priority;
+    @JsonProperty("PolicyStoreSource")
+    private String policyStoreSource;
 
-    @JsonProperty("RuleUsage")
-    private String ruleUsage;
+    @JsonProperty("PSComputerName")
+    private String pSComputerName;
+
+    @JsonProperty("Action")
+    private String action;
+
+    @JsonProperty("DisplayGroup")
+    private String displayGroup;
+
+    @JsonProperty("Owner")
+    private String owner;
+
+    @JsonProperty("Description")
+    private String description;
+
+    @JsonProperty("Platform")
+    private JsonNode platform;
 
     @JsonProperty("SequencedActions")
     private String sequencedActions;
@@ -110,40 +100,52 @@ public class NetFirewallRuleInfo {
     @JsonProperty("SystemCreationClassName")
     private String systemCreationClassName;
 
-    @JsonProperty("SystemName")
-    private String systemName;
-
-    @JsonProperty("DisplayGroup")
-    private String displayGroup;
-
-    @JsonProperty("LocalOnlyMapping")
-    private String localOnlyMapping;
-
-    @JsonProperty("LooseSourceMapping")
-    private String looseSourceMapping;
-
-    @JsonProperty("Owner")
-    private String owner;
-
-    @JsonProperty("Platforms")
-    private String platforms;
-
-    @JsonProperty("PolicyStoreSource")
-    private String policyStoreSource;
-
-    @JsonProperty("Profiles")
-    private String profiles;
-
-    @JsonProperty("RemoteDynamicKeywordAddresses")
-    private String remoteDynamicKeywordAddresses;
-
-    @JsonProperty("RuleGroup")
-    private String ruleGroup;
+    @JsonProperty("Direction")
+    private String direction;
 
     @JsonProperty("StatusCode")
     private String statusCode;
 
-    @JsonProperty("PSComputerName")
-    private String pSComputerName;
+    @JsonProperty("Name")
+    private String name;
+
+    @JsonProperty("Profile")
+    private String profile;
+
+    @JsonProperty("PolicyRoles")
+    private String policyRoles;
+
+    @JsonProperty("Profiles")
+    private String profiles;
+
+    @JsonProperty("LocalOnlyMapping")
+    private String localOnlyMapping;
+
+    @JsonProperty("ElementName")
+    private String elementName;
+
+    @JsonProperty("RuleUsage")
+    private String ruleUsage;
+
+    @JsonProperty("DisplayName")
+    private String displayName;
+
+    @JsonProperty("SystemName")
+    private String systemName;
+
+    @JsonProperty("ID")
+    private String iD;
+
+    @JsonProperty("InstanceID")
+    private String instanceID;
+
+    @JsonProperty("CommonName")
+    private String commonName;
+
+    @JsonProperty("ExecutionStrategy")
+    private String executionStrategy;
+
+    @JsonProperty("Platforms")
+    private JsonNode platforms;
 
 }

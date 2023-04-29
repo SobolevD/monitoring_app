@@ -2,6 +2,7 @@ package org.example.model.entity.powershell;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.JsonNode;
 import lombok.*;
 
 @Data
@@ -12,9 +13,26 @@ import lombok.*;
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class DiskStorageNodeViewInfo {
-    public static final String[] COLUMN_NAMES = {"HealthStatus", "OperationalStatus", "OfflineReason", "StorageNodeObjectId", "DiskObjectId", "Disk", "DiskNumber", "IsOffline", "IsReadOnly", "StorageNode", "PSComputerName"};
 
+    public static final String[] COLUMN_NAMES = {"PSComputerName", "OfflineReason", "DiskObjectId", "DiskNumber", "StorageNodeObjectId", "IsReadOnly", "HealthStatus", "OperationalStatus", "Disk", "IsOffline", "StorageNode"};
 
+    @JsonProperty("PSComputerName")
+    private String pSComputerName;
+
+    @JsonProperty("OfflineReason")
+    private String offlineReason;
+
+    @JsonProperty("DiskObjectId")
+    private String diskObjectId;
+
+    @JsonProperty("DiskNumber")
+    private String diskNumber;
+
+    @JsonProperty("StorageNodeObjectId")
+    private String storageNodeObjectId;
+
+    @JsonProperty("IsReadOnly")
+    private String isReadOnly;
 
     @JsonProperty("HealthStatus")
     private String healthStatus;
@@ -22,31 +40,13 @@ public class DiskStorageNodeViewInfo {
     @JsonProperty("OperationalStatus")
     private String operationalStatus;
 
-    @JsonProperty("OfflineReason")
-    private String offlineReason;
-
-    @JsonProperty("StorageNodeObjectId")
-    private String storageNodeObjectId;
-
-    @JsonProperty("DiskObjectId")
-    private String diskObjectId;
-
     @JsonProperty("Disk")
-    private String disk;
-
-    @JsonProperty("DiskNumber")
-    private String diskNumber;
+    private JsonNode disk;
 
     @JsonProperty("IsOffline")
     private String isOffline;
 
-    @JsonProperty("IsReadOnly")
-    private String isReadOnly;
-
     @JsonProperty("StorageNode")
-    private String storageNode;
-
-    @JsonProperty("PSComputerName")
-    private String pSComputerName;
+    private JsonNode storageNode;
 
 }

@@ -12,59 +12,58 @@ import lombok.*;
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class DAClientExperienceConfigurationInfo {
-    public static final String[] COLUMN_NAMES = {"ForceTunneling", "Caption", "Description", "ElementName", "InstanceID", "CorporateResources", "CustomCommands", "FriendlyName", "GslbFqdn", "IPsecTunnelEndpoints", "ManualEntryPointSelectionAllowed", "PassiveMode", "PolicyStore", "PreferLocalNamesAllowed", "SupportEmail", "UserInterface", "PSComputerName"};
 
+    public static final String[] COLUMN_NAMES = {"PSComputerName", "Description", "FriendlyName", "SupportEmail", "GslbFqdn", "PassiveMode", "UserInterface", "CorporateResources", "Caption", "ManualEntryPointSelectionAllowed", "ForceTunneling", "IPsecTunnelEndpoints", "ElementName", "PreferLocalNamesAllowed", "InstanceID", "PolicyStore", "CustomCommands"};
 
-
-    @JsonProperty("ForceTunneling")
-    private String forceTunneling;
-
-    @JsonProperty("Caption")
-    private String caption;
+    @JsonProperty("PSComputerName")
+    private String pSComputerName;
 
     @JsonProperty("Description")
     private String description;
 
-    @JsonProperty("ElementName")
-    private String elementName;
-
-    @JsonProperty("InstanceID")
-    private String instanceID;
-
-    @JsonProperty("CorporateResources")
-    private String corporateResources;
-
-    @JsonProperty("CustomCommands")
-    private String customCommands;
-
     @JsonProperty("FriendlyName")
     private String friendlyName;
-
-    @JsonProperty("GslbFqdn")
-    private String gslbFqdn;
-
-    @JsonProperty("IPsecTunnelEndpoints")
-    private String iPsecTunnelEndpoints;
-
-    @JsonProperty("ManualEntryPointSelectionAllowed")
-    private String manualEntryPointSelectionAllowed;
-
-    @JsonProperty("PassiveMode")
-    private String passiveMode;
-
-    @JsonProperty("PolicyStore")
-    private String policyStore;
-
-    @JsonProperty("PreferLocalNamesAllowed")
-    private String preferLocalNamesAllowed;
 
     @JsonProperty("SupportEmail")
     private String supportEmail;
 
+    @JsonProperty("GslbFqdn")
+    private String gslbFqdn;
+
+    @JsonProperty("PassiveMode")
+    private String passiveMode;
+
     @JsonProperty("UserInterface")
     private String userInterface;
 
-    @JsonProperty("PSComputerName")
-    private String pSComputerName;
+    @JsonProperty("CorporateResources")
+    private String corporateResources;
+
+    @JsonProperty("Caption")
+    private String caption;
+
+    @JsonProperty("ManualEntryPointSelectionAllowed")
+    private String manualEntryPointSelectionAllowed;
+
+    @JsonProperty("ForceTunneling")
+    private String forceTunneling;
+
+    @JsonProperty("IPsecTunnelEndpoints")
+    private String iPsecTunnelEndpoints;
+
+    @JsonProperty("ElementName")
+    private String elementName;
+
+    @JsonProperty("PreferLocalNamesAllowed")
+    private String preferLocalNamesAllowed;
+
+    @JsonProperty("InstanceID")
+    private String instanceID;
+
+    @JsonProperty("PolicyStore")
+    private String policyStore;
+
+    @JsonProperty("CustomCommands")
+    private String customCommands;
 
 }

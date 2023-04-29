@@ -12,15 +12,16 @@ import lombok.*;
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class StorageSettingInfo {
-    public static final String[] COLUMN_NAMES = {"NewDiskPolicy", "ScrubPolicy", "PSComputerName"};
 
-    @JsonProperty("NewDiskPolicy")
-    private String newDiskPolicy;
+    public static final String[] COLUMN_NAMES = {"PSComputerName", "ScrubPolicy", "NewDiskPolicy"};
+
+    @JsonProperty("PSComputerName")
+    private String pSComputerName;
 
     @JsonProperty("ScrubPolicy")
     private String scrubPolicy;
 
-    @JsonProperty("PSComputerName")
-    private String pSComputerName;
+    @JsonProperty("NewDiskPolicy")
+    private String newDiskPolicy;
 
 }

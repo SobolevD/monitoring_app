@@ -2,6 +2,7 @@ package org.example.model.entity.powershell;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.JsonNode;
 import lombok.*;
 
 @Data
@@ -12,37 +13,62 @@ import lombok.*;
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class NetAdapterRdmaInfo {
-    public static final String[] COLUMN_NAMES = {"ifAlias", "InterfaceAlias", "ifDesc", "PFC", "ETS", "Caption", "Description", "ElementName", "InstanceID", "InterfaceDescription", "Name", "Source", "SystemName", "Enabled", "MaxCompletionQueueCount", "MaxInboundReadLimit", "MaxMemoryRegionCount", "MaxMemoryWindowCount", "MaxOutboundReadLimit", "MaxProtectionDomainCount", "MaxQueuePairCount", "MaxSharedReceiveQueueCount", "RdmaAdapterInfo", "RdmaMissingCounterInfo", "PSComputerName"};
 
-    @JsonProperty("ifAlias")
-    private String ifAlias;
+    public static final String[] COLUMN_NAMES = {"MaxMemoryRegionCount", "InterfaceDescription", "ifDesc", "Enabled", "Caption", "ifAlias", "MaxSharedReceiveQueueCount", "RdmaMissingCounterInfo", "MaxCompletionQueueCount", "MaxProtectionDomainCount", "MaxMemoryWindowCount", "PSComputerName", "ETS", "Description", "MaxInboundReadLimit", "PFC", "MaxQueuePairCount", "InterfaceAlias", "Name", "Source", "MaxOutboundReadLimit", "ElementName", "SystemName", "InstanceID", "RdmaAdapterInfo"};
 
-    @JsonProperty("InterfaceAlias")
-    private String interfaceAlias;
+    @JsonProperty("MaxMemoryRegionCount")
+    private String maxMemoryRegionCount;
+
+    @JsonProperty("InterfaceDescription")
+    private String interfaceDescription;
 
     @JsonProperty("ifDesc")
     private String ifDesc;
 
-    @JsonProperty("PFC")
-    private String pFC;
-
-    @JsonProperty("ETS")
-    private String eTS;
+    @JsonProperty("Enabled")
+    private String enabled;
 
     @JsonProperty("Caption")
     private String caption;
 
+    @JsonProperty("ifAlias")
+    private String ifAlias;
+
+    @JsonProperty("MaxSharedReceiveQueueCount")
+    private String maxSharedReceiveQueueCount;
+
+    @JsonProperty("RdmaMissingCounterInfo")
+    private JsonNode rdmaMissingCounterInfo;
+
+    @JsonProperty("MaxCompletionQueueCount")
+    private String maxCompletionQueueCount;
+
+    @JsonProperty("MaxProtectionDomainCount")
+    private String maxProtectionDomainCount;
+
+    @JsonProperty("MaxMemoryWindowCount")
+    private String maxMemoryWindowCount;
+
+    @JsonProperty("PSComputerName")
+    private String pSComputerName;
+
+    @JsonProperty("ETS")
+    private String eTS;
+
     @JsonProperty("Description")
     private String description;
 
-    @JsonProperty("ElementName")
-    private String elementName;
+    @JsonProperty("MaxInboundReadLimit")
+    private String maxInboundReadLimit;
 
-    @JsonProperty("InstanceID")
-    private String instanceID;
+    @JsonProperty("PFC")
+    private String pFC;
 
-    @JsonProperty("InterfaceDescription")
-    private String interfaceDescription;
+    @JsonProperty("MaxQueuePairCount")
+    private String maxQueuePairCount;
+
+    @JsonProperty("InterfaceAlias")
+    private String interfaceAlias;
 
     @JsonProperty("Name")
     private String name;
@@ -50,43 +76,19 @@ public class NetAdapterRdmaInfo {
     @JsonProperty("Source")
     private String source;
 
-    @JsonProperty("SystemName")
-    private String systemName;
-
-    @JsonProperty("Enabled")
-    private String enabled;
-
-    @JsonProperty("MaxCompletionQueueCount")
-    private String maxCompletionQueueCount;
-
-    @JsonProperty("MaxInboundReadLimit")
-    private String maxInboundReadLimit;
-
-    @JsonProperty("MaxMemoryRegionCount")
-    private String maxMemoryRegionCount;
-
-    @JsonProperty("MaxMemoryWindowCount")
-    private String maxMemoryWindowCount;
-
     @JsonProperty("MaxOutboundReadLimit")
     private String maxOutboundReadLimit;
 
-    @JsonProperty("MaxProtectionDomainCount")
-    private String maxProtectionDomainCount;
+    @JsonProperty("ElementName")
+    private String elementName;
 
-    @JsonProperty("MaxQueuePairCount")
-    private String maxQueuePairCount;
+    @JsonProperty("SystemName")
+    private String systemName;
 
-    @JsonProperty("MaxSharedReceiveQueueCount")
-    private String maxSharedReceiveQueueCount;
+    @JsonProperty("InstanceID")
+    private String instanceID;
 
     @JsonProperty("RdmaAdapterInfo")
-    private String rdmaAdapterInfo;
-
-    @JsonProperty("RdmaMissingCounterInfo")
-    private String rdmaMissingCounterInfo;
-
-    @JsonProperty("PSComputerName")
-    private String pSComputerName;
+    private JsonNode rdmaAdapterInfo;
 
 }

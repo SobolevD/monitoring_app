@@ -12,119 +12,118 @@ import lombok.*;
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class NetTCPSettingInfo {
-    public static final String[] COLUMN_NAMES = {"CwndRestart", "MemoryPressureProtection", "CongestionProvider", "AutoTuningLevelLocal", "EcnCapability", "Timestamps", "ScalingHeuristics", "AutoTuningLevelGroupPolicy", "AutoTuningLevelEffective", "AutomaticUseCustom", "NonSackRttResiliency", "ForceWS", "Caption", "Description", "ElementName", "InstanceID", "CommonName", "PolicyKeywords", "CreationClassName", "DoActionLogging", "PolicyActionName", "PolicyRuleCreationClassName", "PolicyRuleName", "SystemCreationClassName", "SystemName", "AutoReusePortRangeNumberOfPorts", "AutoReusePortRangeStartPort", "DelayedAckFrequency", "DelayedAckTimeout", "DynamicPortRangeNumberOfPorts", "DynamicPortRangeStartPort", "InitialCongestionWindow", "InitialRto", "MaxSynRetransmissions", "MinRto", "SettingName", "PSComputerName"};
 
-
-
-    @JsonProperty("CwndRestart")
-    private String cwndRestart;
-
-    @JsonProperty("MemoryPressureProtection")
-    private String memoryPressureProtection;
+    public static final String[] COLUMN_NAMES = {"CongestionProvider", "DoActionLogging", "AutomaticUseCustom", "Caption", "PolicyRuleName", "CreationClassName", "AutoReusePortRangeStartPort", "ForceWS", "AutoReusePortRangeNumberOfPorts", "ScalingHeuristics", "MinRto", "DelayedAckTimeout", "DynamicPortRangeStartPort", "PolicyKeywords", "PSComputerName", "MemoryPressureProtection", "EcnCapability", "Description", "AutoTuningLevelGroupPolicy", "PolicyRuleCreationClassName", "InitialCongestionWindow", "SettingName", "AutoTuningLevelEffective", "NonSackRttResiliency", "MaxSynRetransmissions", "SystemCreationClassName", "DynamicPortRangeNumberOfPorts", "PolicyActionName", "AutoTuningLevelLocal", "Timestamps", "DelayedAckFrequency", "InitialRto", "ElementName", "SystemName", "CwndRestart", "InstanceID", "CommonName"};
 
     @JsonProperty("CongestionProvider")
     private String congestionProvider;
 
-    @JsonProperty("AutoTuningLevelLocal")
-    private String autoTuningLevelLocal;
-
-    @JsonProperty("EcnCapability")
-    private String ecnCapability;
-
-    @JsonProperty("Timestamps")
-    private String timestamps;
-
-    @JsonProperty("ScalingHeuristics")
-    private String scalingHeuristics;
-
-    @JsonProperty("AutoTuningLevelGroupPolicy")
-    private String autoTuningLevelGroupPolicy;
-
-    @JsonProperty("AutoTuningLevelEffective")
-    private String autoTuningLevelEffective;
+    @JsonProperty("DoActionLogging")
+    private String doActionLogging;
 
     @JsonProperty("AutomaticUseCustom")
     private String automaticUseCustom;
 
-    @JsonProperty("NonSackRttResiliency")
-    private String nonSackRttResiliency;
+    @JsonProperty("Caption")
+    private String caption;
+
+    @JsonProperty("PolicyRuleName")
+    private String policyRuleName;
+
+    @JsonProperty("CreationClassName")
+    private String creationClassName;
+
+    @JsonProperty("AutoReusePortRangeStartPort")
+    private String autoReusePortRangeStartPort;
 
     @JsonProperty("ForceWS")
     private String forceWS;
 
-    @JsonProperty("Caption")
-    private String caption;
+    @JsonProperty("AutoReusePortRangeNumberOfPorts")
+    private String autoReusePortRangeNumberOfPorts;
+
+    @JsonProperty("ScalingHeuristics")
+    private String scalingHeuristics;
+
+    @JsonProperty("MinRto")
+    private String minRto;
+
+    @JsonProperty("DelayedAckTimeout")
+    private String delayedAckTimeout;
+
+    @JsonProperty("DynamicPortRangeStartPort")
+    private String dynamicPortRangeStartPort;
+
+    @JsonProperty("PolicyKeywords")
+    private String policyKeywords;
+
+    @JsonProperty("PSComputerName")
+    private String pSComputerName;
+
+    @JsonProperty("MemoryPressureProtection")
+    private String memoryPressureProtection;
+
+    @JsonProperty("EcnCapability")
+    private String ecnCapability;
 
     @JsonProperty("Description")
     private String description;
 
+    @JsonProperty("AutoTuningLevelGroupPolicy")
+    private String autoTuningLevelGroupPolicy;
+
+    @JsonProperty("PolicyRuleCreationClassName")
+    private String policyRuleCreationClassName;
+
+    @JsonProperty("InitialCongestionWindow")
+    private String initialCongestionWindow;
+
+    @JsonProperty("SettingName")
+    private String settingName;
+
+    @JsonProperty("AutoTuningLevelEffective")
+    private String autoTuningLevelEffective;
+
+    @JsonProperty("NonSackRttResiliency")
+    private String nonSackRttResiliency;
+
+    @JsonProperty("MaxSynRetransmissions")
+    private String maxSynRetransmissions;
+
+    @JsonProperty("SystemCreationClassName")
+    private String systemCreationClassName;
+
+    @JsonProperty("DynamicPortRangeNumberOfPorts")
+    private String dynamicPortRangeNumberOfPorts;
+
+    @JsonProperty("PolicyActionName")
+    private String policyActionName;
+
+    @JsonProperty("AutoTuningLevelLocal")
+    private String autoTuningLevelLocal;
+
+    @JsonProperty("Timestamps")
+    private String timestamps;
+
+    @JsonProperty("DelayedAckFrequency")
+    private String delayedAckFrequency;
+
+    @JsonProperty("InitialRto")
+    private String initialRto;
+
     @JsonProperty("ElementName")
     private String elementName;
+
+    @JsonProperty("SystemName")
+    private String systemName;
+
+    @JsonProperty("CwndRestart")
+    private String cwndRestart;
 
     @JsonProperty("InstanceID")
     private String instanceID;
 
     @JsonProperty("CommonName")
     private String commonName;
-
-    @JsonProperty("PolicyKeywords")
-    private String policyKeywords;
-
-    @JsonProperty("CreationClassName")
-    private String creationClassName;
-
-    @JsonProperty("DoActionLogging")
-    private String doActionLogging;
-
-    @JsonProperty("PolicyActionName")
-    private String policyActionName;
-
-    @JsonProperty("PolicyRuleCreationClassName")
-    private String policyRuleCreationClassName;
-
-    @JsonProperty("PolicyRuleName")
-    private String policyRuleName;
-
-    @JsonProperty("SystemCreationClassName")
-    private String systemCreationClassName;
-
-    @JsonProperty("SystemName")
-    private String systemName;
-
-    @JsonProperty("AutoReusePortRangeNumberOfPorts")
-    private String autoReusePortRangeNumberOfPorts;
-
-    @JsonProperty("AutoReusePortRangeStartPort")
-    private String autoReusePortRangeStartPort;
-
-    @JsonProperty("DelayedAckFrequency")
-    private String delayedAckFrequency;
-
-    @JsonProperty("DelayedAckTimeout")
-    private String delayedAckTimeout;
-
-    @JsonProperty("DynamicPortRangeNumberOfPorts")
-    private String dynamicPortRangeNumberOfPorts;
-
-    @JsonProperty("DynamicPortRangeStartPort")
-    private String dynamicPortRangeStartPort;
-
-    @JsonProperty("InitialCongestionWindow")
-    private String initialCongestionWindow;
-
-    @JsonProperty("InitialRto")
-    private String initialRto;
-
-    @JsonProperty("MaxSynRetransmissions")
-    private String maxSynRetransmissions;
-
-    @JsonProperty("MinRto")
-    private String minRto;
-
-    @JsonProperty("SettingName")
-    private String settingName;
-
-    @JsonProperty("PSComputerName")
-    private String pSComputerName;
 
 }

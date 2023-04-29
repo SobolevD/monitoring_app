@@ -12,37 +12,17 @@ import lombok.*;
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class NetUDPEndpointInfo {
-    public static final String[] COLUMN_NAMES = {"Caption", "Description", "ElementName", "InstanceID", "CommunicationStatus", "DetailedStatus", "HealthState", "InstallDate", "Name", "OperatingStatus", "OperationalStatus", "PrimaryStatus", "Status", "StatusDescriptions", "AvailableRequestedStates", "EnabledDefault", "EnabledState", "OtherEnabledState", "RequestedState", "TimeOfLastStateChange", "TransitioningToState", "AggregationBehavior", "Directionality", "CreationTime", "LocalAddress", "LocalPort", "OwningProcess", "PSComputerName"};
 
-    @JsonProperty("Caption")
-    private String caption;
+    public static final String[] COLUMN_NAMES = {"TransitioningToState", "LocalAddress", "Status", "OperationalStatus", "PrimaryStatus", "Caption", "InstallDate", "OtherEnabledState", "LocalPort", "EnabledDefault", "AvailableRequestedStates", "Directionality", "HealthState", "CreationTime", "OwningProcess", "PSComputerName", "EnabledState", "Description", "CommunicationStatus", "Name", "RequestedState", "OperatingStatus", "TimeOfLastStateChange", "ElementName", "DetailedStatus", "InstanceID", "AggregationBehavior", "StatusDescriptions"};
 
-    @JsonProperty("Description")
-    private String description;
+    @JsonProperty("TransitioningToState")
+    private String transitioningToState;
 
-    @JsonProperty("ElementName")
-    private String elementName;
+    @JsonProperty("LocalAddress")
+    private String localAddress;
 
-    @JsonProperty("InstanceID")
-    private String instanceID;
-
-    @JsonProperty("CommunicationStatus")
-    private String communicationStatus;
-
-    @JsonProperty("DetailedStatus")
-    private String detailedStatus;
-
-    @JsonProperty("HealthState")
-    private String healthState;
-
-    @JsonProperty("InstallDate")
-    private String installDate;
-
-    @JsonProperty("Name")
-    private String name;
-
-    @JsonProperty("OperatingStatus")
-    private String operatingStatus;
+    @JsonProperty("Status")
+    private String status;
 
     @JsonProperty("OperationalStatus")
     private String operationalStatus;
@@ -50,52 +30,73 @@ public class NetUDPEndpointInfo {
     @JsonProperty("PrimaryStatus")
     private String primaryStatus;
 
-    @JsonProperty("Status")
-    private String status;
+    @JsonProperty("Caption")
+    private String caption;
 
-    @JsonProperty("StatusDescriptions")
-    private String statusDescriptions;
-
-    @JsonProperty("AvailableRequestedStates")
-    private String availableRequestedStates;
-
-    @JsonProperty("EnabledDefault")
-    private String enabledDefault;
-
-    @JsonProperty("EnabledState")
-    private String enabledState;
+    @JsonProperty("InstallDate")
+    private String installDate;
 
     @JsonProperty("OtherEnabledState")
     private String otherEnabledState;
 
-    @JsonProperty("RequestedState")
-    private String requestedState;
+    @JsonProperty("LocalPort")
+    private String localPort;
 
-    @JsonProperty("TimeOfLastStateChange")
-    private String timeOfLastStateChange;
+    @JsonProperty("EnabledDefault")
+    private String enabledDefault;
 
-    @JsonProperty("TransitioningToState")
-    private String transitioningToState;
-
-    @JsonProperty("AggregationBehavior")
-    private String aggregationBehavior;
+    @JsonProperty("AvailableRequestedStates")
+    private String availableRequestedStates;
 
     @JsonProperty("Directionality")
     private String directionality;
 
+    @JsonProperty("HealthState")
+    private String healthState;
+
     @JsonProperty("CreationTime")
     private String creationTime;
-
-    @JsonProperty("LocalAddress")
-    private String localAddress;
-
-    @JsonProperty("LocalPort")
-    private String localPort;
 
     @JsonProperty("OwningProcess")
     private String owningProcess;
 
     @JsonProperty("PSComputerName")
     private String pSComputerName;
+
+    @JsonProperty("EnabledState")
+    private String enabledState;
+
+    @JsonProperty("Description")
+    private String description;
+
+    @JsonProperty("CommunicationStatus")
+    private String communicationStatus;
+
+    @JsonProperty("Name")
+    private String name;
+
+    @JsonProperty("RequestedState")
+    private String requestedState;
+
+    @JsonProperty("OperatingStatus")
+    private String operatingStatus;
+
+    @JsonProperty("TimeOfLastStateChange")
+    private String timeOfLastStateChange;
+
+    @JsonProperty("ElementName")
+    private String elementName;
+
+    @JsonProperty("DetailedStatus")
+    private String detailedStatus;
+
+    @JsonProperty("InstanceID")
+    private String instanceID;
+
+    @JsonProperty("AggregationBehavior")
+    private String aggregationBehavior;
+
+    @JsonProperty("StatusDescriptions")
+    private String statusDescriptions;
 
 }

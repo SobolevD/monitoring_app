@@ -12,43 +12,41 @@ import lombok.*;
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class StorageNodeInfo {
-    public static final String[] COLUMN_NAMES = {"NameFormat", "OperationalStatus", "ObjectId", "PassThroughClass", "PassThroughIds", "PassThroughNamespace", "PassThroughServer", "UniqueId", "FirmwareVersion", "Manufacturer", "Model", "Name", "OtherIdentifyingInfo", "OtherIdentifyingInfoDescription", "SerialNumber", "PSComputerName"};
 
-    @JsonProperty("NameFormat")
-    private String nameFormat;
+    public static final String[] COLUMN_NAMES = {"PSComputerName", "PassThroughServer", "PassThroughIds", "ObjectId", "UniqueId", "NameFormat", "PassThroughNamespace", "OperationalStatus", "PassThroughClass", "Name", "FirmwareVersion", "OtherIdentifyingInfo", "OtherIdentifyingInfoDescription", "SerialNumber", "Manufacturer", "Model"};
 
-    @JsonProperty("OperationalStatus")
-    private String operationalStatus;
-
-    @JsonProperty("ObjectId")
-    private String objectId;
-
-    @JsonProperty("PassThroughClass")
-    private String passThroughClass;
-
-    @JsonProperty("PassThroughIds")
-    private String passThroughIds;
-
-    @JsonProperty("PassThroughNamespace")
-    private String passThroughNamespace;
+    @JsonProperty("PSComputerName")
+    private String pSComputerName;
 
     @JsonProperty("PassThroughServer")
     private String passThroughServer;
 
+    @JsonProperty("PassThroughIds")
+    private String passThroughIds;
+
+    @JsonProperty("ObjectId")
+    private String objectId;
+
     @JsonProperty("UniqueId")
     private String uniqueId;
 
-    @JsonProperty("FirmwareVersion")
-    private String firmwareVersion;
+    @JsonProperty("NameFormat")
+    private String nameFormat;
 
-    @JsonProperty("Manufacturer")
-    private String manufacturer;
+    @JsonProperty("PassThroughNamespace")
+    private String passThroughNamespace;
 
-    @JsonProperty("Model")
-    private String model;
+    @JsonProperty("OperationalStatus")
+    private String operationalStatus;
+
+    @JsonProperty("PassThroughClass")
+    private String passThroughClass;
 
     @JsonProperty("Name")
     private String name;
+
+    @JsonProperty("FirmwareVersion")
+    private String firmwareVersion;
 
     @JsonProperty("OtherIdentifyingInfo")
     private String otherIdentifyingInfo;
@@ -59,7 +57,10 @@ public class StorageNodeInfo {
     @JsonProperty("SerialNumber")
     private String serialNumber;
 
-    @JsonProperty("PSComputerName")
-    private String pSComputerName;
+    @JsonProperty("Manufacturer")
+    private String manufacturer;
+
+    @JsonProperty("Model")
+    private String model;
 
 }

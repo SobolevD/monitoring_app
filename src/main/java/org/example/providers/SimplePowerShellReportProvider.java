@@ -10,50 +10,47 @@ import org.example.services.SimplePowerShellService;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.Objects;
+
+import static java.util.Objects.isNull;
 
 @Slf4j
 public class SimplePowerShellReportProvider {
 
     public Report getReport(ObjectMetadata objectMetadata,
                             String sheetName,
-                            String workBookName) throws IOException {
+                            String workBookName) throws IOException, InterruptedException {
 
-        Class<? extends Object[]> objectClass = objectMetadata.getObjectClass();
-        String command = objectMetadata.getCommand();
 
-        log.info("Getting report for objects '{}'...", objectClass.getSimpleName());
-        SimplePowerShellService powerShellService = new SimplePowerShellService();
 
-        List<?> objectsInfo;
-        try {
-            objectsInfo = powerShellService.getInfoForObjectsInJsonFormat(command, objectClass);
-        } catch (IOException | InterruptedException e) {
-            log.error("Unable to collect objects '{}' info by command '{}' because of error",
-                    objectClass.getSimpleName(), command, e);
-            throw new RuntimeException(e);
-        }
-
-        String[] columnNames = objectMetadata.getColumns();
-        return createReport(sheetName, workBookName, columnNames, objectsInfo);
-    }
-
-    public Report getReportForSingleObject(ObjectMetadata objectMetadata,
-                          String sheetName,
-                          String workBookName) throws IOException {
-
+        Class<? extends Object[]> objectArrayClass = objectMetadata.getObjectArrayClass();
         Class<?> objectClass = objectMetadata.getObjectClass();
+
         String command = objectMetadata.getCommand();
 
-        log.info("Getting report for single object '{}'...", objectClass.getSimpleName());
+        log.info("Getting report for objects '{}'...",
+                isNull(objectArrayClass)? objectClass.getSimpleName() : objectArrayClass.getSimpleName());
         SimplePowerShellService powerShellService = new SimplePowerShellService();
 
-        List<?> objectsInfo;
-        try {
-            objectsInfo = powerShellService.getInfoForSingleObjectInJsonFormat(command, objectClass);
-        } catch (IOException | InterruptedException e) {
-            log.error("Unable to collect single object '{}' info by command '{}' because of error",
-                    objectClass.getSimpleName(), command, e);
-            throw new RuntimeException(e);
+        List<?> objectsInfo = null;
+
+        int triesCount = 50;
+        for (int tryNum = 0; tryNum < triesCount; ++tryNum) {
+            try {
+                if (isNull(objectMetadata.getObjectClass())) {
+                    objectsInfo = powerShellService.getInfoForObjectsInJsonFormat(command, objectArrayClass);
+                } else {
+                    objectsInfo = powerShellService.getInfoForSingleObjectInJsonFormat(command, objectClass);
+                }
+                break;
+            } catch (IOException | InterruptedException e) {
+                Thread.sleep(2000);
+                if (tryNum == triesCount - 1) {
+                    log.error("Unable to collect objects '{}' info by command '{}' because of error",
+                            isNull(objectArrayClass) ? objectClass.getSimpleName() : objectArrayClass.getSimpleName(), command, e);
+                    throw new RuntimeException(e);
+                }
+            }
         }
 
         String[] columnNames = objectMetadata.getColumns();

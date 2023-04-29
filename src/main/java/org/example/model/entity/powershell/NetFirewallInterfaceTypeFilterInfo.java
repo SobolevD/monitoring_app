@@ -12,42 +12,23 @@ import lombok.*;
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class NetFirewallInterfaceTypeFilterInfo {
-    public static final String[] COLUMN_NAMES = {"InterfaceType", "Caption", "Description", "ElementName", "InstanceID", "CommunicationStatus", "DetailedStatus", "HealthState", "InstallDate", "Name", "OperatingStatus", "OperationalStatus", "PrimaryStatus", "Status", "StatusDescriptions", "CreationClassName", "IsNegated", "SystemCreationClassName", "SystemName", "PSComputerName"};
 
+    public static final String[] COLUMN_NAMES = {"PSComputerName", "Status", "Description", "CommunicationStatus", "SystemCreationClassName", "OperationalStatus", "PrimaryStatus", "Caption", "InstallDate", "Name", "CreationClassName", "InterfaceType", "OperatingStatus", "IsNegated", "ElementName", "DetailedStatus", "SystemName", "InstanceID", "StatusDescriptions", "HealthState"};
 
+    @JsonProperty("PSComputerName")
+    private String pSComputerName;
 
-    @JsonProperty("InterfaceType")
-    private String interfaceType;
-
-    @JsonProperty("Caption")
-    private String caption;
+    @JsonProperty("Status")
+    private String status;
 
     @JsonProperty("Description")
     private String description;
 
-    @JsonProperty("ElementName")
-    private String elementName;
-
-    @JsonProperty("InstanceID")
-    private String instanceID;
-
     @JsonProperty("CommunicationStatus")
     private String communicationStatus;
 
-    @JsonProperty("DetailedStatus")
-    private String detailedStatus;
-
-    @JsonProperty("HealthState")
-    private String healthState;
-
-    @JsonProperty("InstallDate")
-    private String installDate;
-
-    @JsonProperty("Name")
-    private String name;
-
-    @JsonProperty("OperatingStatus")
-    private String operatingStatus;
+    @JsonProperty("SystemCreationClassName")
+    private String systemCreationClassName;
 
     @JsonProperty("OperationalStatus")
     private String operationalStatus;
@@ -55,25 +36,43 @@ public class NetFirewallInterfaceTypeFilterInfo {
     @JsonProperty("PrimaryStatus")
     private String primaryStatus;
 
-    @JsonProperty("Status")
-    private String status;
+    @JsonProperty("Caption")
+    private String caption;
 
-    @JsonProperty("StatusDescriptions")
-    private String statusDescriptions;
+    @JsonProperty("InstallDate")
+    private String installDate;
+
+    @JsonProperty("Name")
+    private String name;
 
     @JsonProperty("CreationClassName")
     private String creationClassName;
 
+    @JsonProperty("InterfaceType")
+    private String interfaceType;
+
+    @JsonProperty("OperatingStatus")
+    private String operatingStatus;
+
     @JsonProperty("IsNegated")
     private String isNegated;
 
-    @JsonProperty("SystemCreationClassName")
-    private String systemCreationClassName;
+    @JsonProperty("ElementName")
+    private String elementName;
+
+    @JsonProperty("DetailedStatus")
+    private String detailedStatus;
 
     @JsonProperty("SystemName")
     private String systemName;
 
-    @JsonProperty("PSComputerName")
-    private String pSComputerName;
+    @JsonProperty("InstanceID")
+    private String instanceID;
+
+    @JsonProperty("StatusDescriptions")
+    private String statusDescriptions;
+
+    @JsonProperty("HealthState")
+    private String healthState;
 
 }

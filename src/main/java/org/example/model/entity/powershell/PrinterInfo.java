@@ -12,49 +12,20 @@ import lombok.*;
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class PrinterInfo {
-    public static final String[] COLUMN_NAMES = {"RenderingMode", "PrinterStatus", "Type", "DeviceType", "Caption", "Description", "ElementName", "InstanceID", "CommunicationStatus", "DetailedStatus", "HealthState", "InstallDate", "Name", "OperatingStatus", "OperationalStatus", "PrimaryStatus", "Status", "StatusDescriptions", "BranchOfficeOfflineLogSizeMB", "Comment", "ComputerName", "Datatype", "DefaultJobPriority", "DisableBranchOfficeLogging", "DriverName", "JobCount", "KeepPrintedJobs", "Location", "PermissionSDDL", "PortName", "PrintProcessor", "Priority", "Published", "SeparatorPageFile", "Shared", "ShareName", "StartTime", "UntilTime", "WorkflowPolicy", "PSComputerName"};
 
-    @JsonProperty("RenderingMode")
-    private String renderingMode;
+    public static final String[] COLUMN_NAMES = {"Comment", "Priority", "Status", "StartTime", "OperationalStatus", "PrimaryStatus", "Caption", "InstallDate", "DefaultJobPriority", "DeviceType", "PrinterStatus", "Type", "JobCount", "UntilTime", "Published", "ComputerName", "Location", "HealthState", "PSComputerName", "Description", "PrintProcessor", "DisableBranchOfficeLogging", "CommunicationStatus", "Datatype", "DriverName", "PermissionSDDL", "PortName", "ShareName", "Shared", "Name", "WorkflowPolicy", "RenderingMode", "OperatingStatus", "BranchOfficeOfflineLogSizeMB", "ElementName", "DetailedStatus", "InstanceID", "StatusDescriptions", "KeepPrintedJobs", "SeparatorPageFile"};
 
-    @JsonProperty("PrinterStatus")
-    private String printerStatus;
+    @JsonProperty("Comment")
+    private String comment;
 
-    @JsonProperty("Type")
-    private String type;
+    @JsonProperty("Priority")
+    private String priority;
 
-    @JsonProperty("DeviceType")
-    private String deviceType;
+    @JsonProperty("Status")
+    private String status;
 
-    @JsonProperty("Caption")
-    private String caption;
-
-    @JsonProperty("Description")
-    private String description;
-
-    @JsonProperty("ElementName")
-    private String elementName;
-
-    @JsonProperty("InstanceID")
-    private String instanceID;
-
-    @JsonProperty("CommunicationStatus")
-    private String communicationStatus;
-
-    @JsonProperty("DetailedStatus")
-    private String detailedStatus;
-
-    @JsonProperty("HealthState")
-    private String healthState;
-
-    @JsonProperty("InstallDate")
-    private String installDate;
-
-    @JsonProperty("Name")
-    private String name;
-
-    @JsonProperty("OperatingStatus")
-    private String operatingStatus;
+    @JsonProperty("StartTime")
+    private String startTime;
 
     @JsonProperty("OperationalStatus")
     private String operationalStatus;
@@ -62,41 +33,62 @@ public class PrinterInfo {
     @JsonProperty("PrimaryStatus")
     private String primaryStatus;
 
-    @JsonProperty("Status")
-    private String status;
+    @JsonProperty("Caption")
+    private String caption;
 
-    @JsonProperty("StatusDescriptions")
-    private String statusDescriptions;
-
-    @JsonProperty("BranchOfficeOfflineLogSizeMB")
-    private String branchOfficeOfflineLogSizeMB;
-
-    @JsonProperty("Comment")
-    private String comment;
-
-    @JsonProperty("ComputerName")
-    private String computerName;
-
-    @JsonProperty("Datatype")
-    private String datatype;
+    @JsonProperty("InstallDate")
+    private String installDate;
 
     @JsonProperty("DefaultJobPriority")
     private String defaultJobPriority;
 
-    @JsonProperty("DisableBranchOfficeLogging")
-    private String disableBranchOfficeLogging;
+    @JsonProperty("DeviceType")
+    private String deviceType;
 
-    @JsonProperty("DriverName")
-    private String driverName;
+    @JsonProperty("PrinterStatus")
+    private String printerStatus;
+
+    @JsonProperty("Type")
+    private String type;
 
     @JsonProperty("JobCount")
     private String jobCount;
 
-    @JsonProperty("KeepPrintedJobs")
-    private String keepPrintedJobs;
+    @JsonProperty("UntilTime")
+    private String untilTime;
+
+    @JsonProperty("Published")
+    private String published;
+
+    @JsonProperty("ComputerName")
+    private String computerName;
 
     @JsonProperty("Location")
     private String location;
+
+    @JsonProperty("HealthState")
+    private String healthState;
+
+    @JsonProperty("PSComputerName")
+    private String pSComputerName;
+
+    @JsonProperty("Description")
+    private String description;
+
+    @JsonProperty("PrintProcessor")
+    private String printProcessor;
+
+    @JsonProperty("DisableBranchOfficeLogging")
+    private String disableBranchOfficeLogging;
+
+    @JsonProperty("CommunicationStatus")
+    private String communicationStatus;
+
+    @JsonProperty("Datatype")
+    private String datatype;
+
+    @JsonProperty("DriverName")
+    private String driverName;
 
     @JsonProperty("PermissionSDDL")
     private String permissionSDDL;
@@ -104,34 +96,43 @@ public class PrinterInfo {
     @JsonProperty("PortName")
     private String portName;
 
-    @JsonProperty("PrintProcessor")
-    private String printProcessor;
-
-    @JsonProperty("Priority")
-    private String priority;
-
-    @JsonProperty("Published")
-    private String published;
-
-    @JsonProperty("SeparatorPageFile")
-    private String separatorPageFile;
+    @JsonProperty("ShareName")
+    private String shareName;
 
     @JsonProperty("Shared")
     private String shared;
 
-    @JsonProperty("ShareName")
-    private String shareName;
-
-    @JsonProperty("StartTime")
-    private String startTime;
-
-    @JsonProperty("UntilTime")
-    private String untilTime;
+    @JsonProperty("Name")
+    private String name;
 
     @JsonProperty("WorkflowPolicy")
     private String workflowPolicy;
 
-    @JsonProperty("PSComputerName")
-    private String pSComputerName;
+    @JsonProperty("RenderingMode")
+    private String renderingMode;
+
+    @JsonProperty("OperatingStatus")
+    private String operatingStatus;
+
+    @JsonProperty("BranchOfficeOfflineLogSizeMB")
+    private String branchOfficeOfflineLogSizeMB;
+
+    @JsonProperty("ElementName")
+    private String elementName;
+
+    @JsonProperty("DetailedStatus")
+    private String detailedStatus;
+
+    @JsonProperty("InstanceID")
+    private String instanceID;
+
+    @JsonProperty("StatusDescriptions")
+    private String statusDescriptions;
+
+    @JsonProperty("KeepPrintedJobs")
+    private String keepPrintedJobs;
+
+    @JsonProperty("SeparatorPageFile")
+    private String separatorPageFile;
 
 }

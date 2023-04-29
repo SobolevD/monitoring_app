@@ -12,19 +12,29 @@ import lombok.*;
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class NetNatExternalAddressInfo {
-    public static final String[] COLUMN_NAMES = {"Active", "Caption", "Description", "ElementName", "InstanceID", "ExternalAddressID", "IPAddress", "NatName", "PortEnd", "PortStart", "PSComputerName"};
+
+    public static final String[] COLUMN_NAMES = {"PSComputerName", "Active", "PortEnd", "Description", "PortStart", "ElementName", "NatName", "InstanceID", "ExternalAddressID", "Caption", "IPAddress"};
+
+    @JsonProperty("PSComputerName")
+    private String pSComputerName;
 
     @JsonProperty("Active")
     private String active;
 
-    @JsonProperty("Caption")
-    private String caption;
+    @JsonProperty("PortEnd")
+    private String portEnd;
 
     @JsonProperty("Description")
     private String description;
 
+    @JsonProperty("PortStart")
+    private String portStart;
+
     @JsonProperty("ElementName")
     private String elementName;
+
+    @JsonProperty("NatName")
+    private String natName;
 
     @JsonProperty("InstanceID")
     private String instanceID;
@@ -32,19 +42,10 @@ public class NetNatExternalAddressInfo {
     @JsonProperty("ExternalAddressID")
     private String externalAddressID;
 
+    @JsonProperty("Caption")
+    private String caption;
+
     @JsonProperty("IPAddress")
     private String iPAddress;
-
-    @JsonProperty("NatName")
-    private String natName;
-
-    @JsonProperty("PortEnd")
-    private String portEnd;
-
-    @JsonProperty("PortStart")
-    private String portStart;
-
-    @JsonProperty("PSComputerName")
-    private String pSComputerName;
 
 }

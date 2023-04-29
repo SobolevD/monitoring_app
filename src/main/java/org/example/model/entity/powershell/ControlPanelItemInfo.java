@@ -2,6 +2,7 @@ package org.example.model.entity.powershell;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.JsonNode;
 import lombok.*;
 
 @Data
@@ -22,7 +23,7 @@ public class ControlPanelItemInfo {
     private String canonicalName;
 
     @JsonProperty("Category")
-    private String category;
+    private JsonNode category;
 
     @JsonProperty("Description")
     private String description;

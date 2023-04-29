@@ -2,6 +2,7 @@ package org.example.model.entity.powershell;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.JsonNode;
 import lombok.*;
 
 import java.util.List;
@@ -51,7 +52,7 @@ public class ServiceInfo {
     private List<String> servicesDependedOn;
 
     @JsonProperty("ServiceHandle")
-    private String serviceHandle;
+    private JsonNode serviceHandle;
 
     @JsonProperty("Status")
     private String status;

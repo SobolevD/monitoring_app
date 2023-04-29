@@ -12,22 +12,20 @@ import lombok.*;
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Net6to4ConfigurationInfo {
-    public static final String[] COLUMN_NAMES = {"State", "AutoSharing", "RelayState", "Caption", "Description", "ElementName", "InstanceID", "PolicyStore", "RelayName", "ResolutionInterval", "PSComputerName"};
 
-    @JsonProperty("State")
-    private String state;
+    public static final String[] COLUMN_NAMES = {"PSComputerName", "ResolutionInterval", "Description", "State", "ElementName", "InstanceID", "PolicyStore", "AutoSharing", "RelayState", "RelayName", "Caption"};
 
-    @JsonProperty("AutoSharing")
-    private String autoSharing;
+    @JsonProperty("PSComputerName")
+    private String pSComputerName;
 
-    @JsonProperty("RelayState")
-    private String relayState;
-
-    @JsonProperty("Caption")
-    private String caption;
+    @JsonProperty("ResolutionInterval")
+    private String resolutionInterval;
 
     @JsonProperty("Description")
     private String description;
+
+    @JsonProperty("State")
+    private String state;
 
     @JsonProperty("ElementName")
     private String elementName;
@@ -38,13 +36,16 @@ public class Net6to4ConfigurationInfo {
     @JsonProperty("PolicyStore")
     private String policyStore;
 
+    @JsonProperty("AutoSharing")
+    private String autoSharing;
+
+    @JsonProperty("RelayState")
+    private String relayState;
+
     @JsonProperty("RelayName")
     private String relayName;
 
-    @JsonProperty("ResolutionInterval")
-    private String resolutionInterval;
-
-    @JsonProperty("PSComputerName")
-    private String pSComputerName;
+    @JsonProperty("Caption")
+    private String caption;
 
 }

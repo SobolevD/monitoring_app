@@ -2,19 +2,14 @@ package scripts;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.*;
 import org.example.utils.CommandExecutor;
+import scripts.model.Field;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
-
-import static org.example.common.Commands.*;
 
 public class ModelFieldsGenerator {
     public static void main(String[] args) throws IOException, InterruptedException {
@@ -99,13 +94,14 @@ public class ModelFieldsGenerator {
 
         for (String command : commands) {
             JsonNode objectByCommand = getObjectByCommand(command);
-            List<String> fields = getFieldNames(objectByCommand);
+            List<Field> fields = getFields(objectByCommand);
 
             List<String> output = new ArrayList<>();
 
             output.add("package org.example.model.entity.powershell;");
             output.add("import com.fasterxml.jackson.annotation.JsonProperty;");
             output.add("import com.fasterxml.jackson.databind.JsonNode;");
+            output.add("import com.fasterxml.jackson.annotation.JsonIgnoreProperties;");
             output.add("import lombok.*;");
             output.add("import java.util.List;");
             output.add("");
@@ -115,12 +111,14 @@ public class ModelFieldsGenerator {
             output.add("@EqualsAndHashCode");
             output.add("@NoArgsConstructor");
             output.add("@AllArgsConstructor");
+            output.add("@JsonIgnoreProperties(ignoreUnknown = true)");
             output.add(String.format("public class %sInfo {", command.substring(4)));
+            output.add("");
 
             output.add(generateColumnNames(fields));
             output.add("");
 
-            for (String field : fields) {
+            for (Field field : fields) {
                 output.addAll(generateField(field));
             }
 
@@ -132,13 +130,12 @@ public class ModelFieldsGenerator {
                 }
             }
         }
-
-        int a = 3;
     }
 
-    private static String generateColumnNames(List<String> fields) {
+    private static String generateColumnNames(List<Field> fields) {
 
         List<String> quotedColumnNames = fields.stream()
+                .map(Field::getName)
                 .map(field -> "\"" + field + "\"")
                 .collect(Collectors.toList());
 
@@ -146,11 +143,14 @@ public class ModelFieldsGenerator {
                 String.join(", ", quotedColumnNames));
     }
 
-    private static List<String> generateField(String field) {
-        String annotation = String.format("@JsonProperty(\"%s\")", field);
+    private static List<String> generateField(Field field) {
 
-        String camelCasedField = ("" + field.charAt(0)).toLowerCase() + field.substring(1);
-        String privateField = String.format("private String %s;", camelCasedField);
+        String fieldName = field.getName();
+
+        String annotation = String.format("@JsonProperty(\"%s\")", fieldName);
+
+        String camelCasedField = ("" + fieldName.charAt(0)).toLowerCase() + fieldName.substring(1);
+        String privateField = String.format("private %s %s;", field.getType(), camelCasedField);
         String emptyLine = "";
 
         return Arrays.asList(annotation, privateField, emptyLine);
@@ -159,22 +159,50 @@ public class ModelFieldsGenerator {
     private static JsonNode getObjectByCommand(String command)
             throws IOException, InterruptedException {
         File consoleOutput = CommandExecutor.executeWithPowershellAndGetOutputInJsonFormat(command);
-        JsonNode jsonNode = new ObjectMapper().readTree(consoleOutput);
-
-        if (jsonNode.isArray()) {
-            return jsonNode.get(0);
-        }
-        return jsonNode;
+        return new ObjectMapper().readTree(consoleOutput);
     }
 
-    private static List<String> getFieldNames(JsonNode object) {
-        Iterator<String> stringIterator = object.fieldNames();
+    private static List<Field> getFields(JsonNode object) {
 
-        List<String> fieldNames = new ArrayList<>();
-        while (stringIterator.hasNext()) {
-            fieldNames.add(stringIterator.next());
+        Set<Field> fields = new HashSet<>();
+
+        if (object.isArray()) {
+            for (JsonNode obj : object) {
+                Iterator<Map.Entry<String, JsonNode>> fieldsIterator = obj.fields();
+                while (fieldsIterator.hasNext()) {
+                    Map.Entry<String, JsonNode> next = fieldsIterator.next();
+                    String fieldName = next.getKey();
+                    if (fieldName.toLowerCase().startsWith("cim")) {
+                        continue;
+                    }
+                    String fieldType = resolveType(next.getValue());
+                    Field newField = new Field(fieldName, fieldType);
+                    fields.add(newField);
+                }
+            }
+        } else {
+            Iterator<Map.Entry<String, JsonNode>> fieldsIterator = object.fields();
+            while (fieldsIterator.hasNext()) {
+                Map.Entry<String, JsonNode> next = fieldsIterator.next();
+                String fieldName = next.getKey();
+                if (fieldName.toLowerCase().startsWith("cim")) {
+                    continue;
+                }
+                String fieldType = resolveType(next.getValue());
+                Field newField = new Field(fieldName, fieldType);
+                fields.add(newField);
+            }
         }
 
-        return fieldNames;
+
+
+        return new ArrayList<>(fields);
+    }
+
+    private static String resolveType(JsonNode node) {
+        if (node.isObject() || node.isArray()) {
+            return "JsonNode";
+        }
+        return "String";
     }
 }

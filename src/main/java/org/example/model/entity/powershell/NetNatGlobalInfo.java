@@ -12,13 +12,14 @@ import lombok.*;
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class NetNatGlobalInfo {
-    public static final String[] COLUMN_NAMES = {"InterRoutingDomainHairpinningMode", "Caption", "Description", "ElementName", "InstanceID", "PSComputerName"};
+
+    public static final String[] COLUMN_NAMES = {"InterRoutingDomainHairpinningMode", "PSComputerName", "Description", "ElementName", "InstanceID", "Caption"};
 
     @JsonProperty("InterRoutingDomainHairpinningMode")
     private String interRoutingDomainHairpinningMode;
 
-    @JsonProperty("Caption")
-    private String caption;
+    @JsonProperty("PSComputerName")
+    private String pSComputerName;
 
     @JsonProperty("Description")
     private String description;
@@ -29,7 +30,7 @@ public class NetNatGlobalInfo {
     @JsonProperty("InstanceID")
     private String instanceID;
 
-    @JsonProperty("PSComputerName")
-    private String pSComputerName;
+    @JsonProperty("Caption")
+    private String caption;
 
 }

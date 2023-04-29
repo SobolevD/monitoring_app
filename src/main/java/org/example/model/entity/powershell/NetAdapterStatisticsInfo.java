@@ -2,6 +2,7 @@ package org.example.model.entity.powershell;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.JsonNode;
 import lombok.*;
 
 @Data
@@ -12,33 +13,71 @@ import lombok.*;
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class NetAdapterStatisticsInfo {
-    public static final String[] COLUMN_NAMES = {"ifAlias", "InterfaceAlias", "ifDesc", "Caption", "Description", "ElementName", "InstanceID", "InterfaceDescription", "Name", "Source", "SystemName", "OutboundDiscardedPackets", "OutboundPacketErrors", "RdmaStatistics", "ReceivedBroadcastBytes", "ReceivedBroadcastPackets", "ReceivedBytes", "ReceivedDiscardedPackets", "ReceivedMulticastBytes", "ReceivedMulticastPackets", "ReceivedPacketErrors", "ReceivedUnicastBytes", "ReceivedUnicastPackets", "RscStatistics", "SentBroadcastBytes", "SentBroadcastPackets", "SentBytes", "SentMulticastBytes", "SentMulticastPackets", "SentUnicastBytes", "SentUnicastPackets", "SupportedStatistics", "PSComputerName"};
 
+    public static final String[] COLUMN_NAMES = {"ReceivedMulticastPackets", "InterfaceDescription", "ifDesc", "ReceivedDiscardedPackets", "ReceivedBroadcastPackets", "Caption", "ifAlias", "SentUnicastPackets", "SentUnicastBytes", "SupportedStatistics", "PSComputerName", "OutboundPacketErrors", "RscStatistics", "ReceivedBroadcastBytes", "ReceivedBytes", "Description", "ReceivedPacketErrors", "SentBroadcastPackets", "OutboundDiscardedPackets", "ReceivedUnicastPackets", "InterfaceAlias", "Name", "Source", "SentBroadcastBytes", "SentBytes", "ElementName", "SystemName", "InstanceID", "RdmaStatistics", "ReceivedUnicastBytes", "SentMulticastBytes", "SentMulticastPackets", "ReceivedMulticastBytes"};
 
+    @JsonProperty("ReceivedMulticastPackets")
+    private String receivedMulticastPackets;
 
-    @JsonProperty("ifAlias")
-    private String ifAlias;
-
-    @JsonProperty("InterfaceAlias")
-    private String interfaceAlias;
+    @JsonProperty("InterfaceDescription")
+    private String interfaceDescription;
 
     @JsonProperty("ifDesc")
     private String ifDesc;
 
+    @JsonProperty("ReceivedDiscardedPackets")
+    private String receivedDiscardedPackets;
+
+    @JsonProperty("ReceivedBroadcastPackets")
+    private String receivedBroadcastPackets;
+
     @JsonProperty("Caption")
     private String caption;
+
+    @JsonProperty("ifAlias")
+    private String ifAlias;
+
+    @JsonProperty("SentUnicastPackets")
+    private String sentUnicastPackets;
+
+    @JsonProperty("SentUnicastBytes")
+    private String sentUnicastBytes;
+
+    @JsonProperty("SupportedStatistics")
+    private String supportedStatistics;
+
+    @JsonProperty("PSComputerName")
+    private String pSComputerName;
+
+    @JsonProperty("OutboundPacketErrors")
+    private String outboundPacketErrors;
+
+    @JsonProperty("RscStatistics")
+    private JsonNode rscStatistics;
+
+    @JsonProperty("ReceivedBroadcastBytes")
+    private String receivedBroadcastBytes;
+
+    @JsonProperty("ReceivedBytes")
+    private String receivedBytes;
 
     @JsonProperty("Description")
     private String description;
 
-    @JsonProperty("ElementName")
-    private String elementName;
+    @JsonProperty("ReceivedPacketErrors")
+    private String receivedPacketErrors;
 
-    @JsonProperty("InstanceID")
-    private String instanceID;
+    @JsonProperty("SentBroadcastPackets")
+    private String sentBroadcastPackets;
 
-    @JsonProperty("InterfaceDescription")
-    private String interfaceDescription;
+    @JsonProperty("OutboundDiscardedPackets")
+    private String outboundDiscardedPackets;
+
+    @JsonProperty("ReceivedUnicastPackets")
+    private String receivedUnicastPackets;
+
+    @JsonProperty("InterfaceAlias")
+    private String interfaceAlias;
 
     @JsonProperty("Name")
     private String name;
@@ -46,56 +85,26 @@ public class NetAdapterStatisticsInfo {
     @JsonProperty("Source")
     private String source;
 
-    @JsonProperty("SystemName")
-    private String systemName;
-
-    @JsonProperty("OutboundDiscardedPackets")
-    private String outboundDiscardedPackets;
-
-    @JsonProperty("OutboundPacketErrors")
-    private String outboundPacketErrors;
-
-    @JsonProperty("RdmaStatistics")
-    private String rdmaStatistics;
-
-    @JsonProperty("ReceivedBroadcastBytes")
-    private String receivedBroadcastBytes;
-
-    @JsonProperty("ReceivedBroadcastPackets")
-    private String receivedBroadcastPackets;
-
-    @JsonProperty("ReceivedBytes")
-    private String receivedBytes;
-
-    @JsonProperty("ReceivedDiscardedPackets")
-    private String receivedDiscardedPackets;
-
-    @JsonProperty("ReceivedMulticastBytes")
-    private String receivedMulticastBytes;
-
-    @JsonProperty("ReceivedMulticastPackets")
-    private String receivedMulticastPackets;
-
-    @JsonProperty("ReceivedPacketErrors")
-    private String receivedPacketErrors;
-
-    @JsonProperty("ReceivedUnicastBytes")
-    private String receivedUnicastBytes;
-
-    @JsonProperty("ReceivedUnicastPackets")
-    private String receivedUnicastPackets;
-
-    @JsonProperty("RscStatistics")
-    private String rscStatistics;
-
     @JsonProperty("SentBroadcastBytes")
     private String sentBroadcastBytes;
 
-    @JsonProperty("SentBroadcastPackets")
-    private String sentBroadcastPackets;
-
     @JsonProperty("SentBytes")
     private String sentBytes;
+
+    @JsonProperty("ElementName")
+    private String elementName;
+
+    @JsonProperty("SystemName")
+    private String systemName;
+
+    @JsonProperty("InstanceID")
+    private String instanceID;
+
+    @JsonProperty("RdmaStatistics")
+    private JsonNode rdmaStatistics;
+
+    @JsonProperty("ReceivedUnicastBytes")
+    private String receivedUnicastBytes;
 
     @JsonProperty("SentMulticastBytes")
     private String sentMulticastBytes;
@@ -103,16 +112,7 @@ public class NetAdapterStatisticsInfo {
     @JsonProperty("SentMulticastPackets")
     private String sentMulticastPackets;
 
-    @JsonProperty("SentUnicastBytes")
-    private String sentUnicastBytes;
-
-    @JsonProperty("SentUnicastPackets")
-    private String sentUnicastPackets;
-
-    @JsonProperty("SupportedStatistics")
-    private String supportedStatistics;
-
-    @JsonProperty("PSComputerName")
-    private String pSComputerName;
+    @JsonProperty("ReceivedMulticastBytes")
+    private String receivedMulticastBytes;
 
 }

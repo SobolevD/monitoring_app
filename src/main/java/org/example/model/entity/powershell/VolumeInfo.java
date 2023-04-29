@@ -12,7 +12,38 @@ import lombok.*;
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class VolumeInfo {
-    public static final String[] COLUMN_NAMES = {"OperationalStatus", "HealthStatus", "DriveType", "FileSystemType", "DedupMode", "ObjectId", "PassThroughClass", "PassThroughIds", "PassThroughNamespace", "PassThroughServer", "UniqueId", "AllocationUnitSize", "DriveLetter", "FileSystem", "FileSystemLabel", "Path", "Size", "SizeRemaining", "PSComputerName"};
+
+    public static final String[] COLUMN_NAMES = {"FileSystemLabel", "PSComputerName", "Path", "PassThroughServer", "PassThroughIds", "ObjectId", "UniqueId", "Size", "DedupMode", "PassThroughNamespace", "OperationalStatus", "HealthStatus", "PassThroughClass", "SizeRemaining", "DriveLetter", "FileSystemType", "FileSystem", "DriveType", "AllocationUnitSize"};
+
+    @JsonProperty("FileSystemLabel")
+    private String fileSystemLabel;
+
+    @JsonProperty("PSComputerName")
+    private String pSComputerName;
+
+    @JsonProperty("Path")
+    private String path;
+
+    @JsonProperty("PassThroughServer")
+    private String passThroughServer;
+
+    @JsonProperty("PassThroughIds")
+    private String passThroughIds;
+
+    @JsonProperty("ObjectId")
+    private String objectId;
+
+    @JsonProperty("UniqueId")
+    private String uniqueId;
+
+    @JsonProperty("Size")
+    private String size;
+
+    @JsonProperty("DedupMode")
+    private String dedupMode;
+
+    @JsonProperty("PassThroughNamespace")
+    private String passThroughNamespace;
 
     @JsonProperty("OperationalStatus")
     private String operationalStatus;
@@ -20,55 +51,25 @@ public class VolumeInfo {
     @JsonProperty("HealthStatus")
     private String healthStatus;
 
-    @JsonProperty("DriveType")
-    private String driveType;
-
-    @JsonProperty("FileSystemType")
-    private String fileSystemType;
-
-    @JsonProperty("DedupMode")
-    private String dedupMode;
-
-    @JsonProperty("ObjectId")
-    private String objectId;
-
     @JsonProperty("PassThroughClass")
     private String passThroughClass;
-
-    @JsonProperty("PassThroughIds")
-    private String passThroughIds;
-
-    @JsonProperty("PassThroughNamespace")
-    private String passThroughNamespace;
-
-    @JsonProperty("PassThroughServer")
-    private String passThroughServer;
-
-    @JsonProperty("UniqueId")
-    private String uniqueId;
-
-    @JsonProperty("AllocationUnitSize")
-    private String allocationUnitSize;
-
-    @JsonProperty("DriveLetter")
-    private String driveLetter;
-
-    @JsonProperty("FileSystem")
-    private String fileSystem;
-
-    @JsonProperty("FileSystemLabel")
-    private String fileSystemLabel;
-
-    @JsonProperty("Path")
-    private String path;
-
-    @JsonProperty("Size")
-    private String size;
 
     @JsonProperty("SizeRemaining")
     private String sizeRemaining;
 
-    @JsonProperty("PSComputerName")
-    private String pSComputerName;
+    @JsonProperty("DriveLetter")
+    private String driveLetter;
+
+    @JsonProperty("FileSystemType")
+    private String fileSystemType;
+
+    @JsonProperty("FileSystem")
+    private String fileSystem;
+
+    @JsonProperty("DriveType")
+    private String driveType;
+
+    @JsonProperty("AllocationUnitSize")
+    private String allocationUnitSize;
 
 }

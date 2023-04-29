@@ -12,12 +12,13 @@ import lombok.*;
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class StartAppsInfo {
-    public static final String[] COLUMN_NAMES = {"Name", "AppID"};
 
-    @JsonProperty("Name")
-    private String name;
+    public static final String[] COLUMN_NAMES = {"AppID", "Name"};
 
     @JsonProperty("AppID")
     private String appID;
+
+    @JsonProperty("Name")
+    private String name;
 
 }
