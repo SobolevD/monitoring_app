@@ -4,8 +4,9 @@ import org.example.model.common.Report;
 import org.example.repository.ReportRepository;
 import org.example.utils.PropertiesLoader;
 
-import java.io.FileInputStream;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -26,6 +27,8 @@ public class PostgresReportRepository implements ReportRepository {
         this.url = properties.getProperty(DATABASE_URL_PROP);
         this.username = properties.getProperty(DATABASE_USERNAME_PROP);
         this.password = properties.getProperty(DATABASE_PASSWORD_PROP);
+
+        prepareDatabase();
     }
 
     private void prepareDatabase() {
@@ -33,8 +36,8 @@ public class PostgresReportRepository implements ReportRepository {
             PreparedStatement preparedStatement = connection.prepareStatement("CREATE TABLE IF NOT EXISTS user_reports (" +
                     "    user_name     text," +
                     "    report_size   integer," +
-                    "    report_date   date," +
-                    "    report        blob);");
+                    "    report_date   time with time zone," +
+                    "    report        bytea);");
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -44,17 +47,18 @@ public class PostgresReportRepository implements ReportRepository {
     @Override
     public void saveReport(Report report) {
         try (Connection connection = DriverManager.getConnection(url, username, password)) {
+            connection.setAutoCommit(false);
 
-            try (FileInputStream fileInputStream = new FileInputStream(report.getReport())) {
-                PreparedStatement statement =
-                        connection.prepareStatement("insert into user_reports values ?, CURRENT_TIME, ?, ?::blob;");
-                statement.setString(1, report.getUsername());
-                statement.setLong(2, report.getReport().length());
-                statement.setBlob(3, fileInputStream);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        } catch (SQLException e) {
+            PreparedStatement statement =
+                    connection.prepareStatement("insert into user_reports values (?, ?, CURRENT_TIME, ?)");
+            statement.setString(1, report.getUsername());
+            statement.setLong(2, report.getReport().length());
+
+            byte[] reportBytes = Files.readAllBytes(report.getReport().toPath());
+            statement.setBinaryStream(3, new ByteArrayInputStream(reportBytes));
+            statement.executeUpdate();
+            connection.commit();
+        } catch (SQLException | IOException e) {
             throw new RuntimeException(e);
         }
     }

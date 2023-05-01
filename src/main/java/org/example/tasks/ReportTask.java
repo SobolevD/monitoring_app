@@ -36,10 +36,13 @@ public abstract class ReportTask extends TimerTask {
 
     protected final void collectAndSendReport(List<Report> reports) {
 
+        log.info("Sending report...");
+
         boolean storeToDatabase =
                 Boolean.parseBoolean(properties.getProperty(REPORT_STORE_TO_DATABASE_PROP));
 
         if (storeToDatabase) {
+            log.info("Report will be saved to database");
             storeToDatabase(reports);
         }
 
@@ -47,6 +50,7 @@ public abstract class ReportTask extends TimerTask {
                 Boolean.parseBoolean(properties.getProperty(REPORT_STORE_TO_STORAGE_PROP));
 
         if (storeToStorage) {
+            log.info("Report will be saved to storage");
             saveToStorage(reports);
         }
 
@@ -54,6 +58,7 @@ public abstract class ReportTask extends TimerTask {
                 Boolean.parseBoolean(properties.getProperty(REPORT_SEND_TO_EMAIL_PROP));
 
         if (sendToEmail) {
+            log.info("Report will be sent to email");
             sendReportToEmail(reports);
         }
     }
@@ -71,6 +76,15 @@ public abstract class ReportTask extends TimerTask {
         List<File> entireReport = collectReport(reports);
 
         File zipArchive = ZipUtils.createZip(entireReport, "OS User Report.zip");
+
+        long fileSizeInBytes = zipArchive.length();
+        long maxAllowableFileSize = Long.parseLong(properties.getProperty(MAX_REPORT_SIZE_MEGABYTES_FOR_EMAIL_PROP));
+
+        if (fileSizeInBytes > maxAllowableFileSize) {
+            log.error("Unable to send report to {}: max file size is {}, but report size is {}. Send cancelled!",
+                    properties.getProperty(EMAIL_SENDER_ADDRESS_PROP), maxAllowableFileSize, fileSizeInBytes);
+            return;
+        }
 
         log.info("Sending message to email '{}'...", properties.getProperty(EMAIL_RECIPIENT_ADDRESS_PROP));
 

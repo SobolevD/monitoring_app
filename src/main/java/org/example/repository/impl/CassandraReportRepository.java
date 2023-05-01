@@ -31,6 +31,8 @@ public class CassandraReportRepository implements ReportRepository {
         this.username = properties.getProperty(DATABASE_USERNAME_PROP);
         this.password = properties.getProperty(DATABASE_PASSWORD_PROP);
         this.hostname = properties.getProperty(DATABASE_HOSTNAME_PROP);
+
+        prepareDatabase();
     }
 
     private void prepareDatabase() {
