@@ -4,7 +4,6 @@ import com.azure.storage.blob.BlobClient;
 import com.azure.storage.blob.BlobContainerClient;
 import com.azure.storage.blob.BlobServiceClient;
 import com.azure.storage.blob.BlobServiceClientBuilder;
-import org.example.model.common.Report;
 import org.example.services.storage.StorageService;
 import org.example.utils.PropertiesLoader;
 
@@ -44,9 +43,8 @@ public class AzureBlobStorage implements StorageService {
     }
 
     @Override
-    public void storeReport(Report report) {
-        File reportFile = report.getReport();
-        String fileName = reportFile.getName();
+    public void storeReport(File zipReport) {
+        String fileName = zipReport.getName();
         BlobClient blobClient = this.container.getBlobClient(fileName);
         blobClient.uploadFromFile(fileName);
     }

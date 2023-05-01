@@ -7,6 +7,7 @@ import org.example.model.common.Report;
 import org.example.repository.ReportRepository;
 import org.example.utils.PropertiesLoader;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.sql.Connection;
@@ -50,19 +51,19 @@ public class CassandraReportRepository implements ReportRepository {
     }
 
     @Override
-    public void saveReport(Report report) {
+    public void saveReport(File zipReport, String username) {
 
         try (Cluster cluster = Cluster.builder().addContactPoint(this.hostname).build()) {
             try (Session session = cluster.connect()) {
-                byte[] reportBytes = Files.readAllBytes(report.getReport().toPath());
+                byte[] reportBytes = Files.readAllBytes(zipReport.toPath());
 
                 String query =
                         "INSERT INTO user_reports (user_name, report_size, report_date, report) VALUES (?, dateof(now()), ?, ?);";
                 com.datastax.driver.core.PreparedStatement statement = session.prepare(query);
 
-                String filename = report.getReport().getName();
+                String filename = zipReport.getName();
 
-                BoundStatement boundStatement = new BoundStatement(statement).bind(report.getUsername(),
+                BoundStatement boundStatement = new BoundStatement(statement).bind(username,
                         filename, reportBytes);
                 session.execute(boundStatement);
             } catch (IOException e) {

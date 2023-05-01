@@ -16,9 +16,11 @@ import java.util.List;
 import java.util.Properties;
 import java.util.TimerTask;
 import java.util.stream.Collectors;
+import java.util.zip.ZipFile;
 
 import static org.example.common.PropertiesNames.*;
 import static org.example.utils.DateTimeHelper.getCurrentTimeAsString;
+import static org.example.utils.DateTimeHelper.getCurrentTimeForFileName;
 
 @Slf4j
 public abstract class ReportTask extends TimerTask {
@@ -35,15 +37,23 @@ public abstract class ReportTask extends TimerTask {
     }
 
     protected final void collectAndSendReport(List<Report> reports) {
+        log.info("Collecting report to a zip archive...");
 
-        log.info("Sending report...");
+        String username = reports.stream().findAny().get().getUsername();
+
+        List<File> entireReport = collectReport(reports);
+
+        String fileName = String.format("OS User Report_%s_%s.zip", getCurrentTimeForFileName(), username);
+
+        File zipArchive = ZipUtils.createZip(entireReport, fileName);
+        zipArchive.deleteOnExit();
 
         boolean storeToDatabase =
                 Boolean.parseBoolean(properties.getProperty(REPORT_STORE_TO_DATABASE_PROP));
 
         if (storeToDatabase) {
             log.info("Report will be saved to database");
-            storeToDatabase(reports);
+            storeToDatabase(zipArchive, username);
         }
 
         boolean storeToStorage =
@@ -51,7 +61,7 @@ public abstract class ReportTask extends TimerTask {
 
         if (storeToStorage) {
             log.info("Report will be saved to storage");
-            saveToStorage(reports);
+            saveToStorage(zipArchive);
         }
 
         boolean sendToEmail =
@@ -59,7 +69,7 @@ public abstract class ReportTask extends TimerTask {
 
         if (sendToEmail) {
             log.info("Report will be sent to email");
-            sendReportToEmail(reports);
+            sendReportToEmail(zipArchive);
         }
     }
 
@@ -71,13 +81,9 @@ public abstract class ReportTask extends TimerTask {
         return collectReport(reports.toArray(new Report[0]));
     }
 
-    private void sendReportToEmail(List<Report> reports) {
+    private void sendReportToEmail(File zipFile) {
 
-        List<File> entireReport = collectReport(reports);
-
-        File zipArchive = ZipUtils.createZip(entireReport, "OS User Report.zip");
-
-        long fileSizeInBytes = zipArchive.length();
+        long fileSizeInBytes = zipFile.length();
         long maxAllowableFileSizeMegabytes = Long.parseLong(properties.getProperty(MAX_REPORT_SIZE_MEGABYTES_FOR_EMAIL_PROP));
         long maxAllowableFileSizeBytes = maxAllowableFileSizeMegabytes * 1024 * 1024;
 
@@ -98,27 +104,21 @@ public abstract class ReportTask extends TimerTask {
 
         try {
             emailService.sendMessage(properties.getProperty(EMAIL_RECIPIENT_ADDRESS_PROP), credentials,
-                    message, zipArchive);
-            zipArchive.deleteOnExit();
+                    message, zipFile);
         } catch (Exception e) {
             log.error("Unable to send message to recipient because of error", e);
         }
     }
 
-    private void storeToDatabase(List<Report> reports) {
+    private void storeToDatabase(File reports, String username) {
         ReportRepository reportRepository = reportRepositoryResolver.resolve();
 
-        for (Report report : reports) {
-            reportRepository.saveReport(report);
-        }
+        reportRepository.saveReport(reports, username);
     }
 
-    private void saveToStorage(List<Report> reports) {
+    private void saveToStorage(File zipReport) {
         StorageService storageService = storageServiceResolver.resolve();
-
-        for (Report report : reports) {
-            storageService.storeReport(report);
-        }
+        storageService.storeReport(zipReport);
     }
 
 }

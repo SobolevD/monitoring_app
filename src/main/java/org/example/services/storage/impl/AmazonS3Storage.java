@@ -10,28 +10,27 @@ import org.example.model.common.Report;
 import org.example.services.storage.StorageService;
 import org.example.utils.PropertiesLoader;
 
+import java.io.File;
 import java.util.Properties;
 
 import static org.example.common.PropertiesNames.*;
 
 public class AmazonS3Storage implements StorageService {
 
-    private String storageUrl;
+    private final String storageUrl;
 
-    private String storageUsername;
+    private final String storageUsername;
 
-    private String storagePassword;
+    private final String storagePassword;
 
-    private String storageBucket;
+    private final String storageBucket;
 
-    private String storageRegion;
+    private final String storageRegion;
 
-    private AmazonS3 client;
-
-    private Properties properties;
+    private final AmazonS3 client;
 
     public AmazonS3Storage() {
-        this.properties = PropertiesLoader.getProperties();
+        Properties properties = PropertiesLoader.getProperties();
 
         this.storageUsername = properties.getProperty(STORAGE_USERNAME_PROP);
         this.storagePassword = properties.getProperty(STORAGE_PASSWORD_PROP);
@@ -43,9 +42,9 @@ public class AmazonS3Storage implements StorageService {
     }
 
     @Override
-    public void storeReport(Report report) {
-        String fileName = report.getReport().getName();
-        client.putObject(this.storageBucket, fileName, report.getReport());
+    public void storeReport(File zipReport) {
+        String fileName = zipReport.getName();
+        client.putObject(this.storageBucket, fileName, zipReport);
     }
 
     private AmazonS3 buildClient() {

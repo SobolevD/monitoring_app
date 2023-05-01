@@ -5,6 +5,7 @@ import org.example.repository.ReportRepository;
 import org.example.utils.PropertiesLoader;
 
 import java.io.ByteArrayInputStream;
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.sql.Connection;
@@ -45,16 +46,16 @@ public class PostgresReportRepository implements ReportRepository {
     }
 
     @Override
-    public void saveReport(Report report) {
-        try (Connection connection = DriverManager.getConnection(url, username, password)) {
+    public void saveReport(File zipReport, String username) {
+        try (Connection connection = DriverManager.getConnection(url, this.username, password)) {
             connection.setAutoCommit(false);
 
             PreparedStatement statement =
                     connection.prepareStatement("insert into user_reports values (?, ?, CURRENT_TIME, ?)");
-            statement.setString(1, report.getUsername());
-            statement.setLong(2, report.getReport().length());
+            statement.setString(1, username);
+            statement.setLong(2, zipReport.length());
 
-            byte[] reportBytes = Files.readAllBytes(report.getReport().toPath());
+            byte[] reportBytes = Files.readAllBytes(zipReport.toPath());
             statement.setBinaryStream(3, new ByteArrayInputStream(reportBytes));
             statement.executeUpdate();
             connection.commit();
