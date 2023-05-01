@@ -34,15 +34,16 @@ public class CassandraReportRepository implements ReportRepository {
     }
 
     private void prepareDatabase() {
-        try (Connection connection = DriverManager.getConnection(url, username, password)) {
-            PreparedStatement preparedStatement = connection.prepareStatement("CREATE TABLE IF NOT EXISTS user_reports (" +
-                    "    user_name     text," +
-                    "    report_size   integer," +
-                    "    report_date   date," +
-                    "    report        blob);");
-            preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+        try (Cluster cluster = Cluster.builder().addContactPoint(this.hostname).build()) {
+            try (Session session = cluster.connect()) {
+                session.execute("CREATE TABLE IF NOT EXISTS \"user_reports\"( \n" +
+                        "    user_name text,\n" +
+                        "    report_size int,\n" +
+                        "    report_date timestamp,\n" +
+                        "    report blob,\n" +
+                        "    PRIMARY KEY (user_name, report_size, report_date)\n" +
+                        ");");
+            }
         }
     }
 
