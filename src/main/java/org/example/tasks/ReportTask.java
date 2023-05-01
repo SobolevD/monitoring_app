@@ -78,11 +78,12 @@ public abstract class ReportTask extends TimerTask {
         File zipArchive = ZipUtils.createZip(entireReport, "OS User Report.zip");
 
         long fileSizeInBytes = zipArchive.length();
-        long maxAllowableFileSize = Long.parseLong(properties.getProperty(MAX_REPORT_SIZE_MEGABYTES_FOR_EMAIL_PROP));
+        long maxAllowableFileSizeMegabytes = Long.parseLong(properties.getProperty(MAX_REPORT_SIZE_MEGABYTES_FOR_EMAIL_PROP));
+        long maxAllowableFileSizeBytes = maxAllowableFileSizeMegabytes * 1024 * 1024;
 
-        if (fileSizeInBytes > maxAllowableFileSize) {
+        if (fileSizeInBytes > maxAllowableFileSizeBytes) {
             log.error("Unable to send report to {}: max file size is {}, but report size is {}. Send cancelled!",
-                    properties.getProperty(EMAIL_SENDER_ADDRESS_PROP), maxAllowableFileSize, fileSizeInBytes);
+                    properties.getProperty(EMAIL_SENDER_ADDRESS_PROP), maxAllowableFileSizeBytes, fileSizeInBytes);
             return;
         }
 
