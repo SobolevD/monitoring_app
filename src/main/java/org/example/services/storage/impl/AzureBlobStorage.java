@@ -1,8 +1,5 @@
 package org.example.services.storage.impl;
 
-import com.amazonaws.services.s3.AmazonS3;
-import com.azure.identity.DefaultAzureCredential;
-import com.azure.identity.DefaultAzureCredentialBuilder;
 import com.azure.storage.blob.BlobClient;
 import com.azure.storage.blob.BlobContainerClient;
 import com.azure.storage.blob.BlobServiceClient;

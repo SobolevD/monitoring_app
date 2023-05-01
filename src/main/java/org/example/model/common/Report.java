@@ -12,5 +12,6 @@ import java.util.List;
 @Getter
 public class Report {
     private List<?> objects;
+    private String username;
     private File report;
 }

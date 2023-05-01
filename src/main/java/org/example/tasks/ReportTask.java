@@ -3,7 +3,11 @@ package org.example.tasks;
 import lombok.extern.slf4j.Slf4j;
 import org.example.model.common.EmailCredentials;
 import org.example.model.common.Report;
+import org.example.repository.ReportRepository;
+import org.example.repository.ReportRepositoryResolver;
 import org.example.services.EmailService;
+import org.example.services.storage.StorageService;
+import org.example.services.storage.StorageServiceResolver;
 import org.example.utils.ZipUtils;
 
 import java.io.File;
@@ -19,14 +23,51 @@ import static org.example.utils.DateTimeHelper.getCurrentTimeAsString;
 @Slf4j
 public abstract class ReportTask extends TimerTask {
 
+    private final ReportRepositoryResolver reportRepositoryResolver;
+    private final StorageServiceResolver storageServiceResolver;
 
     protected Properties properties;
 
     public ReportTask(Properties properties) {
         this.properties = properties;
+        this.reportRepositoryResolver = new ReportRepositoryResolver();
+        this.storageServiceResolver = new StorageServiceResolver();
     }
 
-    protected void collectAndSendReport(List<Report> reports) {
+    protected final void collectAndSendReport(List<Report> reports) {
+
+        boolean storeToDatabase =
+                Boolean.parseBoolean(properties.getProperty(REPORT_STORE_TO_DATABASE_PROP));
+
+        if (storeToDatabase) {
+            storeToDatabase(reports);
+        }
+
+        boolean storeToStorage =
+                Boolean.parseBoolean(properties.getProperty(REPORT_STORE_TO_STORAGE_PROP));
+
+        if (storeToStorage) {
+            saveToStorage(reports);
+        }
+
+        boolean sendToEmail =
+                Boolean.parseBoolean(properties.getProperty(REPORT_SEND_TO_EMAIL_PROP));
+
+        if (sendToEmail) {
+            sendReportToEmail(reports);
+        }
+    }
+
+    private List<File> collectReport(Report... reports) {
+        return Arrays.stream(reports).map(Report::getReport).collect(Collectors.toList());
+    }
+
+    private List<File> collectReport(List<Report> reports) {
+        return collectReport(reports.toArray(new Report[0]));
+    }
+
+    private void sendReportToEmail(List<Report> reports) {
+
         List<File> entireReport = collectReport(reports);
 
         File zipArchive = ZipUtils.createZip(entireReport, "OS User Report.zip");
@@ -49,13 +90,20 @@ public abstract class ReportTask extends TimerTask {
         }
     }
 
-    private List<File> collectReport(Report... reports) {
-        return Arrays.stream(reports).map(Report::getReport).collect(Collectors.toList());
+    private void storeToDatabase(List<Report> reports) {
+        ReportRepository reportRepository = reportRepositoryResolver.resolve();
+
+        for (Report report : reports) {
+            reportRepository.saveReport(report);
+        }
     }
 
-    private List<File> collectReport(List<Report> reports) {
-        return collectReport(reports.toArray(new Report[0]));
-    }
+    private void saveToStorage(List<Report> reports) {
+        StorageService storageService = storageServiceResolver.resolve();
 
+        for (Report report : reports) {
+            storageService.storeReport(report);
+        }
+    }
 
 }

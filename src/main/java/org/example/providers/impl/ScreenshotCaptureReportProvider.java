@@ -2,7 +2,6 @@ package org.example.providers.impl;
 
 import org.example.model.common.Report;
 import org.example.services.ScreenshotsService;
-import org.example.services.WebCamService;
 
 import java.awt.*;
 import java.io.File;

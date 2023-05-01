@@ -2,7 +2,6 @@ package org.example.services;
 
 import com.github.sarxos.webcam.Webcam;
 import org.example.utils.Images2VideoConverter;
-import org.jcodec.api.awt.AWTSequenceEncoder;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -11,8 +10,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
-import static org.example.utils.DateTimeHelper.getCurrentTimeForFileName;
 
 public class WebCamService {
 

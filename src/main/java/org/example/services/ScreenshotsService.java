@@ -1,9 +1,7 @@
 package org.example.services;
 
-import com.github.sarxos.webcam.Webcam;
 import org.example.utils.Images2VideoConverter;
 
-import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -11,9 +9,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
-import static org.apache.poi.sl.usermodel.PictureData.PictureType.PNG;
-import static org.example.utils.DateTimeHelper.getCurrentTimeForFileName;
 
 public class ScreenshotsService {
 

@@ -4,7 +4,6 @@ import org.example.common.ResourcesGroupMetadataDictionary;
 import org.example.model.GroupMetadata;
 import org.example.providers.ExcelReportProvider;
 import org.example.providers.impl.SimplePowerShellExcelReportProvider;
-import org.example.services.ScreenshotsService;
 import org.example.tasks.CollectAudioReportTask;
 import org.example.tasks.CollectExcelReportTask;
 import org.example.tasks.CollectScreenshotsVideoReportTask;

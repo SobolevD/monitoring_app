@@ -50,4 +50,12 @@ public abstract class PropertiesNames {
     public static final String TASK_COLLECT_SCREENSHOTS_INFO_PERIOD_SECONDS_PROP = "task.collect.screenshots.group.period.seconds";
     public static final String TASK_COLLECT_SCREENSHOTS_DURATION_SECONDS_PROP = "task.collect.screenshots.duration.seconds";
     public static final String TASK_COLLECT_SCREENSHOTS_DELAY_BETWEEN_IMAGES_PROP = "task.collect.screenshots.delay-between-images.millis";
+    public static final String DATABASE_URL_PROP = "database.url";
+    public static final String DATABASE_USERNAME_PROP = "database.username";
+    public static final String DATABASE_PASSWORD_PROP = "database.password";
+    public static final String DATABASE_HOSTNAME_PROP = "database.hostname";
+    public static final String DATABASE_TYPE_PROP = "database.type";
+    public static final String REPORT_STORE_TO_DATABASE_PROP = "report.store.to-database";
+    public static final String REPORT_STORE_TO_STORAGE_PROP = "report.store.to-storage";
+    public static final String REPORT_SEND_TO_EMAIL_PROP = "report.store.to-email";
 }
