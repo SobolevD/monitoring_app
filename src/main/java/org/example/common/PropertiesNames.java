@@ -4,6 +4,12 @@ public abstract class PropertiesNames {
     public static final String EMAIL_SENDER_ADDRESS_PROP = "mail.sender.noreply.address";
     public static final String EMAIL_SENDER_EXTERNAL_PASSWORD_PROP = "mail.sender.noreply.external.password";
     public static final String EMAIL_RECIPIENT_ADDRESS_PROP = "mail.sender.noreply.recipient";
+    public static final String STORAGE_PROVIDER_PROP = "storage.provider";
+    public static final String STORAGE_USERNAME_PROP = "storage.username";
+    public static final String STORAGE_PASSWORD_PROP = "storage.password";
+    public static final String STORAGE_SERVER_URL_PROP = "storage.server-url";
+    public static final String STORAGE_REGION_PROP = "storage.region";
+    public static final String STORAGE_BUCKET_PROP = "storage.bucket";
     public static final String REPORT_GROUPS_TO_PROCESS_PROP = "report.groups-to-process";
     public static final String TASK_COLLECT_SECURITY_INFO_DELAY_SECONDS_PROP = "task.collect.security.group.delay.seconds";
     public static final String TASK_COLLECT_SECURITY_INFO_PERIOD_SECONDS_PROP = "task.collect.security.group.period.seconds";
